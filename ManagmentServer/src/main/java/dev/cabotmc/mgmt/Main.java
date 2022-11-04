@@ -8,6 +8,8 @@ import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientConfig;
 import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.zerodep.ZerodepDockerHttpClient;
+
+import dev.cabotmc.mgmt.containers.ContainerCommunicationManager;
 import dev.cabotmc.mgmt.containers.ContainerManager;
 import dev.cabotmc.mgmt.protocol.ClientIdentifyMessage;
 import dev.cabotmc.mgmt.templates.TemplateRegistry;
@@ -34,7 +36,8 @@ public class Main {
         TemplateRegistry.initFromFolder(new File("/home/ubuntu/craftin-containers/templates"));
         ContainerManager.loadRunningContainers();
         if (!ContainerManager.trackedContainers.containsKey("velocity")) {
-            ContainerManager.requestContainerStart(TemplateRegistry.templates.get("velocity"));
+            System.out.println("Starting velocity");
+            ContainerManager.startContainerWithName(TemplateRegistry.templates.get("velocity"), "velocity");
         }
         server.addListener(new Listener() {
             @Override
@@ -44,7 +47,10 @@ public class Main {
                     System.out.println("Client " + message.instanceName + " identified as " + message.kind);
                     if (ContainerManager.trackedContainers.containsKey(message.instanceName)) {
                         ContainerManager.trackedContainers.get(message.instanceName).containerConnection = connection;
+                        
                     }
+                } else {
+                    ContainerCommunicationManager.acceptMessage(o, connection);
                 }
             }
         });
