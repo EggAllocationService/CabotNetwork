@@ -1,0 +1,4 @@
+rootProject.name = 'CabotOrchestration'
+include 'CommonClasses'
+include 'ManagmentServer'
+
