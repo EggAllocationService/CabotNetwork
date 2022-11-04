@@ -1,4 +1,5 @@
 rootProject.name = 'CabotOrchestration'
 include 'CommonClasses'
 include 'ManagmentServer'
-
+include 'VelocityAgent'
+include 'SpigotAgent'

@@ -45,6 +45,10 @@ public class Main {
                 if (o instanceof ClientIdentifyMessage) {
                     var message = (ClientIdentifyMessage) o;
                     System.out.println("Client " + message.instanceName + " identified as " + message.kind);
+                    if (message.instanceName.equals("velocity")) {
+                        System.out.println("Starting lobby container");
+                        ContainerManager.startContainerWithName(TemplateRegistry.templates.get("lobby"), "lobby");
+                    }
                     if (ContainerManager.trackedContainers.containsKey(message.instanceName)) {
                         ContainerManager.trackedContainers.get(message.instanceName).containerConnection = connection;
                         
