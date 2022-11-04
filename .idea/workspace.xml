@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/ClientIdentifyMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManagmentServer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/ProtocolHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/ProtocolHelper.java" afterDir="false" />
+    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="forgot one lmao">
       <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/ContainerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/ContainerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/WrappedContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/WrappedContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/Template.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/Template.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/TemplateRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/TemplateRegistry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,8 +97,23 @@
       <option name="presentableId" value="Default" />
       <updated>1667539138783</updated>
       <workItem from="1667539140858" duration="2105000" />
-      <workItem from="1667581076553" duration="5075000" />
+      <workItem from="1667581076553" duration="5345000" />
     </task>
+    <task id="LOCAL-00001" summary="fix submodules">
+      <created>1667586171282</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667586171282</updated>
+    </task>
+    <task id="LOCAL-00002" summary="forgot one lmao">
+      <created>1667586183206</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667586183206</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,5 +129,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix submodules" />
+    <MESSAGE value="forgot one lmao" />
+    <option name="LAST_COMMIT_MESSAGE" value="forgot one lmao" />
   </component>
 </project>

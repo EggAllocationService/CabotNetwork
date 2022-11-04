@@ -32,6 +32,10 @@ public class Main {
         server.start();
         ProtocolHelper.registerClasses(server.getKryo());
         TemplateRegistry.initFromFolder(new File("/home/ubuntu/craftin-containers/templates"));
+        ContainerManager.loadRunningContainers();
+        if (!ContainerManager.trackedContainers.containsKey("velocity")) {
+            ContainerManager.requestContainerStart(TemplateRegistry.templates.get("velocity"));
+        }
         server.addListener(new Listener() {
             @Override
             public void received(Connection connection, Object o) {
