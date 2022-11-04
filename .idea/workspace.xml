@@ -5,27 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/ProtocolHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/CreateServerRequestMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/CrossServerMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/ServerStatusChangeMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/TransferPlayersMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/ContainerManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/WrappedContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/Template.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/TemplateRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/ClientIdentifyMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ManagmentServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/ProtocolHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/ProtocolHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/ContainerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/ContainerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/WrappedContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/WrappedContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/Template.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/Template.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/TemplateRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/TemplateRegistry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +49,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/Main.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -69,19 +61,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "17",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ManagmentServer [run]" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
@@ -114,6 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1667539138783</updated>
       <workItem from="1667539140858" duration="2105000" />
+      <workItem from="1667581076553" duration="5075000" />
     </task>
     <servers />
   </component>

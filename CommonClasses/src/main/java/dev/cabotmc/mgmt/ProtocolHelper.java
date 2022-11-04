@@ -1,9 +1,6 @@
 package dev.cabotmc.mgmt;
 import com.esotericsoftware.kryo.Kryo;
-import dev.cabotmc.mgmt.protocol.CreateServerRequestMessage;
-import dev.cabotmc.mgmt.protocol.CrossServerMessage;
-import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
-import dev.cabotmc.mgmt.protocol.TransferPlayersMessage;
+import dev.cabotmc.mgmt.protocol.*;
 
 public class ProtocolHelper {
     public static void registerClasses(Kryo kryo) {
@@ -11,5 +8,6 @@ public class ProtocolHelper {
         kryo.register(TransferPlayersMessage.class);
         kryo.register(CreateServerRequestMessage.class);
         kryo.register(CrossServerMessage.class);
+        kryo.register(ClientIdentifyMessage.class);
     }
 }

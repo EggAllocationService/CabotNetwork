@@ -1,7 +1,8 @@
 package dev.cabotmc.mgmt.templates;
 
 public class Template {
-    public String displayName;
+    public String name;
     public String dockerImage;
-    public boolean persistant;
+    public boolean persistent;
+    public int forwardPort;
 }
