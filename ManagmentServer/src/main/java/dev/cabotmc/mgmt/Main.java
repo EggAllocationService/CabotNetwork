@@ -11,11 +11,13 @@ import com.github.dockerjava.zerodep.ZerodepDockerHttpClient;
 
 import dev.cabotmc.mgmt.containers.ContainerCommunicationManager;
 import dev.cabotmc.mgmt.containers.ContainerManager;
+import dev.cabotmc.mgmt.containers.WrappedContainer;
 import dev.cabotmc.mgmt.protocol.ClientIdentifyMessage;
 import dev.cabotmc.mgmt.templates.TemplateRegistry;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
     public static Server server;
@@ -58,6 +60,21 @@ public class Main {
                 }
             }
         });
+        Runtime.getRuntime().addShutdownHook(new ShutdownThread());
         server.bind(3269);
+    }
+    public static class ShutdownThread extends Thread {
+        @Override
+        public void run() {
+            var containers = ContainerManager.trackedContainers;
+            var toDelete = new ArrayList<WrappedContainer>();
+            for (var x : containers.values()) {
+                toDelete.add(x);
+            }
+            for (var x : toDelete) {
+                docker.stopContainerCmd(x.containerID).exec();
+            }
+            System.out.println("Stopped containers");
+        }
     }
 }

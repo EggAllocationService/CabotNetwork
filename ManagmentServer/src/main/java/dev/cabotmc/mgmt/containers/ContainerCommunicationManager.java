@@ -3,7 +3,9 @@ package dev.cabotmc.mgmt.containers;
 import com.esotericsoftware.kryonet.Connection;
 
 import dev.cabotmc.mgmt.Main;
+import dev.cabotmc.mgmt.protocol.CreateServerRequestMessage;
 import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
+import dev.cabotmc.mgmt.templates.TemplateRegistry;
 
 public class ContainerCommunicationManager {
     public static void acceptMessage(Object o, Connection connection) {
@@ -22,9 +24,13 @@ public class ContainerCommunicationManager {
                     var container = ContainerManager.trackedContainers.get(msg.serverName);
                     var info = Main.docker.inspectContainerCmd(container.containerID).exec();
                     msg.connectAddress = info.getNetworkSettings().getIpAddress();
+                    System.out.println("Set connect address to " + msg.connectAddress);
                 }
-                ContainerManager.trackedContainers.get("velocity").containerConnection.sendTCP(o);
+                ContainerManager.trackedContainers.get("velocity").containerConnection.sendTCP(msg);
             }
+        } else if (o instanceof CreateServerRequestMessage) {
+            var template = TemplateRegistry.templates.get(((CreateServerRequestMessage) o).templateName);
+            ContainerManager.requestContainerStart(template);
         }
     }
 

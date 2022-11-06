@@ -2,6 +2,8 @@ package dev.cabotmc.spigotagent;
 
 import com.esotericsoftware.kryonet.Client;
 import dev.cabotmc.mgmt.ProtocolHelper;
+import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.units.qual.C;
@@ -22,11 +24,26 @@ public final class SpigotAgent extends JavaPlugin {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Bukkit.getPluginManager().registerEvents(new SpigotListener(), this);
+        var instanceName = System.getenv("CABOT_NAME");
+        var connectPort = Bukkit.getPort();
+        var msg = new ServerStatusChangeMessage();
+        msg.connectAddress = null;
+        msg.serverName = instanceName;
+        msg.online = true;
+        msg.connectPort = connectPort;
+        SpigotAgent.kryoClient.sendTCP(msg);
     }
 
     @Override
     public void onDisable() {
+        var instanceName = System.getenv("CABOT_NAME");
+        var connectPort = Bukkit.getPort();
+        var msg = new ServerStatusChangeMessage();
+        msg.connectAddress = null;
+        msg.serverName = instanceName;
+        msg.online = false;
+        msg.connectPort = connectPort;
+        kryoClient.sendTCP(msg);
         kryoClient.close();
     }
 }

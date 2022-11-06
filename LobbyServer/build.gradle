@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group 'dev.cabotmc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://clojars.org/repo/"
+    }
+    maven { url 'https://jitpack.io' }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+}
+
+dependencies {
+    shadow 'kryonet:kryonet:2.21'
+    shadow project(":CommonClasses")
+    shadow 'com.google.code.gson:gson:2.10'
+    shadow 'com.github.Minestom:Minestom:42195c536b'
+    shadow 'com.esotericsoftware:kryo:5.3.0'
+}
+application {
+    mainClass = "dev.cabotmc.lobby.Main"
+
+}

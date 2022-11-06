@@ -1,6 +1,8 @@
 package dev.cabotmc.mgmt.containers;
 
 import com.github.dockerjava.api.model.Container;
+import com.github.dockerjava.api.model.PortBinding;
+
 import dev.cabotmc.mgmt.Main;
 import dev.cabotmc.mgmt.templates.Template;
 import dev.cabotmc.mgmt.templates.TemplateRegistry;
@@ -49,9 +51,10 @@ public class ContainerManager {
                 .withAutoRemove(true);
         backend = backend.withHostConfig(hostConfig);
         if (template.forwardPort != 0) {
-            backend = backend.withPortSpecs(template.forwardPort + ":" + template.forwardPort);
+            backend = backend.withPortBindings(PortBinding.parse(template.forwardPort + ":" + template.forwardPort));
         }
         var created = backend.exec();
+        Main.docker.startContainerCmd(created.getId()).exec();
         container.containerID = created.getId();
         container.template = template;
         trackedContainers.put(name, container);

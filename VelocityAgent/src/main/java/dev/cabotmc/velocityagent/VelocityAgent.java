@@ -6,7 +6,9 @@ import com.esotericsoftware.kryonet.Listener;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.proxy.ListenerBoundEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
+import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.player.PlayerChooseInitialServerEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.server.ServerInfo;
@@ -42,6 +44,10 @@ public class VelocityAgent {
         kryoClient.connect(5000, "172.17.0.1", 3269);
 
         logger.info("Connected to management server");
+        var meta = proxy.getCommandManager().metaBuilder("create")
+            .plugin(this)
+            .build();
+        proxy.getCommandManager().register(meta, new CreateCommand());
     }
     @Subscribe
     public void onProxyReady(ListenerBoundEvent e) {
@@ -55,7 +61,10 @@ public class VelocityAgent {
                         // add server if it doesnt exist already
                         if (proxy.getServer(msg.serverName).isEmpty()) {
                             var s = new ServerInfo(msg.serverName, new InetSocketAddress(msg.connectAddress, msg.connectPort));
-                            proxy.sendMessage(Component.text("[SERVER UP] " + msg.serverName));
+                            var m = "[SERVER UP] " + msg.serverName;
+                            proxy.sendMessage(Component.text(m));
+                            logger.info(m);
+                            proxy.registerServer(s);
                         }
                     } else {
                         // remove server if it exists
@@ -71,5 +80,11 @@ public class VelocityAgent {
         identifyMessage.kind = "velocity";
         identifyMessage.instanceName = "velocity";
         kryoClient.sendTCP(identifyMessage);
+    }
+    @Subscribe
+    public void handleLogin(PlayerChooseInitialServerEvent e) {
+        if (proxy.getServer("lobby").isPresent()) {
+            e.setInitialServer(proxy.getServer("lobby").get());
+        }
     }
 }
