@@ -15,16 +15,14 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
-shadowJar {
-    configurations = [project.configurations.shadow]
-}
 
 dependencies {
-    shadow 'kryonet:kryonet:2.21'
-    shadow project(":CommonClasses")
-    shadow 'com.google.code.gson:gson:2.10'
-    shadow 'com.github.Minestom:Minestom:42195c536b'
-    shadow 'com.esotericsoftware:kryo:5.3.0'
+    implementation 'kryonet:kryonet:2.21'
+    implementation project(":CommonClasses")
+    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.github.Minestom:Minestom:42195c536b'
+    implementation 'org.mongodb:mongodb-driver-sync:4.7.2'
+    implementation 'com.esotericsoftware:kryo:5.3.0'
 }
 application {
     mainClass = "dev.cabotmc.lobby.Main"

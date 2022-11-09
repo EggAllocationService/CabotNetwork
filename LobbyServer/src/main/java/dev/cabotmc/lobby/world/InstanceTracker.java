@@ -15,11 +15,13 @@ public class InstanceTracker {
     }
     public static InstanceContainer create(String name) {
         var f = manager.createInstanceContainer();
+        f.setChunkLoader(new CustomChunkLoader());
         instances.put(name, f);
         return f;
     }
     public static InstanceContainer create(String name, DimensionType dim) {
         var f = manager.createInstanceContainer(dim);
+        f.setChunkLoader(new CustomChunkLoader());
         instances.put(name, f);
         return f;
     }

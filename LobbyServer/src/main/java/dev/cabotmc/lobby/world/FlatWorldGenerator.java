@@ -10,8 +10,7 @@ public class FlatWorldGenerator implements Generator {
 
     @Override
     public void generate(@NotNull GenerationUnit unit) {
-        unit.modifier().fillHeight(0, 64, Block.STONE);
-        
+        unit.modifier().fillHeight(0, 16, Block.BLACK_CONCRETE);
     }
     
 }

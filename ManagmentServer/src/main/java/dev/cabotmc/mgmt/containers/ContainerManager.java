@@ -7,6 +7,8 @@ import dev.cabotmc.mgmt.Main;
 import dev.cabotmc.mgmt.templates.Template;
 import dev.cabotmc.mgmt.templates.TemplateRegistry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -31,13 +33,14 @@ public class ContainerManager {
         }
     }
 
-    public static void requestContainerStart(Template template) {
+    public static void requestContainerStart(Template template, String[] env) {
 
         var name = template.name + "-" + UUID.randomUUID().toString().split("-")[0];
-        startContainerWithName(template, name);
+        startContainerWithName(template, name, env);
     }
 
-    public static void startContainerWithName(Template template, String name) {
+
+    public static void startContainerWithName(Template template, String name, String[] envargs) {
         var container = new WrappedContainer();
         var backend = Main.docker.createContainerCmd(template.dockerImage).withName(name)
                 .withLabels(new HashMap<String, String>() {
@@ -45,8 +48,16 @@ public class ContainerManager {
                         put("cabot-template", template.name);
                         put("cabot-name", name);
                     }
-                })
-                .withEnv("CABOT_NAME=" + name);
+                });
+                
+        if (envargs == null || envargs.length == 0) {
+            backend = backend.withEnv("CABOT_NAME=" + name);
+        } else {
+            var list = Arrays.asList(envargs);
+            list.add("CABOT_NAME=" + name);
+            backend = backend.withEnv(list);
+        }
+        
         var hostConfig = backend.getHostConfig()
                 .withAutoRemove(true);
         backend = backend.withHostConfig(hostConfig);

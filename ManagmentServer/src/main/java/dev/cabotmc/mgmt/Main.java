@@ -39,7 +39,7 @@ public class Main {
         ContainerManager.loadRunningContainers();
         if (!ContainerManager.trackedContainers.containsKey("velocity")) {
             System.out.println("Starting velocity");
-            ContainerManager.startContainerWithName(TemplateRegistry.templates.get("velocity"), "velocity");
+            ContainerManager.startContainerWithName(TemplateRegistry.templates.get("velocity"), "velocity", null);
         }
         server.addListener(new Listener() {
             @Override
@@ -49,7 +49,7 @@ public class Main {
                     System.out.println("Client " + message.instanceName + " identified as " + message.kind);
                     if (message.instanceName.equals("velocity")) {
                         System.out.println("Starting lobby container");
-                        ContainerManager.startContainerWithName(TemplateRegistry.templates.get("lobby"), "lobby");
+                        ContainerManager.startContainerWithName(TemplateRegistry.templates.get("lobby"), "lobby", null);
                     }
                     if (ContainerManager.trackedContainers.containsKey(message.instanceName)) {
                         ContainerManager.trackedContainers.get(message.instanceName).containerConnection = connection;

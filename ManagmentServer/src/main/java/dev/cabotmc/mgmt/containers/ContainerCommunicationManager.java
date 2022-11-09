@@ -30,7 +30,7 @@ public class ContainerCommunicationManager {
             }
         } else if (o instanceof CreateServerRequestMessage) {
             var template = TemplateRegistry.templates.get(((CreateServerRequestMessage) o).templateName);
-            ContainerManager.requestContainerStart(template);
+            ContainerManager.requestContainerStart(template, ((CreateServerRequestMessage) o).enviromentVars);
         }
     }
 
