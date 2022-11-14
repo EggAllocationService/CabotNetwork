@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         var paths = Files.walk(Path.of("data"));
         var inputs = paths.filter(Files::isRegularFile)
             .map(Path::toString)
@@ -34,7 +35,10 @@ public class Main {
         }
         System.out.println("Randomized loot tables");
         if (args.length != 0) {
-            
+            System.out.println("Loading and executing main class...");
+            var targetClass = Class.forName(args[0]);
+            var mainMethod = targetClass.getMethod("main", String[].class);
+            mainMethod.invoke(null, (Object) new String[]{});
         }
 
 
