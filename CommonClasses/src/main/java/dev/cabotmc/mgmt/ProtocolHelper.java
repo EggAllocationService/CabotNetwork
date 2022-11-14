@@ -9,5 +9,6 @@ public class ProtocolHelper {
         kryo.register(CreateServerRequestMessage.class);
         kryo.register(CrossServerMessage.class);
         kryo.register(ClientIdentifyMessage.class);
+        kryo.register(String[].class);
     }
 }

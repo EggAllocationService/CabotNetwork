@@ -5,6 +5,8 @@ build/
 !**/src/test/**/build/
 
 ebework/
+EggRandomizer/data/
+*.jar
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

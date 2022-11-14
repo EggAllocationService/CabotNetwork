@@ -2,39 +2,27 @@ package dev.cabotmc.lobby;
 
 import java.io.IOException;
 
-import javax.xml.stream.events.Namespace;
-
-import com.esotericsoftware.kryonet.Client;
-
 import dev.cabotmc.commonnet.CommonClient;
 import dev.cabotmc.lobby.world.FlatWorldGenerator;
 import dev.cabotmc.lobby.world.InstanceTracker;
-import dev.cabotmc.mgmt.ProtocolHelper;
-import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
 import net.minestom.server.MinecraftServer;
-import net.minestom.server.command.builder.Command;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.GameMode;
 import net.minestom.server.event.player.PlayerLoginEvent;
-import net.minestom.server.event.player.PlayerRespawnEvent;
 import net.minestom.server.event.player.PlayerSpawnEvent;
 import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.PlacementRules;
 import net.minestom.server.extras.velocity.VelocityProxy;
 import net.minestom.server.instance.block.Block;
-import net.minestom.server.instance.block.rule.vanilla.StairsPlacementRule;
 import net.minestom.server.network.packet.server.play.ChangeGameStatePacket;
 import net.minestom.server.network.packet.server.play.ChangeGameStatePacket.Reason;
 import net.minestom.server.utils.NamespaceID;
 import net.minestom.server.world.DimensionType;
 import net.minestom.server.world.biomes.Biome;
 import net.minestom.server.world.biomes.BiomeEffects;
-import net.minestom.server.world.biomes.BiomeManager;
-import net.minestom.server.world.biomes.BiomeParticle;
 import net.minestom.server.world.biomes.Biome.Category;
 import net.minestom.server.world.biomes.Biome.Precipitation;
-import net.minestom.server.world.biomes.Biome.TemperatureModifier;
-import net.minestom.server.world.biomes.BiomeEffects.GrassColorModifier;
+
 
 public class Main {
     public static MinecraftServer server;
@@ -51,7 +39,6 @@ public class Main {
             .grassColor(0xFFFFFF)
             .build();
         CHRISTMAS_BIOME = Biome.builder()
-
                             .precipitation(Precipitation.NONE)
                             .downfall(1f)
                             .temperature(0.15f)
@@ -75,7 +62,7 @@ public class Main {
             VelocityProxy.enable("RJtJ5WqA9As8");
 
             CommonClient.init();
-            CommonClient.sayHello(25566);
+            CommonClient.sayHello(25561);
             
             Runtime.getRuntime().addShutdownHook(CommonClient.getShutdownHook());
         } else {
@@ -86,10 +73,6 @@ public class Main {
             event.setSpawningInstance(InstanceTracker.get("lobby"));
             event.getPlayer().setRespawnPoint(new Pos(0, 65, 0));
             event.getPlayer().setGameMode(GameMode.CREATIVE);
-        });
-        MinecraftServer.getGlobalEventHandler().addListener(PlayerSpawnEvent.class, event -> {
-            var pack = new ChangeGameStatePacket(Reason.RAIN_LEVEL_CHANGE, 0.5f);
-            event.getPlayer().sendPacket(pack);
         });
         server.start("0.0.0.0", 25561);
     }

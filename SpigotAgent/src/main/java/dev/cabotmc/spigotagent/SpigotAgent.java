@@ -15,6 +15,7 @@ public final class SpigotAgent extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        if (!System.getenv().containsKey("CABOT_NAME")) return;
         try {
             CommonClient.init();
             CommonClient.sayHello(Bukkit.getPort());
@@ -26,6 +27,7 @@ public final class SpigotAgent extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (!System.getenv().containsKey("CABOT_NAME")) return;
         CommonClient.getShutdownHook().run();
     }
 }

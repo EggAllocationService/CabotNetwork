@@ -53,7 +53,7 @@ public class ContainerManager {
         if (envargs == null || envargs.length == 0) {
             backend = backend.withEnv("CABOT_NAME=" + name);
         } else {
-            var list = Arrays.asList(envargs);
+            var list = new ArrayList<String>(Arrays.asList(envargs));
             list.add("CABOT_NAME=" + name);
             backend = backend.withEnv(list);
         }

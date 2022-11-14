@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'dev.cabotmc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://clojars.org/repo/"
+    }
+}
+
+dependencies {
+}
+application {
+    mainClass = "dev.cabotmc.random.Main"
+
+}
+test {
+    useJUnitPlatform()
+}

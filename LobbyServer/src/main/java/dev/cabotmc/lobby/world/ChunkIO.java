@@ -1,5 +1,8 @@
 package dev.cabotmc.lobby.world;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 
@@ -34,6 +37,21 @@ public class ChunkIO {
             for (int x = 0; x < 16; x++) {
                 for (int z = 0; z < 16; z++) {
                     c.setBlock(x, y, z, Block.fromStateId(b.getShort()));
+                    c.setBiome(x, y, z, Main.CHRISTMAS_BIOME);
+                }
+            }
+        }
+    }
+    public static void loadBlocksToChunk(Chunk c, InputStream data) throws IOException {
+        var b = new DataInputStream(data);
+
+        int minSection = b.readInt();
+        int maxSection = b.readInt();
+
+        for (int y = minSection * 16; y < maxSection * 16; y++) {
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
+                    c.setBlock(x, y, z, Block.fromStateId(b.readShort()));
                     c.setBiome(x, y, z, Main.CHRISTMAS_BIOME);
                 }
             }

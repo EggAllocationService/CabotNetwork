@@ -4,6 +4,7 @@ import com.esotericsoftware.kryonet.Connection;
 
 import dev.cabotmc.mgmt.Main;
 import dev.cabotmc.mgmt.protocol.CreateServerRequestMessage;
+import dev.cabotmc.mgmt.protocol.CrossServerMessage;
 import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
 import dev.cabotmc.mgmt.templates.TemplateRegistry;
 
@@ -31,6 +32,13 @@ public class ContainerCommunicationManager {
         } else if (o instanceof CreateServerRequestMessage) {
             var template = TemplateRegistry.templates.get(((CreateServerRequestMessage) o).templateName);
             ContainerManager.requestContainerStart(template, ((CreateServerRequestMessage) o).enviromentVars);
+        } else if (o instanceof CrossServerMessage) {
+            var msg = (CrossServerMessage) o;
+            for (var target : msg.targets) {
+                if (ContainerManager.trackedContainers.containsKey(target) && ContainerManager.trackedContainers.get(target).containerConnection != null) {
+                    ContainerManager.trackedContainers.get(target).containerConnection.sendTCP(msg);
+                }
+            }
         }
     }
 
