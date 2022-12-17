@@ -18,7 +18,7 @@ public class CreateCommand implements SimpleCommand{
     }
     @Override
     public boolean hasPermission(final Invocation invocation) {
-        return true;
+        return invocation.source().hasPermission("cloud.create");
     }
     
 }

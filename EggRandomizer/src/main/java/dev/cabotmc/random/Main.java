@@ -2,9 +2,7 @@ package dev.cabotmc.random;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -12,7 +10,7 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class Main {
-    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) throws Exception {
         var paths = Files.walk(Path.of("data"));
         var inputs = paths.filter(Files::isRegularFile)
             .map(Path::toString)

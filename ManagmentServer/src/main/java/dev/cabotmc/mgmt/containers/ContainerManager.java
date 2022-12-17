@@ -1,7 +1,12 @@
 package dev.cabotmc.mgmt.containers;
 
+import com.github.dockerjava.api.model.Bind;
 import com.github.dockerjava.api.model.Container;
+import com.github.dockerjava.api.model.Mount;
 import com.github.dockerjava.api.model.PortBinding;
+import com.github.dockerjava.api.model.Volume;
+import com.github.dockerjava.api.model.VolumeBind;
+import com.github.dockerjava.api.model.VolumeBinds;
 
 import dev.cabotmc.mgmt.Main;
 import dev.cabotmc.mgmt.templates.Template;
@@ -42,13 +47,21 @@ public class ContainerManager {
 
     public static void startContainerWithName(Template template, String name, String[] envargs) {
         var container = new WrappedContainer();
-        var backend = Main.docker.createContainerCmd(template.dockerImage).withName(name)
-                .withLabels(new HashMap<String, String>() {
+        if (template.persistent) {
+            // persistant templates can only have one so set the name
+            name = template.name;
+        }
+        if (trackedContainers.containsKey(name)) {
+            System.out.println("ERROR: Creating container that already exists!");
+            return;
+        }
+        var backend = Main.docker.createContainerCmd(template.dockerImage).withName(name);
+                /* .withLabels(new HashMap<String, String>() {
                     {
                         put("cabot-template", template.name);
                         put("cabot-name", name);
                     }
-                });
+                });*/
                 
         if (envargs == null || envargs.length == 0) {
             backend = backend.withEnv("CABOT_NAME=" + name);
@@ -63,6 +76,13 @@ public class ContainerManager {
         backend = backend.withHostConfig(hostConfig);
         if (template.forwardPort != 0) {
             backend = backend.withPortBindings(PortBinding.parse(template.forwardPort + ":" + template.forwardPort));
+        }
+        if (template.persistent) {
+            if (template.mountPath != null) {
+                backend.getHostConfig().setBinds(new Bind(template.mountPath, new Volume("/data")));
+            } else {
+                // create a volume for that template and mount it under data implement later
+            }
         }
         var created = backend.exec();
         Main.docker.startContainerCmd(created.getId()).exec();

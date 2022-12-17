@@ -1,10 +1,6 @@
 package dev.cabotmc.spigotagent;
 
-import com.esotericsoftware.kryonet.Client;
-
 import dev.cabotmc.commonnet.CommonClient;
-import dev.cabotmc.mgmt.ProtocolHelper;
-import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +15,11 @@ public final class SpigotAgent extends JavaPlugin {
         try {
             CommonClient.init();
             CommonClient.sayHello(Bukkit.getPort());
+            CommonClient.addMessageHandler(msg -> {
+                if (msg.data.equals("shutdown")) {
+                    Bukkit.shutdown();
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

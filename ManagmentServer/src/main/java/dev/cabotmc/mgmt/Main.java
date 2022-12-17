@@ -50,6 +50,8 @@ public class Main {
                     if (message.instanceName.equals("velocity")) {
                         System.out.println("Starting lobby container");
                         ContainerManager.startContainerWithName(TemplateRegistry.templates.get("lobby"), "lobby", null);
+                        System.out.println("Starting Limbo");
+                        ContainerManager.startContainerWithName(TemplateRegistry.templates.get("lobby"), "limbo", new String[]{"IS_LIMBO=TRUE"});
                     }
                     if (ContainerManager.trackedContainers.containsKey(message.instanceName)) {
                         ContainerManager.trackedContainers.get(message.instanceName).containerConnection = connection;

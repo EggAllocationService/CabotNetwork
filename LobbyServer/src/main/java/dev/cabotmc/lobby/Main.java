@@ -3,8 +3,14 @@ package dev.cabotmc.lobby;
 import java.io.IOException;
 
 import dev.cabotmc.commonnet.CommonClient;
+import dev.cabotmc.lobby.db.Database;
 import dev.cabotmc.lobby.world.FlatWorldGenerator;
 import dev.cabotmc.lobby.world.InstanceTracker;
+import dev.cabotmc.lobby.world.ZipFileChunkLoader;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.title.Title;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.GameMode;
@@ -14,8 +20,6 @@ import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.PlacementRules;
 import net.minestom.server.extras.velocity.VelocityProxy;
 import net.minestom.server.instance.block.Block;
-import net.minestom.server.network.packet.server.play.ChangeGameStatePacket;
-import net.minestom.server.network.packet.server.play.ChangeGameStatePacket.Reason;
 import net.minestom.server.utils.NamespaceID;
 import net.minestom.server.world.DimensionType;
 import net.minestom.server.world.biomes.Biome;
@@ -51,9 +55,6 @@ public class Main {
         MinecraftServer.getDimensionTypeManager().addDimension(fullbright);
         var lobby = InstanceTracker.create("lobby", fullbright);
         lobby.setGenerator(new FlatWorldGenerator());
-        lobby.getWorldBorder().setDiameter(100);
-        lobby.getWorldBorder().setCenter(0, 0);
-        
         
         MinecraftServer.getCommandManager().register(new SaveCommand());
         if (System.getenv().containsKey("CABOT_NAME")) {
@@ -71,9 +72,29 @@ public class Main {
         }
         MinecraftServer.getGlobalEventHandler().addListener(PlayerLoginEvent.class, event -> {
             event.setSpawningInstance(InstanceTracker.get("lobby"));
-            event.getPlayer().setRespawnPoint(new Pos(0, 65, 0));
-            event.getPlayer().setGameMode(GameMode.CREATIVE);
+            event.getPlayer().setRespawnPoint(new Pos(0, System.getenv().containsKey("IS_LIMBO") ? 18 : 111, 0));
+            event.getPlayer().setGameMode(GameMode.ADVENTURE);
+            event.getPlayer().setAllowFlying(true);
         });
+        if (System.getenv().containsKey("IS_LIMBO")) {
+            MinecraftServer.getGlobalEventHandler().addListener(PlayerSpawnEvent.class, e -> {
+                e.getPlayer().showTitle(
+                    Title.title(
+                        Component.text(""),
+                        Component.text("Processing your skin, please wait", TextColor.color(0xca4040))
+                            .decorate(TextDecoration.BOLD)
+                        )
+                );
+             });
+        } else {
+            MinecraftServer.getGlobalEventHandler().addListener(PlayerSpawnEvent.class, e -> {
+                LeaderbordGenerator.showLeaderboard(e.getPlayer()); 
+             });
+             
+             lobby.getWorldBorder().setDiameter(100);
+             lobby.getWorldBorder().setCenter(0, 0);
+             Database.init();
+        }
         server.start("0.0.0.0", 25561);
     }
 

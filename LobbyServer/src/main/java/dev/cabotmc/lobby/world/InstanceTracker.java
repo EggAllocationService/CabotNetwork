@@ -21,7 +21,7 @@ public class InstanceTracker {
     }
     public static InstanceContainer create(String name, DimensionType dim) {
         var f = manager.createInstanceContainer(dim);
-        if (System.getenv().containsKey("CABOT_NAME")) {
+        if (System.getenv().containsKey("CABOT_NAME") && !System.getenv().containsKey("IS_LIMBO")) {
             f.setChunkLoader(new ZipFileChunkLoader(name + ".egg"));
         } else {
             f.setChunkLoader(new CustomChunkLoader());

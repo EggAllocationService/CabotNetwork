@@ -17,6 +17,11 @@ public class CommonClient {
     static Client kryoClient;
     static Thread hook = new ShutdownThread();
     static ArrayList<Consumer<CrossServerMessage>> listeners = new ArrayList<>();
+    static boolean delayQueueSignal = false;
+
+    public static void delayQueuePacket(boolean b) {
+        delayQueueSignal = b;
+    }
 
     public static void init() throws IOException {
         kryoClient = new Client();
@@ -36,6 +41,19 @@ public class CommonClient {
         var identifyMsg = new ClientIdentifyMessage();
         identifyMsg.instanceName = System.getenv("CABOT_NAME");
         kryoClient.sendTCP(identifyMsg);
+        addMessageHandler(c -> {
+            if (c.data.equals("kill")) {
+                getShutdownHook().run();
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Runtime.getRuntime().halt(0);
+                }).start();
+            }
+        });
     }
 
     public static void sayHello(int connectPort) {
@@ -46,6 +64,17 @@ public class CommonClient {
         msg.online = true;
         msg.connectPort = connectPort;
         kryoClient.sendTCP(msg);
+        if (System.getenv().containsKey("QUEUE_TOKEN") && !delayQueueSignal) { 
+            notifyQueue();
+        }
+    }
+
+    public static void notifyQueue() {
+        var tokenMsg = new CrossServerMessage();
+        tokenMsg.from = System.getenv("CABOT_NAME");
+        tokenMsg.data = "token:" + System.getenv("QUEUE_TOKEN");
+        tokenMsg.targets = new String[] { "velocity" };
+        kryoClient.sendTCP(tokenMsg);
     }
 
     public static Thread getShutdownHook() {
@@ -57,7 +86,7 @@ public class CommonClient {
     }
 
     public static void sendMessageToServer(String serverName, String message) {
-        sendMessageToServers(new String[]{serverName}, message);
+        sendMessageToServers(new String[] { serverName }, message);
     }
 
     public static void sendMessageToServers(String[] servers, String message) {

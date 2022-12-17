@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.CompletableFuture;
-import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 import org.jetbrains.annotations.NotNull;
