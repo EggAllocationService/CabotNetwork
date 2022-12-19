@@ -26,8 +26,9 @@ dependencies {
     shadow project(":CommonClasses")
     shadow 'com.esotericsoftware:kryo:5.3.0'
     shadow 'kryonet:kryonet:2.21'
-    shadow 'org.mongodb:mongodb-driver-sync:4.7.2'
+    compileOnly files("lib/uhc.jar")
     compileOnly files("lib/pingsystem.jar")
+
 }
 
 shadowJar {

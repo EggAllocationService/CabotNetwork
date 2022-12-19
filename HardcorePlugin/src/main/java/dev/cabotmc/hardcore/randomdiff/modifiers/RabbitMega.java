@@ -10,6 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.destroystokyo.paper.event.player.PlayerPickupExperienceEvent;
 
@@ -24,7 +26,7 @@ public class RabbitMega extends Modifier implements Listener {
     }
     @Override
     public Component generateDescription() {
-        return Component.text("Half of all mobs are replaced by juiced-up killer rabbits.", TextColor.color(Modifier.BAD_COLOR)).append(
+        return Component.text("20% of all mobs are replaced by juiced-up killer rabbits.", TextColor.color(Modifier.BAD_COLOR)).append(
             Component.text("\nGain +2 to your multiplier", TextColor.color(Modifier.GOOD_COLOR))
         );
     }
@@ -38,13 +40,13 @@ public class RabbitMega extends Modifier implements Listener {
         if (e.getEntityType() == EntityType.RABBIT || !(e.getEntity() instanceof LivingEntity)) return;
         var v = ((LivingEntity) e.getEntity()).getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
         if (v == null) return;
-        if (Math.random() > 0.5) {
+        if (Math.random() > 0.80) {
             e.setCancelled(true);
             var r = (Rabbit) e.getLocation().getWorld().spawnEntity(e.getLocation(), EntityType.RABBIT);
             r.setRabbitType(Rabbit.Type.THE_KILLER_BUNNY);
             r.setGlowing(true);
             HardcorePlugin.MINIBOSS_TEAM.addEntities(r);
-            r.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier("BunnyBad", 2, Operation.MULTIPLY_SCALAR_1));
+            r.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1000000 * 20, 1, false, true));
             r.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(64);
             r.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(16);
         }

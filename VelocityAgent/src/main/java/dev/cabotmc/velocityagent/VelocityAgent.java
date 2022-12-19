@@ -98,7 +98,11 @@ public class VelocityAgent {
                             var s = new ServerInfo(msg.serverName,
                                     new InetSocketAddress(msg.connectAddress, msg.connectPort));
                             var m = "[SERVER UP] " + msg.serverName;
-                            proxy.sendMessage(Component.text(m));
+                            for (var P : proxy.getAllPlayers()) {
+                                if (P.hasPermission("cloud.servernotify")) {
+                                    proxy.sendMessage(Component.text(m));
+                                }
+                            }
                             logger.info(m);
                             proxy.registerServer(s);
                         }
@@ -111,11 +115,15 @@ public class VelocityAgent {
                     }
                 } else if (o instanceof CrossServerMessage) {
                     var msg = (CrossServerMessage) o;
+                    logger.info("cross server message from " + msg.from + ": " + msg.data);
                     if (msg.data.startsWith("token")) {
                         var stuff = msg.data.split(":");
                         QueueManager.serverReady(msg.from, stuff[1]);
+                    } else if (msg.data.startsWith("queue")) {
+                        QueueManager.serverMessage(msg.data, msg.from);
                     }
-                    /*
+
+                    /* 
                      * if (msg.data.startsWith("hcready")) {
                      * var stuff = msg.data.split(":");
                      * var p = proxy.getPlayer(stuff[1]);

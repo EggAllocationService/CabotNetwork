@@ -54,7 +54,9 @@ public abstract class Queue {
     public String getName() {
         return name;
     }   
-
+    public void onServerMessage(String server, String msg) {
+        
+    }
     public abstract ItemStack createIcon();
     public boolean hasPermission(Player p) {
         return true;

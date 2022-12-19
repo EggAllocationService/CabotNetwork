@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
+import org.bukkit.GameMode;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -44,7 +45,7 @@ public class NightmareDifficulty extends BaseDifficulty {
     }
 
     public NightmareDifficulty() {
-        super(Difficulty.HARD, "Nightmare", 0xff0f0f, Material.SKELETON_SKULL, 4);
+        super(Difficulty.HARD, "Nightmare", 0xff0f0f, Material.SKELETON_SKULL, 8.5);
     }
     @Override
     public void activate() {
@@ -107,6 +108,7 @@ public class NightmareDifficulty extends BaseDifficulty {
         }   
         @EventHandler
         public void interact(PlayerInteractEvent e) {
+            if (e.getPlayer().getGameMode() == GameMode.ADVENTURE) return;
             if (e.getClickedBlock().getType().toString().endsWith("BED") && e.getPlayer().getLocation().getWorld().getName().equals("world")) {
                 if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
                 e.setCancelled(true);

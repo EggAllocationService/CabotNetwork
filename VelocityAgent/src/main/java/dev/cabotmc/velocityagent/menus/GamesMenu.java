@@ -29,17 +29,7 @@ public class GamesMenu extends BaseMenu{
     volatile boolean hasLobbyButton = false;
     @Override
     public void render() {
-        inv.items().clear();
-        buttonLayout = new HashMap<>();
-        int slot = 10;
-        for (var q : QueueManager.getGameModes()) {
-            var i = q.createIcon();
-            i.addToLore(Component.text(" "));
-            i.addToLore(Component.text("Click to connect", TextColor.color(0xcaca07)).decoration(TextDecoration.ITALIC, false));
-            buttonLayout.put(slot, q);
-            inv.item(slot, i);
-            slot++;
-        }
+        
     }
     @Override
     public void onOpen(Player p) {
@@ -49,7 +39,19 @@ public class GamesMenu extends BaseMenu{
             inv.item(4, lobbyItem);
             hasLobbyButton = true;
         }
-        var replacementItem = new ItemStack(ItemType.BARRIER);
+        inv.items().clear();
+        buttonLayout = new HashMap<>();
+        int slot = 10;
+        for (var q : QueueManager.getGameModes()) {
+            if (!q.hasPermission(p)) continue;
+            var i = q.createIcon();
+            i.addToLore(Component.text(" "));
+            i.addToLore(Component.text("Click to connect", TextColor.color(0xcaca07)).decoration(TextDecoration.ITALIC, false));
+            buttonLayout.put(slot, q);
+            inv.item(slot, i);
+            slot++;
+        }
+        /*var replacementItem = new ItemStack(ItemType.BARRIER);
         replacementItem.displayName(Component.text("You do not have permission to join this queue", TextColor.color(0xca0707)).decoration(TextDecoration.ITALIC, false));
         ArrayList<Integer> scheduledRemove = new ArrayList<>();
         for (var i : buttonLayout.keySet()) {
@@ -59,7 +61,7 @@ public class GamesMenu extends BaseMenu{
                 scheduledRemove.add(i);
             }
         }
-        scheduledRemove.forEach(buttonLayout::remove);
+        scheduledRemove.forEach(buttonLayout::remove);*/
     }
 
     @Override

@@ -2,3 +2,5 @@ name: HardcoreAgent
 version: '1.0.0'
 main: dev.cabotmc.hardcore.HardcorePlugin
 api-version: 1.19
+depend: [PingSystem]
+depends: [PingSystem]

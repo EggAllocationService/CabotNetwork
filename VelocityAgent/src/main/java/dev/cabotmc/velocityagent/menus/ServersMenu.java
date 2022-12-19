@@ -37,15 +37,20 @@ public class ServersMenu extends BaseMenu {
             if (name.equals("limbo") || name.equals("lobby")) continue;
             var handler = QueueManager.getGameMode(v.getServerInfo().getName().split("-")[0]);
             ItemStack base = null;
+            var choseHandler = false;
             if (handler != null) {
                 if (!handler.hasPermission(p)) {
                     // player doesnt have permission to join this type of game
                     continue;
                 }
                 base = handler.createServerIcon(v);
+                choseHandler = true;
             }
             if (base == null) {
                 base = createDefaultIcon(v);
+            }
+            if(choseHandler) {
+                base.addToLore(Component.text(v.getServerInfo().getName(), TextColor.color(0x2e2e2e)).decoration(TextDecoration.ITALIC, false));
             }
             base.addToLore(Component.text(" "));
             base.addToLore(Component.text("Click to connect", TextColor.color(0xcaca07)).decoration(TextDecoration.ITALIC, false));

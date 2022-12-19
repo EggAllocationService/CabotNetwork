@@ -34,8 +34,8 @@ public class DifficultyMenu implements Listener {
     public DifficultyMenu()  {
         i = Bukkit.createInventory(null, 54, Component.text("Choose a Difficulty"));
         difficulties.put(19, new EasyDifficulty());
-        difficulties.put(22, new BaseDifficulty(Difficulty.NORMAL, "Medium", 0xd6b015, Material.ORANGE_STAINED_GLASS_PANE, 1.25));
-        difficulties.put(25, new BaseDifficulty(Difficulty.HARD, "Hard", 0xe01422, Material.RED_STAINED_GLASS_PANE, 2));
+        difficulties.put(22, new BaseDifficulty(Difficulty.NORMAL, "Medium", 0xd6b015, Material.ORANGE_STAINED_GLASS_PANE, 1.75));
+        difficulties.put(25, new BaseDifficulty(Difficulty.HARD, "Hard", 0xe01422, Material.RED_STAINED_GLASS_PANE, 3));
         if (Math.random() > 0) {
             difficulties.put(38, new NightmareDifficulty());
             difficulties.put(40, new UltraNightmareDifficulty());

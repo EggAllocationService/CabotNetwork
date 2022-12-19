@@ -2,6 +2,7 @@ package dev.cabotmc.hardcore;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Entity;
@@ -10,6 +11,7 @@ import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.event.entity.EntityPortalExitEvent;
@@ -18,6 +20,7 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -26,9 +29,12 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+
+import com.destroystokyo.paper.event.player.PlayerPickupExperienceEvent;
 
 import dev.cabotmc.hardcore.difficulty.DifficultyMenu;
 import dev.cabotmc.hardcore.points.PointsManager;
@@ -73,6 +79,7 @@ public class BasicListener implements Listener {
             e.getPlayer().teleport(Bukkit.getPlayerExact(HardcorePlugin.ownerName));
             e.getPlayer().displayName(Component.text("Spectator").color(TextColor.color(0x444444))
                     .append(Component.text(" | " + e.getPlayer().getName()).color(TextColor.color(0xFFFFFF))));
+            e.getPlayer().getInventory().setItem(8, HardcorePlugin.TELEPORT_STACK);         
             if (HardcorePlugin.difficulty != null) {
                 for (Component c : DifficultyMenu.createDesc(HardcorePlugin.difficulty)) {
                     e.getPlayer().sendMessage(c);
@@ -188,6 +195,22 @@ public class BasicListener implements Listener {
    
     @EventHandler
     public void adventureInteract(PlayerInteractEvent e) {
+        if (e.getPlayer().getGameMode() == GameMode.ADVENTURE) {
+            e.setCancelled(true);
+            if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) && e.getItem().getItemMeta().getPersistentDataContainer().has(new NamespacedKey("cabot", "tpitem"))) {
+                var p = Bukkit.getPlayer(HardcorePlugin.ownerName);
+                e.getPlayer().teleport(p);      
+            }
+        }
+    }
+    @EventHandler
+    public void adventureDrop(PlayerDropItemEvent e) {
+        if (e.getPlayer().getGameMode() == GameMode.ADVENTURE) {
+            e.setCancelled(true);
+        }
+    }
+    @EventHandler
+    public void adventureXp(PlayerPickupExperienceEvent e) {
         if (e.getPlayer().getGameMode() == GameMode.ADVENTURE) {
             e.setCancelled(true);
         }

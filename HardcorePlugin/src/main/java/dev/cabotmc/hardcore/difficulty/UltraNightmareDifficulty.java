@@ -6,14 +6,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
+import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 import org.bukkit.inventory.ItemStack;
 
 import dev.cabotmc.hardcore.HardcorePlugin;
@@ -27,16 +34,20 @@ public class UltraNightmareDifficulty extends NightmareDifficulty {
         color = 0x8a0b0b;
         name = "Ultra Nightmare";
         displayMat = Material.WITHER_SKELETON_SKULL;
-        multiplier = 7.8d;
+        multiplier = 18d;
     }
 
     @Override
     public ArrayList<Component> getInfo() {
         var a = super.getInfo();
-        a.add(Component.text("Creepers have a 0.5s fuse time", TextColor.color(0x8a0b0b)));
+        a.add(Component.text("Creepers have a 0.5s fuse time and move quickly", TextColor.color(0x8a0b0b)));
+        a.add(Component.text("All mobs have 2x speed and 2x attack speed modifiers", TextColor.color(0x8a0b0b)));
         a.add(Component.text("Your F3 menu does not show coordinates", TextColor.color(0x8a0b0b)));
-        a.add(Component.text("You have less invulnerability after taking damage", TextColor.color(0x8a0b0b)));
+        a.add(Component.text("You have no invulnerability after taking damage", TextColor.color(0x8a0b0b)));
+        a.add(Component.text("Taking any damage will randomly rotate your camera", TextColor.color(0x8a0b0b)));
+        a.add(Component.text("Mobs will only target the player", TextColor.color(0x8a0b0b)));
         a.add(Component.text("Your maximum health is four hearts", TextColor.color(0x8a0b0b)));
+        
         //a.add(Component.text("You have some temporary health to shield you when you start", TextColor.color(0x8a0b0b)));
 
         a.add(Component.text("Good luck.", TextColor.color(0x8a0b0b)).decorate(TextDecoration.BOLD));
@@ -53,9 +64,9 @@ public class UltraNightmareDifficulty extends NightmareDifficulty {
     public void activate() {
         super.activate();
         var p = Bukkit.getPlayer(HardcorePlugin.ownerName);
-        p.setMaximumNoDamageTicks(5);
+        p.setMaximumNoDamageTicks(1);
         p.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(8.0d);
-        p.setAbsorptionAmount(6);
+        p.setAbsorptionAmount(4);
         var name = Component.text("Lucky Bed")
             .color(TextColor.color(0xff0f0f))
             .decoration(TextDecoration.ITALIC, false);
@@ -73,9 +84,41 @@ public class UltraNightmareDifficulty extends NightmareDifficulty {
         @EventHandler(priority = EventPriority.HIGHEST)
         public void spawn(EntitySpawnEvent e) {
             if (e.isCancelled()) return;
+            if (!(e.getEntity() instanceof LivingEntity)) {
+                LivingEntity l = (LivingEntity) e.getEntity();
+                l.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(new AttributeModifier("Creepey", 1, Operation.MULTIPLY_SCALAR_1));
+                if (l.getAttribute(Attribute.GENERIC_ATTACK_SPEED) != null) {
+                    l.getAttribute(Attribute.GENERIC_ATTACK_SPEED).addModifier(new AttributeModifier("Creepey", 1, Operation.MULTIPLY_SCALAR_1));
+                }
+                if (l.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE) != null) {
+                    l.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier("Creepey", 0.5, Operation.MULTIPLY_SCALAR_1));
+                }
+            }
+            
             if (e.getEntityType() == EntityType.CREEPER) {
                 Creeper c = (Creeper) e.getEntity();
-                c.setMaxFuseTicks(10);
+                c.setMaxFuseTicks(5);
+                
+            }
+        }
+        @EventHandler
+        public void damage(EntityDamageEvent e) {
+             if (e.getFinalDamage() == 0) return; 
+             if (e.getEntityType() != EntityType.PLAYER) return;
+             var p = (Player) e.getEntity();
+             var l = p.getLocation();
+             var pitch = (Math.random() * 40) - 20;
+             l.setPitch(l.getPitch() + (float) pitch);
+             var yaw = (Math.random() * 80) - 40;
+             l.setYaw(l.getYaw() + (float) yaw);
+             p.teleport(l);
+        }
+        @EventHandler(priority = EventPriority.LOWEST)
+        public void target(EntityTargetEvent e) {
+            if (e.getEntity() instanceof Mob && e.getTarget() != null) {
+                if (!(e.getTarget() instanceof Player)) {
+                    e.setCancelled(true);
+                }
             }
         }
     }

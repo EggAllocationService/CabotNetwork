@@ -5,16 +5,25 @@ import dev.cabotmc.hardcore.difficulty.BaseDifficulty;
 import dev.cabotmc.hardcore.difficulty.DifficultyMenu;
 import dev.cabotmc.hardcore.points.BasicPointsListener;
 import dev.cabotmc.hardcore.points.PointsManager;
+import dev.cabotmc.pingsystem.api.PingAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Team;
+import org.bukkit.scoreboard.Team.Option;
+import org.bukkit.scoreboard.Team.OptionStatus;
 
 import java.io.IOException;
 
@@ -27,10 +36,12 @@ public final class HardcorePlugin extends JavaPlugin {
     public static Team MINIBOSS_TEAM;
     public static BaseDifficulty difficulty;
     public static boolean allowSpectators = true;
+    public static ItemStack TELEPORT_STACK;
 
     @Override
     public void onEnable() {
         instance = this;
+        
         Database.init();
         Bukkit.getPluginManager().registerEvents(new BasicListener(), this);
         ownerName = (String) System.getenv().getOrDefault("HC_OWNER", "ThatOneGamer999");
@@ -55,10 +66,17 @@ public final class HardcorePlugin extends JavaPlugin {
         SPECTATOR_TEAM = getServer().getScoreboardManager().getMainScoreboard().registerNewTeam("spectators");
         SPECTATOR_TEAM.setAllowFriendlyFire(false);
         SPECTATOR_TEAM.setCanSeeFriendlyInvisibles(true);
+        SPECTATOR_TEAM.setOption(Option.COLLISION_RULE, OptionStatus.FOR_OWN_TEAM);
         SPECTATOR_TEAM.color(NamedTextColor.GRAY);
         ownerUUID = Bukkit.getOfflinePlayer(ownerName).getUniqueId().toString();
         MINIBOSS_TEAM = getServer().getScoreboardManager().getMainScoreboard().registerNewTeam("miniboss");
         MINIBOSS_TEAM.color(NamedTextColor.DARK_RED);
+        TELEPORT_STACK = new ItemStack(Material.PURPLE_DYE);
+        var m = TELEPORT_STACK.getItemMeta();
+        m.displayName(Component.text("Right click to Teleport to " + ownerName, TextColor.color(0xa229e3)).decoration(TextDecoration.ITALIC, false));
+        m.getPersistentDataContainer().set(new NamespacedKey("cabot", "tpitem"), PersistentDataType.BYTE, (byte) 1);
+        TELEPORT_STACK.setItemMeta(m);
+        PingAPI.setPermissionSolver(p -> p.getGameMode() != GameMode.ADVENTURE);
         Runtime.getRuntime().addShutdownHook(CommonClient.getShutdownHook());
     }
 

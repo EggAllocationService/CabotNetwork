@@ -10,6 +10,7 @@ public class QueueManager {
     static {
         addGamemode(new SoloHCGamemode());
         addGamemode(new EbeMcGamemode());
+        addGamemode(new UhcQueue());
     }
     public static void addGamemode(Queue q) {
         gamemodes.put(q.getName(), q);
@@ -22,11 +23,23 @@ public class QueueManager {
             }
         }
     }
+    public static void serverMessage(String msg, String from) {
+        var things = msg.split(":");
+        var q = gamemodes.get(things[1]);
+        if (q == null) return;
+        q.onServerMessage(from, msg);
+        
+    }
     public static Queue getQueue(Player p) {
         for (var q : gamemodes.values()) {
             if (q.isInQueue(p)) return q;
         }
         return null;
+    }
+    public static void removeQueue(Player p) {
+        for (var q : gamemodes.values()) {
+            q.removePlayer(p);
+        }
     }
     public static Queue getGameMode(String name) {
         return gamemodes.get(name);

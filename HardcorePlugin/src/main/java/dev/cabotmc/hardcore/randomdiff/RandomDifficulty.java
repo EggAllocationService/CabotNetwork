@@ -19,7 +19,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 
 public class RandomDifficulty extends BaseDifficulty {
     boolean finalized = false;
-    ArrayList<Modifier> finalModifiers = null;
+    public ArrayList<Modifier> finalModifiers = null;
     ArrayList<Modifier> availableModifiers = new ArrayList<>();
     public RandomDifficulty() {
         super(randDifficulty(), "????????", randColor(), randMaterial(), (Math.floor(Math.random() * 200.0) / 100) + 0.75);
@@ -34,8 +34,10 @@ public class RandomDifficulty extends BaseDifficulty {
         availableModifiers.add(new XPHealth());
         availableModifiers.add(new FreeSteak());
         availableModifiers.add(new RabbitMega());
+        availableModifiers.add(new Popularity());
         availableModifiers.add(new DJChan());
-        availableModifiers.add(new WtfPts());
+        availableModifiers.add(new BonkStick());
+        //availableModifiers.add(new WtfPts());
     }
     static int randColor() {    
         return (int) Math.floor(Math.random() * 0xFFFFFF);

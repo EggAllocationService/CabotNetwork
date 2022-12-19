@@ -6,6 +6,8 @@ import com.velocitypowered.api.event.connection.PostLoginEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.event.player.ServerPostConnectEvent;
 
+import dev.cabotmc.velocityagent.queue.Queue;
+import dev.cabotmc.velocityagent.queue.QueueManager;
 import dev.cabotmc.velocityagent.queue.SoloHCGamemode;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -30,6 +32,7 @@ public class JoinMessageListener {
         base = base.append(Component.text("]", TextColor.color(GRAY)));
         base = base.append(Component.text(" " + e.getPlayer().getUsername(), TextColor.color(0xa0a0a0)));
         VelocityAgent.getProxy().sendMessage(base);
+        QueueManager.removeQueue(e.getPlayer());
     }
     @Subscribe
     public void change(ServerConnectedEvent e) {
