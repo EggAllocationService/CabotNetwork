@@ -8,10 +8,8 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.gmail.val59000mc.UhcCore;
 import com.gmail.val59000mc.exceptions.UhcPlayerNotOnlineException;
 import com.gmail.val59000mc.game.GameManager;
-import com.gmail.val59000mc.players.TeamManager;
 
 import java.io.IOException;
 import java.util.ArrayList;

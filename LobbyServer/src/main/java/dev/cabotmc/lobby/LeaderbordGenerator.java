@@ -19,9 +19,17 @@ public class LeaderbordGenerator {
         }
         Collections.sort(things);
         int place = 1;
+        CompHardcorePlayer winner = null;
         for (var t : things) {
+            if (place == 1) winner = t;
             p.sendMessage(createPlaceMessage(t, place));
             place++;
+        }
+        if (winner != null && winner.id.equals(p.getUuid().toString())) {
+            // this is the winner
+            Main.WINNER_TEAM.addMember(p.getUsername());
+            p.setGlowing(true);
+            
         }
     }
     public static Component createPlaceMessage(CompHardcorePlayer p, int i) {

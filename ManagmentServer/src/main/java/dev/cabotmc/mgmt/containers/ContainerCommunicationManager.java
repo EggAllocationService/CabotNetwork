@@ -37,6 +37,12 @@ public class ContainerCommunicationManager {
             for (var target : msg.targets) {
                 if (ContainerManager.trackedContainers.containsKey(target) && ContainerManager.trackedContainers.get(target).containerConnection != null) {
                     ContainerManager.trackedContainers.get(target).containerConnection.sendTCP(msg);
+                } else if (target.equals("*")) {
+                    for (var x :ContainerManager.trackedContainers.values()) {
+                        if (!x.containerID.equals(msg.from)) {
+                            x.containerConnection.sendTCP(msg);
+                        }
+                    }
                 }
             }
         }

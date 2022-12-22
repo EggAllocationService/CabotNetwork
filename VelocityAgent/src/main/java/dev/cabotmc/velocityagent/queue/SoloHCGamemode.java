@@ -115,5 +115,9 @@ public class SoloHCGamemode extends Queue {
         i.nbtData().putString("SkullOwner", playerCache.get(srvName));
         return i;
     }
+    @Override
+    public boolean hasPermission(Player p) {
+        return p.hasPermission("gamemode.uhc");
+    }
 
 }

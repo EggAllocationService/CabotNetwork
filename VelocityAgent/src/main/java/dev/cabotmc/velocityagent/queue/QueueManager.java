@@ -11,6 +11,7 @@ public class QueueManager {
         addGamemode(new SoloHCGamemode());
         addGamemode(new EbeMcGamemode());
         addGamemode(new UhcQueue());
+        addGamemode(new DepartmasGamemode());
     }
     public static void addGamemode(Queue q) {
         gamemodes.put(q.getName(), q);

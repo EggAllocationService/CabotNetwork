@@ -37,6 +37,7 @@ public class RandomDifficulty extends BaseDifficulty {
         availableModifiers.add(new Popularity());
         availableModifiers.add(new DJChan());
         availableModifiers.add(new BonkStick());
+        availableModifiers.add(new RandomDrops());
         //availableModifiers.add(new WtfPts());
     }
     static int randColor() {    

@@ -79,7 +79,8 @@ public class BasicListener implements Listener {
             e.getPlayer().teleport(Bukkit.getPlayerExact(HardcorePlugin.ownerName));
             e.getPlayer().displayName(Component.text("Spectator").color(TextColor.color(0x444444))
                     .append(Component.text(" | " + e.getPlayer().getName()).color(TextColor.color(0xFFFFFF))));
-            e.getPlayer().getInventory().setItem(8, HardcorePlugin.TELEPORT_STACK);         
+            e.getPlayer().getInventory().setItem(8, HardcorePlugin.TELEPORT_STACK);
+            e.getPlayer().setAffectsSpawning(false);
             if (HardcorePlugin.difficulty != null) {
                 for (Component c : DifficultyMenu.createDesc(HardcorePlugin.difficulty)) {
                     e.getPlayer().sendMessage(c);

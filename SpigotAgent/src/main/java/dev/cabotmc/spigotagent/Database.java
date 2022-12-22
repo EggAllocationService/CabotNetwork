@@ -1,4 +1,4 @@
-package dev.cabotmc.velocityagent.db;
+package dev.cabotmc.spigotagent;
 
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -9,7 +9,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import dev.cabotmc.chc.CompHardcorePlayer;
-import dev.cabotmc.skins.SkinReplacementRecord;
 import dev.cabotmc.vanish.VanishRecord;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
@@ -25,14 +24,12 @@ public class Database {
     static CodecRegistry pojoCodecRegistry;
     public static MongoClient client;
     static MongoDatabase mc;
-    public static MongoCollection<SkinReplacementRecord> skins;
-    public static MongoCollection<VanishRecord> vanish;
+    public static MongoCollection<VanishRecord> vanished;
     public static void init() {
         pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
         String uri = "mongodb://minecraft:crafting@172.17.0.1:27017/?authSource=mc";
         client = MongoClients.create(uri);
         mc = client.getDatabase("mc").withCodecRegistry(pojoCodecRegistry);
-        skins= mc.getCollection("skins", SkinReplacementRecord.class);
-        vanish = mc.getCollection("vanish", VanishRecord.class);
+        vanished = mc.getCollection("vanish", VanishRecord.class);
     }
 }

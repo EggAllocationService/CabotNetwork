@@ -44,7 +44,9 @@ public class ServersMenu extends BaseMenu {
                     continue;
                 }
                 base = handler.createServerIcon(v);
-                choseHandler = true;
+                if (base != null) {
+                    choseHandler = true;
+                }
             }
             if (base == null) {
                 base = createDefaultIcon(v);
@@ -52,6 +54,11 @@ public class ServersMenu extends BaseMenu {
             if(choseHandler) {
                 base.addToLore(Component.text(v.getServerInfo().getName(), TextColor.color(0x2e2e2e)).decoration(TextDecoration.ITALIC, false));
             }
+            base.addToLore(Component.text(" "));
+            base.addToLore(Component.text("Players online:", TextColor.color(0xcaca07)).decoration(TextDecoration.ITALIC, false));
+            v.getPlayersConnected().stream()
+                .map(this::createPlayerNameText)
+                .forEach(base::addToLore);
             base.addToLore(Component.text(" "));
             base.addToLore(Component.text("Click to connect", TextColor.color(0xcaca07)).decoration(TextDecoration.ITALIC, false));
             inv.item(slot, base);
@@ -67,6 +74,10 @@ public class ServersMenu extends BaseMenu {
             inv.type(InventoryType.GENERIC_9X5);
             inv.item(22, noItem);
         }
+    }
+    public Component createPlayerNameText(Player p) {
+        var base = Component.text(" - ", TextColor.color(0xca6f07)).decoration(TextDecoration.ITALIC, false);
+        return base.append(Component.text(p.getUsername(), TextColor.color(0xcaca07)).decoration(TextDecoration.ITALIC, false));
     }
 
     @Override

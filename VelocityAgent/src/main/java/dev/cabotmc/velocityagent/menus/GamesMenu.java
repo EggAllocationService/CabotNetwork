@@ -51,17 +51,6 @@ public class GamesMenu extends BaseMenu{
             inv.item(slot, i);
             slot++;
         }
-        /*var replacementItem = new ItemStack(ItemType.BARRIER);
-        replacementItem.displayName(Component.text("You do not have permission to join this queue", TextColor.color(0xca0707)).decoration(TextDecoration.ITALIC, false));
-        ArrayList<Integer> scheduledRemove = new ArrayList<>();
-        for (var i : buttonLayout.keySet()) {
-            var g = buttonLayout.get(i);
-            if (!g.hasPermission(p)) {
-                inv.item(i, replacementItem);
-                scheduledRemove.add(i);
-            }
-        }
-        scheduledRemove.forEach(buttonLayout::remove);*/
     }
 
     @Override

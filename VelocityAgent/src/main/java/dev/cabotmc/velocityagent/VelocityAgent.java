@@ -21,10 +21,12 @@ import dev.cabotmc.mgmt.ProtocolHelper;
 import dev.cabotmc.mgmt.protocol.ClientIdentifyMessage;
 import dev.cabotmc.mgmt.protocol.CrossServerMessage;
 import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
+import dev.cabotmc.vanish.VanishManager;
 import dev.cabotmc.velocityagent.db.Database;
 import dev.cabotmc.velocityagent.queue.QueueManager;
 import dev.cabotmc.velocityagent.santahat.SanataManager;
 import dev.cabotmc.velocityagent.santahat.SantaThread;
+import dev.cabotmc.velocityagent.vanish.VanishCommand;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 
@@ -32,6 +34,8 @@ import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Plugin(id = "velocityagent", name = "VelocityAgent", version = "1.0.0", authors = {
         "EggAllocationService" }, dependencies = @Dependency(id = "protocolize"))
@@ -77,6 +81,21 @@ public class VelocityAgent {
                 .plugin(this)
                 .build();
         proxy.getCommandManager().register(meta, new LobbyCommand());
+        meta = proxy.getCommandManager().metaBuilder("v")
+                .aliases("vanish")
+                .plugin(this)
+                .build();
+        proxy.getCommandManager().register(meta, new VanishCommand());
+        proxy.getScheduler().buildTask(this, () -> {
+            VanishManager.getVanishedPlayers()
+                .stream()
+                .map(proxy::getPlayer)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .forEach(p -> {
+                    p.sendActionBar(Component.text("You are currently vanished"));
+                });
+        }).repeat(500, TimeUnit.MILLISECONDS).schedule();
     }
 
     public static ProxyServer getProxy() {
@@ -86,6 +105,7 @@ public class VelocityAgent {
     @Subscribe
     public void onProxyReady(ListenerBoundEvent e) {
         Database.init();
+        VanishManager.init(Database.vanish);
         kryoClient.addListener(new Listener() {
             @Override
             public void received(Connection connection, Object o) {
