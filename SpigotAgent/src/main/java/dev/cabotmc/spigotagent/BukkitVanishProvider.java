@@ -1,6 +1,7 @@
 package dev.cabotmc.spigotagent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -64,6 +65,11 @@ public class BukkitVanishProvider implements VanishPlatformProvider, Listener {
             }   
         }
         origPlayer.setMetadata("vanished", new FixedMetadataValue(plugin, false));
+    }
+    @Override
+    public void scheduleTaskSync(Runnable r) {
+        Bukkit.getScheduler().scheduleSyncDelayedTask(SpigotAgent.getPlugin(SpigotAgent.class), r);
+        
     }
     
 }

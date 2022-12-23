@@ -81,6 +81,7 @@ public class BasicListener implements Listener {
                     .append(Component.text(" | " + e.getPlayer().getName()).color(TextColor.color(0xFFFFFF))));
             e.getPlayer().getInventory().setItem(8, HardcorePlugin.TELEPORT_STACK);
             e.getPlayer().setAffectsSpawning(false);
+            e.getPlayer().setSleepingIgnored(true);
             if (HardcorePlugin.difficulty != null) {
                 for (Component c : DifficultyMenu.createDesc(HardcorePlugin.difficulty)) {
                     e.getPlayer().sendMessage(c);

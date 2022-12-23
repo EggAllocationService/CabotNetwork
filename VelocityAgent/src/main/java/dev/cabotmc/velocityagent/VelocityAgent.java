@@ -24,6 +24,7 @@ import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
 import dev.cabotmc.vanish.VanishManager;
 import dev.cabotmc.velocityagent.db.Database;
 import dev.cabotmc.velocityagent.queue.QueueManager;
+import dev.cabotmc.velocityagent.resourcepack.PackManager;
 import dev.cabotmc.velocityagent.santahat.SanataManager;
 import dev.cabotmc.velocityagent.santahat.SantaThread;
 import dev.cabotmc.velocityagent.vanish.VanishCommand;
@@ -31,6 +32,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 
 import org.slf4j.Logger;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -62,6 +64,7 @@ public class VelocityAgent {
         ProtocolHelper.registerClasses(kryoClient.getKryo());
         kryoClient.connect(5000, "172.17.0.1", 3269);
         proxy.getEventManager().register(this, new JoinMessageListener());
+        proxy.getEventManager().register(this, new PackManager());
         logger.info("Connected to management server");
         var meta = proxy.getCommandManager().metaBuilder("create")
                 .plugin(this)
@@ -96,6 +99,31 @@ public class VelocityAgent {
                     p.sendActionBar(Component.text("You are currently vanished"));
                 });
         }).repeat(500, TimeUnit.MILLISECONDS).schedule();
+        proxy.getScheduler().buildTask(this, () -> {
+            var separator = Component.text(" - ", TextColor.color(0x3c3c3c));
+            var first = Component.text("\n  " + proxy.getPlayerCount() + " players online", TextColor.color(0x4287f5));
+            proxy.getAllPlayers().forEach(p -> {
+                var base = first.append(separator);
+                base = base.append(Component.text("Playing on ", TextColor.color(0x4287f5)));
+                if (p.getCurrentServer().isPresent()) {
+                    base = base.append(Component.text(p.getCurrentServer().get().getServerInfo().getName(), TextColor.color(0xf542da)));
+                    base = base.append(separator);
+                }
+                var ping = p.getPing();
+                TextColor color;
+                if (ping < 100) {
+                    color = TextColor.color(0x18fa66);
+                } else if (ping < 250) {
+                    color = TextColor.color(0xa9118);
+                } else {
+                    color = TextColor.color(0xd11925);
+                }
+                base = base.append(Component.text("Ping: ", TextColor.color(0x4287f5)));
+                base = base.append(Component.text(Long.toString(ping), TextColor.color(color)));
+                base = base.append(Component.text("ms  ", TextColor.color(0x4287f5)));
+                p.sendPlayerListFooter(base);
+            });
+        }).repeat(1, TimeUnit.SECONDS).schedule();
     }
 
     public static ProxyServer getProxy() {
@@ -142,35 +170,6 @@ public class VelocityAgent {
                     } else if (msg.data.startsWith("queue")) {
                         QueueManager.serverMessage(msg.data, msg.from);
                     }
-
-                    /* 
-                     * if (msg.data.startsWith("hcready")) {
-                     * var stuff = msg.data.split(":");
-                     * var p = proxy.getPlayer(stuff[1]);
-                     * var serv = proxy.getServer(stuff[2]);
-                     * if (p.isEmpty() || serv.isEmpty()) {
-                     * for (var pp : HCCommand.waitingBars.keySet()) {
-                     * if (pp.getUsername().equals(stuff[1])) {
-                     * HCCommand.waitingBars.remove(pp);
-                     * break;
-                     * }
-                     * }
-                     * var omsg = new CrossServerMessage();
-                     * omsg.targets = new String[] {stuff[2]};
-                     * omsg.data = "shutdown";
-                     * omsg.from = "velocity";
-                     * kryoClient.sendTCP(omsg);
-                     * return;
-                     * };
-                     * var pp = p.get();
-                     * if (HCCommand.waitingBars.containsKey(pp)) {
-                     * pp.hideBossBar(HCCommand.waitingBars.get(pp));
-                     * HCCommand.waitingBars.remove(pp);
-                     * }
-                     * pp.sendMessage(Component.text("Transferring you to " + stuff[2]));
-                     * pp.createConnectionRequest(serv.get()).fireAndForget();
-                     * }
-                     */
                 }
             }
         });

@@ -27,9 +27,11 @@ public class VanishManager {
         CommonClient.addMessageHandler(msg -> {
             if (msg.data.equals("vanish_update")) {
                 System.out.println("updaing vanish state");
-                for (var x : getCollection().find()) {
-                    MongoWatchThread.handleUpdate(x);
-                }
+                getPlatformProvider().scheduleTaskSync(() -> {
+                    for (var x : getCollection().find()) {
+                        MongoWatchThread.handleUpdate(x);
+                    }
+                });
             }
         });
         /*watcher = new MongoWatchThread();

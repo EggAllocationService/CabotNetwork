@@ -70,8 +70,7 @@ public class SoloHCGamemode extends Queue {
                 break;
             }
         }
-        var pd = VelocityAgent.getProxy().getPlayer(target.id);
-        if (pd.isEmpty()) {
+        if (target == null) {
             var omsg = new CrossServerMessage();
             omsg.targets = new String[] { serverName };
             omsg.data = "kill";
@@ -80,6 +79,8 @@ public class SoloHCGamemode extends Queue {
             players.remove(target);
             return;
         }
+        var pd = VelocityAgent.getProxy().getPlayer(target.id);
+       
         var p = pd.get();
         var targetSrv = VelocityAgent.getProxy().getServer(serverName).get();
         p.createConnectionRequest(targetSrv).fireAndForget();
