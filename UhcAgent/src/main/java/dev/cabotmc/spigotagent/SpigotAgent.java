@@ -2,6 +2,9 @@ package dev.cabotmc.spigotagent;
 
 import dev.cabotmc.commonnet.CommonClient;
 import dev.cabotmc.pingsystem.api.PingAPI;
+import dev.cabotmc.spigotagent.tickets.TicketBrowseMenu;
+import dev.cabotmc.spigotagent.tickets.TicketListener;
+import dev.cabotmc.spigotagent.tickets.TicketUtil;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -16,9 +19,10 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public final class SpigotAgent extends JavaPlugin {
-
+    public static SpigotAgent instance;
     @Override
     public void onEnable() {
+        instance = this;
         if (!System.getenv().containsKey("CABOT_NAME")) return;
         try {
             CommonClient.delayQueuePacket(true);
@@ -31,7 +35,12 @@ public final class SpigotAgent extends JavaPlugin {
                 }
             });
             Bukkit.getPluginManager().registerEvents(new TimeListener(), this);
+            Bukkit.getPluginManager().registerEvents(new WitherListener(), this);
+            Bukkit.getPluginManager().registerEvents(new TicketListener(), this);
             Bukkit.getWorld("world").getWorldBorder().setWarningTime(20);
+            TicketBrowseMenu.initItems();
+            TicketUtil.loadComputedJson();
+            getCommand("debugticket").setExecutor(new DebugTicketCommand());
             PingAPI.setPermissionSolver(p -> p.getGameMode() == GameMode.SURVIVAL);
             PingAPI.setVisibilitySolver(p -> {
                 for (var t : GameManager.getGameManager().getTeamManager().getUhcTeams()) {

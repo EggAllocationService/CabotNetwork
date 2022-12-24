@@ -8,9 +8,12 @@ import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.gmail.val59000mc.events.UhcGameStateChangedEvent;
+import com.gmail.val59000mc.exceptions.UhcPlayerNotOnlineException;
+import com.gmail.val59000mc.game.GameManager;
 import com.gmail.val59000mc.game.GameState;
 
 import dev.cabotmc.commonnet.CommonClient;
+import dev.cabotmc.spigotagent.tickets.TicketUtil;
 
 public class TimeListener implements Listener {
     @EventHandler
@@ -19,6 +22,18 @@ public class TimeListener implements Listener {
             CommonClient.notifyQueue();
         } else if (e.getNewGameState() == GameState.ENDED) {
             CommonClient.sendMessageToServer("velocity", "queue:uhc:done");
+        } else if (e.getNewGameState() == GameState.PLAYING) {
+            GameManager.getGameManager().getTeamManager().getUhcTeams().forEach(u -> {
+                var l = u.getLeader();
+                if (l.isOnline()) {
+                    try {
+                        var p = l.getPlayer();
+                        TicketUtil.giveBlankTicketToPlayer(p);
+                    } catch (UhcPlayerNotOnlineException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
         }
     }
     @EventHandler

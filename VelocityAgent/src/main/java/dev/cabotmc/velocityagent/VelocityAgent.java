@@ -22,6 +22,7 @@ import dev.cabotmc.mgmt.protocol.ClientIdentifyMessage;
 import dev.cabotmc.mgmt.protocol.CrossServerMessage;
 import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
 import dev.cabotmc.vanish.VanishManager;
+import dev.cabotmc.velocityagent.chat.ChatListener;
 import dev.cabotmc.velocityagent.db.Database;
 import dev.cabotmc.velocityagent.queue.QueueManager;
 import dev.cabotmc.velocityagent.resourcepack.PackManager;
@@ -65,6 +66,7 @@ public class VelocityAgent {
         kryoClient.connect(5000, "172.17.0.1", 3269);
         proxy.getEventManager().register(this, new JoinMessageListener());
         proxy.getEventManager().register(this, new PackManager());
+        proxy.getEventManager().register(this, new ChatListener());
         logger.info("Connected to management server");
         var meta = proxy.getCommandManager().metaBuilder("create")
                 .plugin(this)

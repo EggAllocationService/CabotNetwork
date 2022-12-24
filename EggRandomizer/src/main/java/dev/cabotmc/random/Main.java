@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -26,11 +28,29 @@ public class Main {
         packFile.transferTo(mcmeta);
         mcmeta.close();
         packFile.close();
-
+        var coolPattern = Pattern.compile("minecraft:[a-z_]*");
         for (int i =0; i < inputs.size(); i++) {
             var o = createCopyPaths(inputs.get(i), outputs.get(i));
+            
             Files.copy(o[0], o[1]);
+            var targetFile = o[1].toFile();
+            var s = new Scanner(targetFile);
+            String x;
+            while (s.hasNextLine()) {
+                x = s.nextLine();
+                if (!x.contains("\"name\"")) continue;
+                var droppedItem = coolPattern.matcher(x);
+                
+                if (droppedItem.find()) {
+                    var itemString = droppedItem.group(0);
+                    var provider = targetFile.getName().replace(".json", "");
+                    CachedRelationships.storeMatch(provider, itemString);
+                }
+                
+            }
+
         }
+        CachedRelationships.saveFile();
         System.out.println("Randomized loot tables");
         if (args.length != 0) {
             System.out.println("Loading and executing main class...");
@@ -38,7 +58,6 @@ public class Main {
             var mainMethod = targetClass.getMethod("main", String[].class);
             mainMethod.invoke(null, (Object) new String[]{});
         }
-
 
     }
 

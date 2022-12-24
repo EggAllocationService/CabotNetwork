@@ -2,7 +2,7 @@ package dev.cabotmc.velocityagent.resourcepack;
 
 import java.util.concurrent.TimeUnit;
 
-import com.google.common.eventbus.Subscribe;
+import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PostLoginEvent;
 import com.velocitypowered.api.event.player.PlayerResourcePackStatusEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
@@ -17,11 +17,12 @@ public class PackManager {
 
     static byte[] RESOURCE_HASH = hexStringToByteArray("a994c10eff529e6c8b20828e97152e19bb841c9d");
     static String ICON_PACK_URL = "https://cdn.cabotmc.dev/cabotmc_02.zip";
+
     @Subscribe
     public void login(PostLoginEvent e) {
-       
+
         VelocityAgent.getProxy().getScheduler().buildTask(VelocityAgent.instance, () -> {
-            
+
             var spaces = Component.text("\n\n\n\n");
             e.getPlayer().sendPlayerListHeader(spaces.append(Component.text("\uE000", Style.style(b -> {
                 b.font(Key.key("cabot", "icons"));
@@ -31,16 +32,19 @@ public class PackManager {
 
     @Subscribe
     public void change(ServerConnectedEvent e) {
-        if (!e.getPlayer().getAppliedResourcePack().getUrl().endsWith("cabotmc_02.zip")
+        if ((e.getPlayer().getAppliedResourcePack() == null || !e.getPlayer().getAppliedResourcePack().getUrl().endsWith("cabotmc_02.zip"))
                 && e.getServer().getServerInfo().getName().equals("lobby")) {
-            var r = VelocityAgent.getProxy().createResourcePackBuilder(ICON_PACK_URL)
+            VelocityAgent.getProxy().getScheduler().buildTask(VelocityAgent.instance, () -> {
+                var r = VelocityAgent.getProxy().createResourcePackBuilder(ICON_PACK_URL)
                     .setPrompt(Component.text("You must download this pack to play"))
                     .setHash(RESOURCE_HASH)
                     .setShouldForce(true)
                     .build();
-            e.getPlayer().sendResourcePackOffer(r);
+                e.getPlayer().sendResourcePackOffer(r);
+            }).delay(800, TimeUnit.MILLISECONDS).schedule();
         }
     }
+
     @Subscribe
     public void status(PlayerResourcePackStatusEvent e) {
         if (e.getStatus() == Status.FAILED_DOWNLOAD || e.getStatus() == Status.DECLINED) {
