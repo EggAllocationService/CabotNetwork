@@ -32,6 +32,7 @@ public class Main {
         for (int i =0; i < inputs.size(); i++) {
             var o = createCopyPaths(inputs.get(i), outputs.get(i));
             
+            
             Files.copy(o[0], o[1]);
             var targetFile = o[1].toFile();
             var s = new Scanner(targetFile);

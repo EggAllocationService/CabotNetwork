@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -32,7 +33,14 @@ public class TicketUtil {
     }
     public static NamespacedKey TICKET_KEY = new NamespacedKey("cabot", "ticket_type");
     public static NamespacedKey ITEM_KEY = new NamespacedKey("cabot", "ticket_item");
+    public static NamespacedKey TICKED_ID = new NamespacedKey("cabot", "ticket_id");
     public static void giveBlankTicketToPlayer(Player p) {
+        var i = createBlankTicket();
+        if (p.getInventory().addItem(i).size() != 0) {
+            p.getWorld().dropItem(p.getLocation(), i);
+        }
+    }
+    public static ItemStack createBlankTicket() {
         var i = new ItemStack(Material.PAPER);
         var m = i.getItemMeta();
         m.displayName(
@@ -54,10 +62,9 @@ public class TicketUtil {
         );
         m.lore(lore);
         m.getPersistentDataContainer().set(TICKET_KEY, PersistentDataType.BYTE, (byte) 1);
+        m.getPersistentDataContainer().set(TICKED_ID, PersistentDataType.INTEGER, ThreadLocalRandom.current().nextInt(50000));
         i.setItemMeta(m);
-        if (p.getInventory().addItem(i).size() != 0) {
-            p.getWorld().dropItem(p.getLocation(), i);
-        }
+        return i;
     }
     public static void giveFilledTicketToPlayer(Player p, Material target) {
         var i = new ItemStack(Material.PAPER);
@@ -87,4 +94,5 @@ public class TicketUtil {
             p.getWorld().dropItem(p.getLocation(), i);
         }
     }
+
 }

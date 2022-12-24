@@ -1,13 +1,11 @@
 package dev.cabotmc.lobby;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import dev.cabotmc.commonnet.CommonClient;
 import dev.cabotmc.lobby.db.Database;
 import dev.cabotmc.lobby.world.FlatWorldGenerator;
 import dev.cabotmc.lobby.world.InstanceTracker;
-import dev.cabotmc.lobby.world.ZipFileChunkLoader;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;

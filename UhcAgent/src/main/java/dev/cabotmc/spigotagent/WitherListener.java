@@ -136,7 +136,7 @@ public class WitherListener implements Listener {
         }
 
         public boolean isInvolvedInSpawnAt(Location other) {
-            return other.getWorld().equals(blockPos.getWorld()) && other.distance(blockPos) <= 1.5;
+            return other.getWorld().equals(blockPos.getWorld()) && other.distance(blockPos) <= 2.5;
         }
 
         public boolean sameLocation(Location l) {
