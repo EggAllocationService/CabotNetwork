@@ -26,7 +26,7 @@ public class LeaderbordGenerator {
             place++;
         }
         if (winner != null && winner.id.equals(p.getUuid().toString())) {
-            // this is the winner
+            
             Main.WINNER_TEAM.addMember(p.getUsername());
             p.setGlowing(true);
             

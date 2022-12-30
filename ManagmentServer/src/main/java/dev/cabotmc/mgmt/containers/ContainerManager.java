@@ -56,12 +56,6 @@ public class ContainerManager {
             return;
         }
         var backend = Main.docker.createContainerCmd(template.dockerImage).withName(name);
-                /* .withLabels(new HashMap<String, String>() {
-                    {
-                        put("cabot-template", template.name);
-                        put("cabot-name", name);
-                    }
-                });*/
                 
         if (envargs == null || envargs.length == 0) {
             backend = backend.withEnv("CABOT_NAME=" + name);

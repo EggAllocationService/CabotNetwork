@@ -81,11 +81,11 @@ public class NightmareDifficulty extends BaseDifficulty {
                 return;
             }
             if (v == null || v.getValue() == 0) {
-                // peaceful mob
+                
                 return;
             }
             if (Math.random() > 0.90) {
-                // make miniboss
+                
                 v.addModifier(new AttributeModifier("MiniBossDamageMul", 0.25, Operation.MULTIPLY_SCALAR_1));
                 m.getAttribute(Attribute.GENERIC_MAX_HEALTH).addModifier(new AttributeModifier("MiniBossHealthMul", 0.25, Operation.MULTIPLY_SCALAR_1));
                 m.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(new AttributeModifier("MiniBossHealthMul", 0.25, Operation.MULTIPLY_SCALAR_1));
@@ -123,10 +123,10 @@ public class NightmareDifficulty extends BaseDifficulty {
         }
         @EventHandler(priority =  EventPriority.LOWEST)
         public void death(PlayerDeathEvent e) {
-            // https://cdn.cabotmc.dev/more_info.mp4
+        
             long time = Instant.now().toEpochMilli();
             if (time - lastBedExplodeTime < 500) {
-                // died because of bed explode likely
+                
                 var base = Component.text(e.getPlayer().getName() + " was killed by ");
                 base = base.append(
                     Component.text("[intentional game design]")

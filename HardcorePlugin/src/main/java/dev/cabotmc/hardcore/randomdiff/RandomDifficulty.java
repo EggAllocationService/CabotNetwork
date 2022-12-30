@@ -110,9 +110,6 @@ public class RandomDifficulty extends BaseDifficulty {
         for (int i = 0; i < size && i < availableModifiers.size(); i++) {
             x.add(availableModifiers.get(i));
         }
-        //x.clear();
-        //x.add(new FreeDog());
-        //x.add(new AlwaysNight());
         x.add(new PrintDiffModifier());
         finalModifiers = x;
         setMultiplier((Math.floor(Math.random() * 200.0) / 100) + 0.75);
