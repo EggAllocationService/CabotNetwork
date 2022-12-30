@@ -9,6 +9,6 @@ public class ChatListener {
     public void chat(PlayerChatEvent e) {
         e.setResult(ChatResult.denied());
         var formatted = ChatFormatter.format(e.getPlayer(), e.getMessage());
-        e.getPlayer().getCurrentServer().get().getServer().sendMessage(formatted);
+        e.getPlayer().getCurrentServer().get().getServer().sendMessage(e.getPlayer(), formatted);
     }
 }

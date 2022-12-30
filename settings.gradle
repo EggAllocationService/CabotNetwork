@@ -7,3 +7,5 @@ include 'LobbyServer'
 include 'HardcorePlugin'
 include 'UhcAgent'
 include 'EggRandomizer'
+include 'MapEditor'
+

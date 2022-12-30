@@ -1,16 +1,18 @@
-package dev.cabotmc.lobby.world;
+package dev.cabotmc.minestom.world;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.io.*;
+import java.net.URI;
+import java.nio.file.*;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterOutputStream;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
-import dev.cabotmc.minestom.world.ChunkIO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,43 +21,61 @@ import net.minestom.server.instance.IChunkLoader;
 import net.minestom.server.instance.Instance;
 import net.minestom.server.instance.InstanceContainer;
 
-public class CustomChunkLoader implements IChunkLoader {
+public class ZipFileChunkLoader implements IChunkLoader {
+    public WorldProperties getProperties() {
+        return world.properties;
+    }
+    EggWorldFile world;
+    String fileName;
+    public ZipFileChunkLoader(String fileName) {
+        try {
+            if (!Files.exists(Path.of(fileName))) {
+                world = EggWorldFile.create(new File(fileName));
+            } else {
+                world = EggWorldFile.read(new File(fileName));
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.fileName = fileName;
+
+    }
     @Override
     public @NotNull CompletableFuture<@Nullable Chunk> loadChunk(@NotNull Instance instance, int chunkX, int chunkZ) {
-        var str = getChunkKey(chunkX, chunkZ);
-        if (!(new File(str + ".dat")).exists()) {
+        if (!world.compressedChunks.containsKey(getChunkKey(chunkX, chunkZ))) {
             return CompletableFuture.completedFuture(null);
         }
-        byte[] bytes;
-        try {
-            bytes = Files.readAllBytes(Path.of(str + ".dat"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return CompletableFuture.completedFuture(null);
-        }
+        var uncompressed = decompress(world.compressedChunks.get(getChunkKey(chunkX, chunkZ)));
         var c = ((InstanceContainer) instance).getChunkSupplier().createChunk(instance, chunkX, chunkZ);
-        ChunkIO.loadBlocksToChunk(c, bytes);
+        ChunkIO.loadBlocksToChunk(c, uncompressed);
         return CompletableFuture.completedFuture(c);
     }
 
     @Override
     public @NotNull CompletableFuture<Void> saveChunk(@NotNull Chunk chunk) {
-        var bytes = ChunkIO.serializeChunk(chunk);
+        var out = new ByteArrayOutputStream();
+        var deflOut = new DeflaterOutputStream(out);
         try {
-            if (new File(getChunkKey(chunk)).exists()) {
-                Files.write(Path.of(getChunkKey(chunk) + ".dat"), bytes, StandardOpenOption.TRUNCATE_EXISTING);
-            } else {
-                Files.write(Path.of(getChunkKey(chunk) + ".dat"), bytes, StandardOpenOption.CREATE_NEW);
-            }
+            ChunkIO.serializeChunk(chunk, deflOut);
+            world.compressedChunks.put(getChunkKey(chunk), compress(out.toByteArray()));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return CompletableFuture.completedFuture(null);
     }
+
     @Override
-    public boolean supportsParallelLoading() {
-        return true;
+    public @NotNull CompletableFuture<Void> saveChunks(@NotNull Collection<Chunk> chunks) {
+        for (var c : chunks) {
+            saveChunk(c);
+        }
+        try {
+            world.saveToFile(new File(fileName));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return CompletableFuture.completedFuture(null);
     }
 
     public static String getChunkKey(int x, int z) {
@@ -71,7 +91,7 @@ public class CustomChunkLoader implements IChunkLoader {
             defl.write(in);
             defl.flush();
             defl.close();
-    
+
             return out.toByteArray();
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,7 +99,7 @@ public class CustomChunkLoader implements IChunkLoader {
             return null;
         }
     }
-    
+
     public static byte[] decompress(byte[] in) {
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -87,7 +107,7 @@ public class CustomChunkLoader implements IChunkLoader {
             infl.write(in);
             infl.flush();
             infl.close();
-    
+
             return out.toByteArray();
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,4 +115,5 @@ public class CustomChunkLoader implements IChunkLoader {
             return null;
         }
     }
+
 }

@@ -31,6 +31,8 @@ import dev.cabotmc.velocityagent.santahat.SantaThread;
 import dev.cabotmc.velocityagent.vanish.VanishCommand;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 
 import org.slf4j.Logger;
 import org.w3c.dom.Text;
@@ -41,11 +43,12 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @Plugin(id = "velocityagent", name = "VelocityAgent", version = "1.0.0", authors = {
-        "EggAllocationService" }, dependencies = @Dependency(id = "protocolize"))
+        "EggAllocationService" }, dependencies = {@Dependency(id = "protocolize"), @Dependency(id = "luckperms")})
 public class VelocityAgent {
     public static Client kryoClient;
     public static SantaThread thread;
     public static VelocityAgent instance;
+    public static LuckPerms luckPerms;
     @Inject
     private Logger logger;
 
@@ -59,6 +62,7 @@ public class VelocityAgent {
         kryoClient = new Client();
         instance = this;
         thread = new SantaThread();
+        luckPerms = LuckPermsProvider.get();
         thread.start();
         kryoClient.start();
         proxyServer = proxy;

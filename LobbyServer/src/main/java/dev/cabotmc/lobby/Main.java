@@ -46,16 +46,7 @@ public class Main {
         .ambientLight(2.0f)
         .fixedTime(1000L)
         .build();
-        var bfx = BiomeEffects.builder()
-            .grassColor(0xFFFFFF)
-            .build();
-        CHRISTMAS_BIOME = Biome.builder()
-                            .precipitation(Precipitation.NONE)
-                            .downfall(1f)
-                            .temperature(0.15f)
-                            .category(Category.ICY)
-                            .name(NamespaceID.from("egg", "departmasland"))
-                            .build();
+
         MinecraftServer.getBiomeManager().addBiome(CHRISTMAS_BIOME);
         
         PlacementRules.init();

@@ -1,15 +1,12 @@
-package dev.cabotmc.lobby.world;
+package dev.cabotmc.minestom.world;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-
-
-import dev.cabotmc.lobby.Main;
+import dev.cabotmc.minestom.Biomes;
 import net.minestom.server.instance.Chunk;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.Block.Getter.Condition;
+
+import java.io.*;
+import java.nio.ByteBuffer;
 
 public class ChunkIO {
     public static byte[] serializeChunk(Chunk c) {
@@ -27,6 +24,19 @@ public class ChunkIO {
         }
         return b.array();
     }
+    public static void serializeChunk(Chunk c, OutputStream target) throws IOException {
+        var b = new DataOutputStream(target);
+        b.writeInt(c.getMinSection());
+        b.writeInt(c.getMaxSection());
+
+        for (int y = c.getMinSection() * 16; y < c.getMaxSection() * 16; y++) {
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
+                    b.writeShort(c.getBlock(x, y, z, Condition.TYPE).stateId());
+                }
+            }
+        }
+    }
     public static void loadBlocksToChunk(Chunk c, byte[] data) {
         ByteBuffer b = ByteBuffer.wrap(data);
 
@@ -37,7 +47,7 @@ public class ChunkIO {
             for (int x = 0; x < 16; x++) {
                 for (int z = 0; z < 16; z++) {
                     c.setBlock(x, y, z, Block.fromStateId(b.getShort()));
-                    c.setBiome(x, y, z, Main.CHRISTMAS_BIOME);
+                    c.setBiome(x, y, z, Biomes.CHRISTMAS_BIOME);
                 }
             }
         }
@@ -52,7 +62,7 @@ public class ChunkIO {
             for (int x = 0; x < 16; x++) {
                 for (int z = 0; z < 16; z++) {
                     c.setBlock(x, y, z, Block.fromStateId(b.readShort()));
-                    c.setBiome(x, y, z, Main.CHRISTMAS_BIOME);
+                    c.setBiome(x, y, z, Biomes.CHRISTMAS_BIOME);
                 }
             }
         }

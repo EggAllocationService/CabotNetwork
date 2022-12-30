@@ -2,10 +2,15 @@ package dev.cabotmc.spigotagent;
 
 import dev.cabotmc.commonnet.CommonClient;
 import dev.cabotmc.pingsystem.api.PingAPI;
+import dev.cabotmc.spigotagent.elo.EloListener;
+import dev.cabotmc.spigotagent.elo.EloService;
 import dev.cabotmc.spigotagent.tickets.TicketBrowseMenu;
 import dev.cabotmc.spigotagent.tickets.TicketListener;
 import dev.cabotmc.spigotagent.tickets.TicketUtil;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.JoinConfiguration;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.md_5.bungee.api.ChatColor;
 
@@ -28,6 +33,7 @@ import java.util.stream.Collectors;
 
 public final class SpigotAgent extends JavaPlugin {
     public static SpigotAgent instance;
+
     @Override
     public void onEnable() {
         instance = this;
@@ -45,6 +51,15 @@ public final class SpigotAgent extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(new TimeListener(), this);
             Bukkit.getPluginManager().registerEvents(new WitherListener(), this);
             Bukkit.getPluginManager().registerEvents(new TicketListener(), this);
+            Bukkit.getPluginManager().registerEvents(new EloListener(), this);
+            EloService.init();
+            Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+                var first = Component.text("Cabot", TextColor.color(0x45abe6));
+                var second = Component.text("AC", TextColor.color(0xe645e0));
+                var third = Component.text(" | Strict mode (Δa=0.001)", TextColor.color(NamedTextColor.WHITE));
+                Bukkit.getServer().sendActionBar(Component.join(JoinConfiguration.noSeparators(), first, second, third));
+            }
+            , 0, 10);
             Bukkit.getWorld("world").getWorldBorder().setWarningTime(20);
             TicketBrowseMenu.initItems();
             TicketUtil.loadComputedJson();
@@ -62,7 +77,7 @@ public final class SpigotAgent extends JavaPlugin {
                     .addItem(new ItemStack(Material.WOODEN_AXE))
                     .addItem(new ItemStack(Material.WOODEN_SHOVEL))
                     .addItem(TicketUtil.createBlankTicket())
-                    .build();
+                    .build(); 
                 kits.add(k);
             } catch (Exception e1) {
                 e1.printStackTrace();
@@ -95,8 +110,9 @@ public final class SpigotAgent extends JavaPlugin {
             e.printStackTrace();
         }
 
-        
+
     }
+
     static ItemStack createKitIcon() {
         var i = new ItemStack(Material.PAPER);
         var m = i.getItemMeta();
@@ -108,9 +124,12 @@ public final class SpigotAgent extends JavaPlugin {
         i.setItemMeta(m);
         return i;
     }
+
     @Override
     public void onDisable() {
-        if (!System.getenv().containsKey("CABOT_NAME")) return;
+        if (!System.getenv().containsKey("CABOT_NAME"))
+            return;
         CommonClient.getShutdownHook().run();
     }
+
 }

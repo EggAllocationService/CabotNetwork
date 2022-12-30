@@ -41,6 +41,7 @@ dependencies {
     shadow 'org.mineskin:java-client:1.2.4-SNAPSHOT'
     shadow 'de.themoep:minedown-adventure:1.7.1-SNAPSHOT'
     compileOnly "dev.simplix:protocolize-api:2.2.2";
+    compileOnly 'net.luckperms:api:5.4'
 }
 shadowJar {
     configurations = [project.configurations.shadow]

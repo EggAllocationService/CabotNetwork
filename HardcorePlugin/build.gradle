@@ -19,6 +19,7 @@ repositories {
     maven {
         url "https://clojars.org/repo/"
     }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -27,11 +28,13 @@ dependencies {
     shadow 'com.esotericsoftware:kryo:5.3.0'
     shadow 'kryonet:kryonet:2.21'
     shadow 'org.mongodb:mongodb-driver-sync:4.7.2'
+    compileOnly 'com.github.Minestom:Minestom:42195c536b'
     compileOnly files("lib/pingsystem.jar")
 }
 
 shadowJar {
     configurations = [project.configurations.shadow]
+    minimize();
 }
 
 def targetJavaVersion = 17
