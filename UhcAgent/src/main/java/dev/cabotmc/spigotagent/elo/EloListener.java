@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import com.gmail.val59000mc.events.UhcGameStateChangedEvent;
@@ -26,19 +27,19 @@ public class EloListener implements Listener {
     public void join(PlayerJoinEvent e) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(SpigotAgent.instance, () -> {
             var msg = Component.text("Your current ELO: ", TextColor.color(0xbf4ba8));
-            msg = msg.append(Component.text(Double.toString(EloService.getRating(e.getPlayer().getUniqueId()).rating), TextColor.color(0x5bde3e)));
+            msg = msg.append(Component.text(formatGlickoElo(EloService.getRating(e.getPlayer().getUniqueId()).rating), TextColor.color(0x5bde3e)));
             e.getPlayer().sendMessage(msg);
         }, 80L);    
     }
     
 
     @EventHandler
-    public void kill(UhcPlayerKillEvent e) {
-        var loser = e.getKilled();
-        var loserTeam = loser.getTeam();
+    public void death(PlayerDeathEvent e) {
+        var loser = e.getPlayer();
+        var loserTeam = GameManager.getGameManager().getPlayerManager().getOrCreateUhcPlayer(loser).getTeam();
         for (var p : GameManager.getGameManager().getPlayerManager().getAllPlayingPlayers()) {
             if (!p.getTeam().equals(loserTeam)) {
-                EloService.recordResult(p.getUuid(), loser.getUuid());
+                EloService.recordResult(p.getUuid(), loser.getUniqueId());
             }
         }
     }
@@ -78,6 +79,7 @@ public class EloListener implements Listener {
             if (Bukkit.getPlayer(u) != null) {
                 Bukkit.getPlayer(u).sendMessage(createEloChangeMessage(storedNum, newRating.rating()));
             }
+            System.out.println(u.toString() + " " + storedNum + " -> " + newRating.rating());
         }
     }
     
@@ -85,14 +87,18 @@ public class EloListener implements Listener {
         var base = Component.text("Your ELO has been recalculated: ", TextColor.color(0xbf4ba8));
         if (elo1 < elo2) {
             // gained elo
-            base = base.append(Component.text(Double.toString(elo1), TextColor.color(0xeb4034)));
+            base = base.append(Component.text(formatGlickoElo(elo1), TextColor.color(0xeb4034)));
             base = base.append(Component.text(" \u2192 ", TextColor.color(0xbf4ba8)));
-            base = base.append(Component.text(Double.toString(elo2), TextColor.color(0x5bde3e)));
+            base = base.append(Component.text(formatGlickoElo(elo2), TextColor.color(0x5bde3e)));
         } else {
-            base = base.append(Component.text(Double.toString(elo1), TextColor.color(0x5bde3e)));
+            base = base.append(Component.text(formatGlickoElo(elo1), TextColor.color(0x5bde3e)));
             base = base.append(Component.text(" \u2192 ", TextColor.color(0xbf4ba8)));
-            base = base.append(Component.text(Double.toString(elo2), TextColor.color(0xeb4034)));
+            base = base.append(Component.text(formatGlickoElo(elo2), TextColor.color(0xeb4034)));
         }
         return base;
     }   
-}
+    static String formatGlickoElo(double elo) {
+        var d = (int) Math.round(400 + (elo * 20));
+        return Integer.toString(d);
+    }
+} 

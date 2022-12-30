@@ -12,6 +12,7 @@ repositories {
     maven {
         url "https://clojars.org/repo/"
     }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -22,6 +23,10 @@ dependencies {
     implementation "com.github.docker-java:docker-java-transport-zerodep:3.2.13"
     implementation 'com.google.code.gson:gson:2.10'
     implementation 'com.esotericsoftware:kryo:5.3.0'
+    implementation 'com.github.Minestom:Minestom:42195c536b'
+}
+shadowJar {
+    
 }
 application {
     mainClass = "dev.cabotmc.mgmt.Main"

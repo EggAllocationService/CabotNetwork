@@ -30,7 +30,7 @@ public class EloService {
     static CodecRegistry pojoCodecRegistry;
     public static MongoClient client;
     static MongoDatabase mc;
-    static MongoCollection<StoredRating> ratings = mc.getCollection("uhcratings", StoredRating.class);
+    static MongoCollection<StoredRating> ratings;
     static HashMap<UUID, StoredRating> cache = new HashMap<>();
     static HashMap<UUID, HashMap<UUID, EloResult>> results = new HashMap<>();
     public static void init() {
@@ -38,7 +38,7 @@ public class EloService {
         String uri = "mongodb://minecraft:crafting@172.17.0.1:27017/?authSource=mc";
         client = MongoClients.create(uri);
         mc = client.getDatabase("mc").withCodecRegistry(pojoCodecRegistry);
-        
+        ratings = mc.getCollection("uhcratings", StoredRating.class);
     }
     public static HashMap<UUID, EloResult> getResults(UUID target) {
         if (!results.containsKey(target)) {
@@ -82,10 +82,7 @@ public class EloService {
             id = user.toString();
         }
         public StoredRating() {}
-        public Player getPlayer() {
-            return Bukkit.getPlayer(UUID.fromString(id));
-
-        }
+        
 
         public Glicko2 toGlicko() {
             

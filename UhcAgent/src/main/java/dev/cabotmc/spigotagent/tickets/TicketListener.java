@@ -12,6 +12,9 @@ public class TicketListener implements Listener {
     public void use(PlayerInteractEvent e) {
         if (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         var i = e.getPlayer().getInventory().getItemInMainHand();
+        if (i.getItemMeta() == null) {
+            return;
+        }
         if (!i.getItemMeta().getPersistentDataContainer().has(TicketUtil.TICKET_KEY)) {
             return;
         }
