@@ -12,6 +12,7 @@ public class QueueManager {
         addGamemode(new EbeMcGamemode());
         addGamemode(new UhcQueue());
         addGamemode(new DepartmasGamemode());
+        addGamemode(new SkyItemGamemode());
     }
     public static void addGamemode(Queue q) {
         gamemodes.put(q.getName(), q);

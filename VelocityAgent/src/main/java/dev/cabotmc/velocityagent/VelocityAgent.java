@@ -22,13 +22,19 @@ import dev.cabotmc.mgmt.protocol.ClientIdentifyMessage;
 import dev.cabotmc.mgmt.protocol.CrossServerMessage;
 import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
 import dev.cabotmc.vanish.VanishManager;
+import dev.cabotmc.velocityagent.chat.BlockCommand;
 import dev.cabotmc.velocityagent.chat.ChatListener;
+import dev.cabotmc.velocityagent.chat.NewChatPacket;
 import dev.cabotmc.velocityagent.db.Database;
 import dev.cabotmc.velocityagent.queue.QueueManager;
 import dev.cabotmc.velocityagent.resourcepack.PackManager;
 import dev.cabotmc.velocityagent.santahat.SanataManager;
 import dev.cabotmc.velocityagent.santahat.SantaThread;
 import dev.cabotmc.velocityagent.vanish.VanishCommand;
+import dev.simplix.protocolize.api.PacketDirection;
+import dev.simplix.protocolize.api.Protocol;
+import dev.simplix.protocolize.api.Protocolize;
+import dev.simplix.protocolize.api.mapping.AbstractProtocolMapping;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.luckperms.api.LuckPerms;
@@ -39,6 +45,7 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -72,6 +79,7 @@ public class VelocityAgent {
         proxy.getEventManager().register(this, new PackManager());
         proxy.getEventManager().register(this, new ChatListener());
         logger.info("Connected to management server");
+        
         var meta = proxy.getCommandManager().metaBuilder("create")
                 .plugin(this)
                 .build();
@@ -95,6 +103,10 @@ public class VelocityAgent {
                 .plugin(this)
                 .build();
         proxy.getCommandManager().register(meta, new VanishCommand());
+        meta = proxy.getCommandManager().metaBuilder("block")
+                .plugin(this)
+                .build();
+        proxy.getCommandManager().register(meta, BlockCommand.create());
         proxy.getScheduler().buildTask(this, () -> {
             VanishManager.getVanishedPlayers()
                 .stream()
@@ -140,6 +152,8 @@ public class VelocityAgent {
     public void onProxyReady(ListenerBoundEvent e) {
         Database.init();
         VanishManager.init(Database.vanish);
+        var mappings = Arrays.asList(AbstractProtocolMapping.rangedIdMapping(760, 760, 0x33));
+        Protocolize.protocolRegistration().registerPacket(mappings, Protocol.PLAY, PacketDirection.CLIENTBOUND, NewChatPacket.class);
         kryoClient.addListener(new Listener() {
             @Override
             public void received(Connection connection, Object o) {
@@ -187,7 +201,7 @@ public class VelocityAgent {
 
     @Subscribe
     public void replaceSkins(GameProfileRequestEvent e) {
-        SanataManager.findReplacement(e);
+        //SanataManager.findReplacement(e);
     }
 
     @Subscribe

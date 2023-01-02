@@ -15,8 +15,8 @@ import net.kyori.adventure.text.format.Style;
 
 public class PackManager {
 
-    static byte[] RESOURCE_HASH = hexStringToByteArray("5c67a9db733a32334e5199eb0d1de61138357ca4");
-    static String ICON_PACK_URL = "https://cdn.cabotmc.dev/cabot_resources_2.zip";
+    static byte[] RESOURCE_HASH = hexStringToByteArray("eba1b70a759b497129456eb00efda76b89494b7e");
+    static String ICON_PACK_URL = "https://cdn.cabotmc.dev/cabot_server_3.zip";
 
     @Subscribe
     public void login(PostLoginEvent e) {

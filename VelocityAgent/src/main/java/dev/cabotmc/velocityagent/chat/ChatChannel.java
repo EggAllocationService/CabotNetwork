@@ -2,7 +2,6 @@ package dev.cabotmc.velocityagent.chat;
 
 import java.util.ArrayList;
 
-import org.jetbrains.annotations.NotNull;
 
 import com.velocitypowered.api.proxy.Player;
 
@@ -17,7 +16,7 @@ public abstract class ChatChannel implements ForwardingAudience {
         this.name = name;
     }
     @Override
-    public @NotNull Iterable<? extends Audience> audiences() {
+    public Iterable<? extends Audience> audiences() {
         return members;
     }
     abstract boolean canJoin(Player p);
