@@ -2,6 +2,7 @@ package dev.cabotmc.hardcore;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -138,7 +139,7 @@ public class BasicListener implements Listener {
         if (p.getName().equals(HardcorePlugin.ownerName)) {
             for (Player b : Bukkit.getOnlinePlayers()) {
                 if (p == b) continue;
-                b.teleport(p);
+                b.teleport(e.getTo());
             }
         }
     }
@@ -202,6 +203,11 @@ public class BasicListener implements Listener {
             if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) && e.getItem().getItemMeta().getPersistentDataContainer().has(new NamespacedKey("cabot", "tpitem"))) {
                 var p = Bukkit.getPlayer(HardcorePlugin.ownerName);
                 e.getPlayer().teleport(p);      
+            }else if (e.getItem().getType().toString().endsWith("SPAWN_EGG")) {
+                e.setCancelled(false);
+                if (e.getAction() == Action.RIGHT_CLICK_BLOCK && !e.getPlayer().isSneaking()) {
+                    PointsManager.addPoints("Spectator used mob spawn egg", 2f);
+                }
             }
         }
     }

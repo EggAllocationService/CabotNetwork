@@ -11,7 +11,7 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
 public class ChatListener {
-    static Component base = Component.text("<blocked message>", TextColor.color(0x753030)).decorate(TextDecoration.ITALIC);
+    public static Component base = Component.text("<blocked message>", TextColor.color(0x753030)).decorate(TextDecoration.ITALIC);
     @Subscribe(order = PostOrder.LAST)
     public void chat(PlayerChatEvent e) {
         if (e.getResult() == ChatResult.denied()) return;

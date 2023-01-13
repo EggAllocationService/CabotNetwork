@@ -16,7 +16,7 @@ import net.kyori.adventure.text.format.TextColor;
 
 public class PointsManager {
     public static float points = 0.0f;
-    static ArrayList<Function<Float, Float>> modifiers = new ArrayList<>();
+    static ArrayList<Function<Double, Double>> modifiers = new ArrayList<>();
     public static boolean enabled = true;
     public static BossBar displayBar;
     static HashSet<String> earnedKeys = new HashSet<>();
@@ -33,12 +33,13 @@ public class PointsManager {
         displayBar.progress((float) (points - Math.floor(points)));
     }
     public static void addPoints(String reason, float pts, int colorOffset) {
+        var multiplier = HardcorePlugin.difficulty.getMultiplier();
         if (colorOffset == 0) {
             for (var f : modifiers) {
-                pts = f.apply(pts);
+                multiplier = f.apply(multiplier);
             }
         }
-        pts = (float) (pts * HardcorePlugin.difficulty.getMultiplier());
+        pts = (float) (pts * multiplier);
         addPoints(pts);
         pts = (float) Math.round(pts * 100) / 100;
         if (pts == 0) return;
@@ -56,7 +57,7 @@ public class PointsManager {
             
         }
     }
-    public static void addMutator(Function<Float, Float> callback) {
+    public static void addMutator(Function<Double, Double> callback) {
         modifiers.add(callback);
     }
     public static Component createTitle() {

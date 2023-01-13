@@ -1,7 +1,6 @@
 package dev.cabotmc.hardcore.randomdiff.modifiers;
 
 import dev.cabotmc.hardcore.HardcorePlugin;
-import dev.cabotmc.hardcore.difficulty.NightmareDifficulty;
 import dev.cabotmc.hardcore.randomdiff.Modifier;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;

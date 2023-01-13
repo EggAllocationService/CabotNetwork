@@ -49,10 +49,10 @@ public class RandomTP extends Modifier implements Listener {
             // time to tp
             final var p = Bukkit.getPlayer(HardcorePlugin.ownerName);
             p.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 20 * 20, 1, true, false));
-            p.playSound(p.getLocation(), Sound.BLOCK_PORTAL_TRIGGER, SoundCategory.MASTER, 0.7f, 1);
+            p.playSound(p.getLocation(), Sound.BLOCK_PORTAL_TRIGGER, SoundCategory.PLAYERS, 0.5f, 1);
             Bukkit.getScheduler().scheduleSyncDelayedTask(HardcorePlugin.instance, () -> {
                 p.teleport(savedLocation);
-                p.playSound(p.getLocation(), Sound.BLOCK_PORTAL_TRAVEL, SoundCategory.MASTER, 0.7f, 1);
+                p.playSound(p.getLocation(), Sound.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 0.5f, 1);
                 p.removePotionEffect(PotionEffectType.CONFUSION);
                 randomizeTimers();
                 

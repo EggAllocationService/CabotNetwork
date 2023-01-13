@@ -34,8 +34,7 @@ public class RandomDrops extends Modifier implements Listener {
         super("Random Drops");
         generators = Arrays.asList(Material.values())
         .stream()
-        .filter(m -> m.isItem())
-        .filter(m -> m.isBlock())
+        .filter(m -> m.isItem() || m.isBlock())
         .map(ItemGenerator::new)
         .collect(Collectors.toCollection(() -> new ArrayList<>()));
         Arrays.asList(LootTables.values())
@@ -58,6 +57,9 @@ public class RandomDrops extends Modifier implements Listener {
         p.getInventory().addItem(new ItemStack(Material.STONE_SWORD));
         p.getInventory().addItem(new ItemStack(Material.STONE_PICKAXE));
         p.getInventory().addItem(new ItemStack(Material.STONE_AXE));
+        p.getInventory().addItem(new ItemStack(Material.STONE_SHOVEL));
+        p.getInventory().addItem(new ItemStack(Material.STONE_HOE));
+        
     }
     @EventHandler
     public void mainDrop(BlockDropItemEvent e) {

@@ -6,6 +6,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.proxy.ListenerBoundEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
+import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.api.network.ProtocolVersion;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PreLoginEvent;
@@ -17,6 +18,8 @@ import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.server.ServerInfo;
+import com.velocitypowered.api.proxy.server.ServerPing.SamplePlayer;
+
 import dev.cabotmc.mgmt.ProtocolHelper;
 import dev.cabotmc.mgmt.protocol.ClientIdentifyMessage;
 import dev.cabotmc.mgmt.protocol.CrossServerMessage;
@@ -24,6 +27,7 @@ import dev.cabotmc.mgmt.protocol.ServerStatusChangeMessage;
 import dev.cabotmc.vanish.VanishManager;
 import dev.cabotmc.velocityagent.chat.BlockCommand;
 import dev.cabotmc.velocityagent.chat.ChatListener;
+import dev.cabotmc.velocityagent.chat.MessageCommand;
 import dev.cabotmc.velocityagent.chat.NewChatPacket;
 import dev.cabotmc.velocityagent.db.Database;
 import dev.cabotmc.velocityagent.queue.QueueManager;
@@ -31,6 +35,7 @@ import dev.cabotmc.velocityagent.resourcepack.PackManager;
 import dev.cabotmc.velocityagent.santahat.SanataManager;
 import dev.cabotmc.velocityagent.santahat.SantaThread;
 import dev.cabotmc.velocityagent.vanish.VanishCommand;
+import dev.cabotmc.velocityagent.vanish.VanishMessageJob;
 import dev.simplix.protocolize.api.PacketDirection;
 import dev.simplix.protocolize.api.Protocol;
 import dev.simplix.protocolize.api.Protocolize;
@@ -47,6 +52,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Plugin(id = "velocityagent", name = "VelocityAgent", version = "1.0.0", authors = {
@@ -107,16 +113,13 @@ public class VelocityAgent {
                 .plugin(this)
                 .build();
         proxy.getCommandManager().register(meta, BlockCommand.create());
-        proxy.getScheduler().buildTask(this, () -> {
-            VanishManager.getVanishedPlayers()
-                .stream()
-                .map(proxy::getPlayer)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .forEach(p -> {
-                    p.sendActionBar(Component.text("You are currently vanished"));
-                });
-        }).repeat(500, TimeUnit.MILLISECONDS).schedule();
+        meta = proxy.getCommandManager().metaBuilder("msg")
+            .aliases("w", "whisper")
+            .plugin(this)
+        .build();
+        proxy.getCommandManager().register(meta, MessageCommand.create());
+        VanishMessageJob.generateThings();
+        proxy.getScheduler().buildTask(this, VanishMessageJob::runJob).repeat(50, TimeUnit.MILLISECONDS).schedule();
         proxy.getScheduler().buildTask(this, () -> {
             var separator = Component.text(" - ", TextColor.color(0x3c3c3c));
             var first = Component.text("\n  " + proxy.getPlayerCount() + " players online", TextColor.color(0x4287f5));
@@ -168,7 +171,7 @@ public class VelocityAgent {
                             var m = "[SERVER UP] " + msg.serverName;
                             for (var P : proxy.getAllPlayers()) {
                                 if (P.hasPermission("cloud.servernotify")) {
-                                    proxy.sendMessage(Component.text(m));
+                                    P.sendMessage(Component.text(m));
                                 }
                             }
                             logger.info(m);
@@ -222,6 +225,18 @@ public class VelocityAgent {
             e.setResult(KickedFromServerEvent.RedirectPlayer.create(proxy.getServer("lobby").get(), reason));
         }
     }
+    public static SamplePlayer[] players = new SamplePlayer[] {
+        new SamplePlayer("DJ Chan", UUID.randomUUID()),
+        new SamplePlayer("CSGO Cheat Vendor", UUID.randomUUID()),
+        new SamplePlayer("Five Guys Map Creator", UUID.randomUUID())
+    };
+    @Subscribe
+    public void serverPing(ProxyPingEvent e) {
+        var t = e.getPing().asBuilder();
+        
+        e.setPing(t.samplePlayers(players)
+        .maximumPlayers(Integer.MAX_VALUE).build());
+    }
 
     @Subscribe
     public void handleLogin(PlayerChooseInitialServerEvent e) {
@@ -230,6 +245,17 @@ public class VelocityAgent {
             SanataManager.sendToLimbo.remove(e.getPlayer().getUniqueId());
             e.setInitialServer(proxy.getServer("limbo").get());
             return;
+        }
+        if (e.getPlayer().getVirtualHost().isPresent()) {
+            try {
+                var targetServer = e.getPlayer().getVirtualHost().get().getHostName().split(".")[0];
+                if (getProxy().getServer(targetServer).isPresent()) {
+                    e.setInitialServer(getProxy().getServer(targetServer).get());
+                    return;
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         }
         if (proxy.getServer("lobby").isPresent()) {
             e.setInitialServer(proxy.getServer("lobby").get());
