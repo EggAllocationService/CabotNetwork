@@ -35,7 +35,7 @@ public class SkyItemGamemode extends AbstractSurvivalGamemode {
     public ItemStack createIcon() {
         var i = new ItemStack(ItemType.PLAYER_HEAD);
         i.nbtData().put("SkullOwner", SkullOwnerTag);
-        var base = Component.text("Sky Survival ", TextColor.color(COLOR)).decoration(TextDecoration.ITALIC, false);
+        var base = Component.text("Skyblock UHC ", TextColor.color(COLOR)).decoration(TextDecoration.ITALIC, false);
         base = base.append(Component.text("\uE00C", TextColor.color(0xfaea5a)).style(builder -> {
             builder.decoration(TextDecoration.ITALIC, false);
             builder.font(Key.key("cabot", "icons"));

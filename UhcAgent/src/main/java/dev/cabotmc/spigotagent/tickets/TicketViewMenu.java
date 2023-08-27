@@ -75,7 +75,7 @@ public class TicketViewMenu implements Listener {
         if (m != null) {
             return new ItemStack(m);
         } else {
-            if (source.equals("player")) return null;
+            
             if (findEntityType(source) != null) {
                 var i = new ItemStack(Material.PLAYER_HEAD);
                 SkullMeta d = (SkullMeta) i.getItemMeta();

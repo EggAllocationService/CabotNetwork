@@ -48,10 +48,16 @@ public class TimeListener implements Listener {
             Bukkit.shutdown();
         } 
     }
+    static boolean didPatch = false;
     @EventHandler
     public void map(PlayerAttemptPickupItemEvent e) {
         if (e.getItem().getItemStack().getType() == Material.FILLED_MAP || e.getItem().getItemStack().getType() == Material.MAP) {
             e.setCancelled(true);
+        }
+        if (!didPatch) {
+            e.getPlayer().getWorld().getWorldBorder().setDamageBuffer(0);
+            e.getPlayer().getWorld().getWorldBorder().setDamageAmount(0);
+            didPatch = true;
         }
     }
 }

@@ -52,6 +52,7 @@ public final class SpigotAgent extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(new WitherListener(), this);
             Bukkit.getPluginManager().registerEvents(new TicketListener(), this);
             Bukkit.getPluginManager().registerEvents(new EloListener(), this);
+            Bukkit.getPluginManager().registerEvents(new BorderListener(), this);
             EloService.init();
             Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
                 var first = Component.text("Cabot", TextColor.color(0x45abe6));
