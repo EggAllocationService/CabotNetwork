@@ -32,7 +32,6 @@ dependencies {
     compileOnly project(":EggRandomizer")
     compileOnly files("lib/uhc.jar")
     compileOnly files("lib/pingsystem.jar")
-
 }
 
 shadowJar {

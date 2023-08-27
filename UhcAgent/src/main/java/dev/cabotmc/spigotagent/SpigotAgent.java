@@ -2,8 +2,10 @@ package dev.cabotmc.spigotagent;
 
 import dev.cabotmc.commonnet.CommonClient;
 import dev.cabotmc.pingsystem.api.PingAPI;
+import dev.cabotmc.spigotagent.beacon.BeaconListener;
 import dev.cabotmc.spigotagent.elo.EloListener;
 import dev.cabotmc.spigotagent.elo.EloService;
+import dev.cabotmc.spigotagent.rules.LimitedTotemRule;
 import dev.cabotmc.spigotagent.tickets.TicketBrowseMenu;
 import dev.cabotmc.spigotagent.tickets.TicketListener;
 import dev.cabotmc.spigotagent.tickets.TicketUtil;
@@ -53,6 +55,10 @@ public final class SpigotAgent extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(new TicketListener(), this);
             Bukkit.getPluginManager().registerEvents(new EloListener(), this);
             Bukkit.getPluginManager().registerEvents(new BorderListener(), this);
+
+            Bukkit.getPluginManager().registerEvents(new BeaconListener(), this);
+            Bukkit.getPluginManager().registerEvents(new LimitedTotemRule(), this);
+
             EloService.init();
             Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
                 var first = Component.text("Cabot", TextColor.color(0x45abe6));
@@ -73,10 +79,10 @@ public final class SpigotAgent extends JavaPlugin {
                 var k = new Kit.Builder("tickets")
                     .setName("Tickets")
                     .setSymbol(createKitIcon())
-                    .addItem(new ItemStack(Material.WOODEN_SWORD))
-                    .addItem(new ItemStack(Material.WOODEN_PICKAXE))
-                    .addItem(new ItemStack(Material.WOODEN_AXE))
-                    .addItem(new ItemStack(Material.WOODEN_SHOVEL))
+                    .addItem(createUnbreakable(Material.WOODEN_SWORD))
+                    .addItem(createUnbreakable(Material.WOODEN_PICKAXE))
+                    .addItem(createUnbreakable(Material.WOODEN_AXE))
+                    .addItem(createUnbreakable(Material.WOODEN_SHOVEL))
                     .addItem(TicketUtil.createBlankTicket())
                     .build(); 
                 kits.add(k);
@@ -131,6 +137,13 @@ public final class SpigotAgent extends JavaPlugin {
         if (!System.getenv().containsKey("CABOT_NAME"))
             return;
         CommonClient.getShutdownHook().run();
+    }
+    private ItemStack createUnbreakable(Material m) {
+        var i = new ItemStack(m);
+        var e = i.getItemMeta();
+        e.setUnbreakable(true);
+        i.setItemMeta(e);
+        return i;
     }
 
 }
