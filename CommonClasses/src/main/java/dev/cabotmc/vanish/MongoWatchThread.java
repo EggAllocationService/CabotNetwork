@@ -19,8 +19,6 @@ public class MongoWatchThread extends Thread {
                 if (c == null) continue;
 
             }
-            
-
 
 
             try {

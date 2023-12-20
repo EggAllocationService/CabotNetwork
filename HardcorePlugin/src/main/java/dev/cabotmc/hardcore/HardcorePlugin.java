@@ -5,7 +5,6 @@ import dev.cabotmc.hardcore.difficulty.BaseDifficulty;
 import dev.cabotmc.hardcore.difficulty.DifficultyMenu;
 import dev.cabotmc.hardcore.points.BasicPointsListener;
 import dev.cabotmc.hardcore.points.PointsManager;
-import dev.cabotmc.pingsystem.api.PingAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
@@ -76,7 +75,7 @@ public final class HardcorePlugin extends JavaPlugin {
         m.displayName(Component.text("Right click to Teleport to " + ownerName, TextColor.color(0xa229e3)).decoration(TextDecoration.ITALIC, false));
         m.getPersistentDataContainer().set(new NamespacedKey("cabot", "tpitem"), PersistentDataType.BYTE, (byte) 1);
         TELEPORT_STACK.setItemMeta(m);
-        PingAPI.setPermissionSolver(p -> p.getGameMode() != GameMode.ADVENTURE);
+        //PingAPI.setPermissionSolver(p -> p.getGameMode() != GameMode.ADVENTURE);
         Runtime.getRuntime().addShutdownHook(CommonClient.getShutdownHook());
     }
 

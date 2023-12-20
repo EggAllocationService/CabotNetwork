@@ -6,5 +6,4 @@ include 'SpigotAgent'
 include 'HardcorePlugin'
 include 'UhcAgent'
 include 'EggRandomizer'
-include 'MapEditor'
 

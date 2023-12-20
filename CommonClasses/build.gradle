@@ -17,7 +17,6 @@ dependencies {
     implementation 'com.esotericsoftware:kryo:5.3.0'
     implementation 'kryonet:kryonet:2.21'
     implementation 'org.mongodb:mongodb-driver-sync:4.7.2'
-    //implementation 'com.github.Minestom:Minestom:42195c536b'
 }
 
 test {

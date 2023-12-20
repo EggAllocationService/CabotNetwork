@@ -4,9 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="New beta features">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="Update supported MC version to 1.20.3">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClasses/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/vanish/MongoWatchThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/vanish/MongoWatchThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/PeanutGallery.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapEditor/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/EditCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/FlatWorldGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/InstanceTracker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/SaveCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/UpCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/VelocityAgent/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,10 +125,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2H4KuYWDqGyGWZnjiTA4fid1Oqf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -123,30 +137,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "/Users/kyle/IdeaProjects/CabotNetwork",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/kyle/IdeaProjects/CabotNetwork&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/VelocityAgent/libs" />
       <recent name="$PROJECT_DIR$/UhcAgent" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -364,7 +379,9 @@
       <workItem from="1693117614015" duration="5810000" />
       <workItem from="1693164083138" duration="4137000" />
       <workItem from="1693459219172" duration="1000" />
-      <workItem from="1703095822192" duration="191000" />
+      <workItem from="1703095822192" duration="722000" />
+      <workItem from="1703096551776" duration="1103000" />
+      <workItem from="1703108063536" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="fix submodules">
       <created>1667586171282</created>
@@ -394,7 +411,31 @@
       <option name="project" value="LOCAL" />
       <updated>1693168136212</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Remove Minestom-based lobby">
+      <option name="closed" value="true" />
+      <created>1703096040480</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703096040480</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Remove all Minestom-related code">
+      <option name="closed" value="true" />
+      <created>1703096094586</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1703096094586</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update supported MC version to 1.20.3">
+      <option name="closed" value="true" />
+      <created>1703097579527</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1703097579527</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,7 +463,10 @@
     <MESSAGE value="forgot one lmao" />
     <MESSAGE value="things" />
     <MESSAGE value="New beta features" />
-    <option name="LAST_COMMIT_MESSAGE" value="New beta features" />
+    <MESSAGE value="Remove Minestom-based lobby" />
+    <MESSAGE value="Remove all Minestom-related code" />
+    <MESSAGE value="Update supported MC version to 1.20.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update supported MC version to 1.20.3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

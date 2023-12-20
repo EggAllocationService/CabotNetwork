@@ -34,7 +34,7 @@ repositories {
 
 dependencies {
     compileOnly files('libs/velocity.jar')
-    annotationProcessor 'com.velocitypowered:velocity-api:3.1.1'
+    annotationProcessor 'com.velocitypowered:velocity-api:3.2.0-SNAPSHOT'
     shadow project(":CommonClasses")
     shadow 'com.esotericsoftware:kryo:5.3.0'
     shadow 'kryonet:kryonet:2.21'
