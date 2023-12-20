@@ -264,9 +264,9 @@ public class VelocityAgent {
 
     @Subscribe
     public void preLogin(PreLoginEvent e) {
-        if (e.getConnection().getProtocolVersion() != ProtocolVersion.getProtocolVersion(760)) {
+        if (e.getConnection().getProtocolVersion() != ProtocolVersion.getProtocolVersion(765)) {
             e.setResult(PreLoginComponentResult
-                    .denied(Component.text("You are not using 1.19.2!", TextColor.color(0xEa0707))));
+                    .denied(Component.text("You are not using 1.20.3!", TextColor.color(0xEa0707))));
         }
     }
 }
