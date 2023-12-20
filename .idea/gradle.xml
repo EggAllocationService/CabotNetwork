@@ -4,9 +4,6 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="delegatedBuild" value="true" />
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="17" />
         <option name="modules">
@@ -15,7 +12,6 @@
             <option value="$PROJECT_DIR$/CommonClasses" />
             <option value="$PROJECT_DIR$/EggRandomizer" />
             <option value="$PROJECT_DIR$/HardcorePlugin" />
-            <option value="$PROJECT_DIR$/LobbyServer" />
             <option value="$PROJECT_DIR$/ManagmentServer" />
             <option value="$PROJECT_DIR$/MapEditor" />
             <option value="$PROJECT_DIR$/SpigotAgent" />
