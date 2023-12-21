@@ -8,9 +8,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
-public class TemplateRegistry {
-    public static HashMap<String, Template> templates = new HashMap<>();
+public interface TemplateRegistry {
+    Template getByName(String name);
+    List<Template> getAll();
+
+    /*public static HashMap<String, Template> templates = new HashMap<>();
 
     public static void initFromFolder(File folder) throws IOException {
         var g = new Gson();
@@ -24,6 +28,6 @@ public class TemplateRegistry {
             var template = g.fromJson(string, Template.class);
             templates.put(template.name, template);
         }
-    }
+    }*/
 
 }
