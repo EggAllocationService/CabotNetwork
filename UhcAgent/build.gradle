@@ -23,15 +23,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT'
-    shadow project(":CommonClasses")
-    shadow 'com.esotericsoftware:kryo:5.3.0'
-    shadow 'com.github.forwardloop:glicko2s_2.11:0.9.4'
-    shadow 'org.mongodb:mongodb-driver-sync:4.7.2'
-    shadow 'kryonet:kryonet:2.21'
+    compileOnly 'io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT'
     compileOnly project(":EggRandomizer")
     compileOnly files("lib/uhc.jar")
-    compileOnly files("lib/pingsystem.jar")
 }
 
 shadowJar {
@@ -39,7 +33,7 @@ shadowJar {
     minimize()
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 21
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion

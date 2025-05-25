@@ -165,7 +165,7 @@ public class TicketBrowseMenu implements Listener {
             if (glowing) {
                 var i = icon.clone();
                 var m = i.getItemMeta();
-                m.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                m.addEnchant(Enchantment.SHARPNESS, 1, true);
                 m.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 i.setItemMeta(m);
                 return i;

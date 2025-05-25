@@ -1,15 +1,10 @@
 package dev.cabotmc.spigotagent;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.JoinConfiguration;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.gmail.val59000mc.events.UhcGameStateChangedEvent;
@@ -17,17 +12,12 @@ import com.gmail.val59000mc.exceptions.UhcPlayerNotOnlineException;
 import com.gmail.val59000mc.game.GameManager;
 import com.gmail.val59000mc.game.GameState;
 
-import dev.cabotmc.commonnet.CommonClient;
 import dev.cabotmc.spigotagent.tickets.TicketUtil;
 
 public class TimeListener implements Listener {
     @EventHandler
     public void change(UhcGameStateChangedEvent e) {
-        if (e.getOldGameState() == GameState.LOADING && e.getNewGameState() == GameState.WAITING) {
-            CommonClient.notifyQueue();
-        } else if (e.getNewGameState() == GameState.ENDED) {
-            CommonClient.sendMessageToServer("velocity", "queue:uhc:done");
-        } else if (e.getNewGameState() == GameState.PLAYING) {
+        if (e.getNewGameState() == GameState.PLAYING) {
             GameManager.getGameManager().getTeamManager().getUhcTeams().forEach(u -> {
                 var l = u.getLeader();
                 if (l.isOnline()) {

@@ -99,7 +99,7 @@ public class BeaconListener implements Listener {
             );
     p.getWorld()
             .spawnParticle(
-                    Particle.TOTEM,
+                    Particle.TOTEM_OF_UNDYING,
                     tpLoc,
                     20,
                     0.5,
@@ -134,7 +134,7 @@ public class BeaconListener implements Listener {
       var protectedPlayers = getProtectedPlayers(l);
       for (Player p : protectedPlayers) {
         p.getWorld().spawnParticle(
-                Particle.TOTEM,
+                Particle.TOTEM_OF_UNDYING,
                 p.getLocation(),
                 1,
                 1,
