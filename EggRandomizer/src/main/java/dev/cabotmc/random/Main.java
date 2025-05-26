@@ -1,5 +1,7 @@
 package dev.cabotmc.random;
 
+import io.papermc.paperclip.Paperclip;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,13 +55,7 @@ public class Main {
         }
         CachedRelationships.saveFile();
         System.out.println("Randomized loot tables");
-        if (args.length != 0) {
-            System.out.println("Loading and executing main class...");
-            var targetClass = Class.forName(args[0]);
-            var mainMethod = targetClass.getMethod("main", String[].class);
-            mainMethod.invoke(null, (Object) new String[]{});
-        }
-
+        Paperclip.main(new String[] {"nogui"});
     }
 
     public static Path[] createCopyPaths(String inputPath, String outputPath) throws IOException {

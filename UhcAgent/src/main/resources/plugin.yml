@@ -2,8 +2,8 @@ name: UhcAgent
 version: '${version}'
 main: dev.cabotmc.spigotagent.SpigotAgent
 api-version: 1.19
-depends: [UhcCore, PingSystem]
-depend: [UhcCore, PingSystem]
+depends: [UhcCore]
+depend: [UhcCore]
 commands:
   debugticket:
     usage: "/debugticket"

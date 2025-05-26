@@ -16,10 +16,18 @@ repositories {
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.10';
+    implementation files('lib/server.jar')
 }
 application {
     mainClass = "dev.cabotmc.random.Main"
+}
 
+jar {
+    manifest {
+        attributes (
+            "Main-Class": "dev.cabotmc.random.Main"
+        )
+    }
 }
 test {
     useJUnitPlatform()
