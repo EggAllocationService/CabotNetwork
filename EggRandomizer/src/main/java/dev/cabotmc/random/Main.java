@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        deleteDir(new File("world/datapacks/randomizer"));
         var paths = Files.walk(Path.of("data"));
         var inputs = paths.filter(Files::isRegularFile)
             .map(Path::toString)
@@ -64,5 +65,16 @@ public class Main {
         o[1] = Path.of("world/datapacks/randomizer/" + outputPath);
         Files.createDirectories(o[1].getParent());
         return o;
+    }
+    static void deleteDir(File file) {
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                if (! Files.isSymbolicLink(f.toPath())) {
+                    deleteDir(f);
+                }
+            }
+        }
+        file.delete();
     }
 }

@@ -72,7 +72,7 @@ public class TicketViewMenu implements Listener {
     }
     public ItemStack createItemStack(String source) {
         var m = Material.matchMaterial(source);
-        if (m != null) {
+        if (m != null && m.isItem()) {
             return new ItemStack(m);
         } else {
             
@@ -86,7 +86,7 @@ public class TicketViewMenu implements Listener {
                 i.setItemMeta(d);
                 return i;
             } else {
-                var i = new ItemStack(Material.CHEST);
+                var i = new ItemStack(Material.BARRIER);
                 var d = i.getItemMeta();
         
                 d.displayName(Component.text(

@@ -1,5 +1,0 @@
-name: SpigotAgent
-version: '${version}'
-main: dev.cabotmc.spigotagent.SpigotAgent
-api-version: 1.19
-depends: [ProtocolLib]

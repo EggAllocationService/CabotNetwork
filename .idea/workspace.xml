@@ -4,13 +4,109 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="remove uhc dependencies">
+    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="More changes for new java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EggRandomizer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EggRandomizer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/chc/CompHardcorePlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/commonnet/CommonClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/ProtocolHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/ClientIdentifyMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/CreateServerRequestMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/CrossServerMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/ServerStatusChangeMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/mgmt/protocol/TransferPlayersMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/skins/SkinReplacementRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/vanish/MongoWatchThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/vanish/VanishManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/vanish/VanishPlatformProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/vanish/VanishRecord.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EggRandomizer/src/main/java/dev/cabotmc/random/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/EggRandomizer/src/main/java/dev/cabotmc/random/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/BasicListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/ShutdownWorker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/BaseDifficulty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/DifficultyMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/EasyDifficulty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/NightmareDifficulty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/UltraNightmareDifficulty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/points/BasicPointsListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/points/PointsManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/Modifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/PrintDiffModifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/RandomDifficulty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/AlwaysNight.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/BedExplodeListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/BlindFall.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/BonkStick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/DJChan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/DoublePoints.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/F3Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/FastCreepers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/FireTrail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/FreeDog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/FreeSteak.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/InstaDeath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/MissHits.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/Popularity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RabbitMega.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RandomDrops.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RandomTP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/StarterSword.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/WtfPts.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/XPHealth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/resources/plugin.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/ContainerCommunicationManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/ContainerManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/containers/WrappedContainer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/FileBasedRegistry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/Template.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ManagmentServer/src/main/java/dev/cabotmc/mgmt/templates/TemplateRegistry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotAgent/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotAgent/src/main/java/dev/cabotmc/spigotagent/BukkitVanishProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotAgent/src/main/java/dev/cabotmc/spigotagent/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotAgent/src/main/java/dev/cabotmc/spigotagent/VanishListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotAgent/src/main/java/dev/cabotmc/spigotagent/VanishPacketAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpigotAgent/src/main/resources/plugin.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketViewMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketViewMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/BaseMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/CreateCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/GamesMenuCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/JoinMessageListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/LobbyCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/ServersCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/VelocityAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/chat/BlockCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/chat/ChatChannel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/chat/ChatFormatter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/chat/ChatListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/chat/MessageCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/chat/NewChatPacket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/db/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/menus/GamesMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/menus/ServersMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/AbstractSurvivalGamemode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/DepartmasGamemode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/EbeMcGamemode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/Queue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/QueueManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/QueuedPlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/SkyItemGamemode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/SoloHCGamemode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/queue/UhcQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/resourcepack/PackManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/santahat/SanataManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/santahat/SantaJob.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/santahat/SantaThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/vanish/VanishCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/vanish/VanishMessageJob.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/java/dev/cabotmc/velocityagent/vanish/VanishModifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VelocityAgent/src/main/templates/dev/cabotmc/velocityagent/BuildConstants.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +164,11 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -145,37 +246,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.Build CabotNetwork.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CabotNetwork [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CabotNetwork:EggRandomizer [jar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CabotNetwork:EggRandomizer [shadowJar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CabotNetwork:UhcAgent [jar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CabotNetwork:UhcAgent [shadowJar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.CabotNetwork:VelocityAgent [generateTemplates].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;separate-uhc&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kyle/IdeaProjects/CabotUhc2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.Build CabotNetwork.executor": "Run",
+    "Gradle.CabotNetwork [clean UhcAgent:jar].executor": "Run",
+    "Gradle.CabotNetwork [clean].executor": "Run",
+    "Gradle.CabotNetwork:EggRandomizer [jar].executor": "Run",
+    "Gradle.CabotNetwork:EggRandomizer [shadowJar].executor": "Run",
+    "Gradle.CabotNetwork:UhcAgent [jar].executor": "Run",
+    "Gradle.CabotNetwork:UhcAgent [shadowJar].executor": "Run",
+    "Gradle.CabotNetwork:VelocityAgent [generateTemplates].executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "separate-uhc",
+    "jdk.selected.JAVA_MODULE": "17",
+    "jdk.selected.JDK": "17",
+    "last_opened_file_path": "/home/kyle/IdeaProjects/CabotUhc2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "jdk.preference.JDK": [
+      "17=/usr/lib/jvm/java-17-openjdk"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/VelocityAgent/libs" />
@@ -190,9 +298,33 @@
     <option name="myCommands">
       <command value="gradle VelocityAgent:shadowJar" />
       <command value="gradle UhcAgent:shadowJar" />
+      <command value="gradle clean UhcAgent:jar" />
     </option>
   </component>
   <component name="RunManager" selected="Gradle.CabotNetwork:UhcAgent [jar]">
+    <configuration name="CabotNetwork [clean UhcAgent:jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="UhcAgent:jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="CabotNetwork [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -205,28 +337,6 @@
         <option name="taskNames">
           <list>
             <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="CabotNetwork:EggRandomizer [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/EggRandomizer" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -372,10 +482,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.CabotNetwork:UhcAgent [jar]" />
+        <item itemvalue="Gradle.CabotNetwork [clean]" />
+        <item itemvalue="Gradle.CabotNetwork [clean UhcAgent:jar]" />
         <item itemvalue="Gradle.CabotNetwork:UhcAgent [shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork:EggRandomizer [shadowJar]" />
-        <item itemvalue="Gradle.CabotNetwork:EggRandomizer [jar]" />
-        <item itemvalue="Gradle.CabotNetwork [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -412,7 +522,13 @@
       <workItem from="1746217617766" duration="672000" />
       <workItem from="1748211119691" duration="9474000" />
       <workItem from="1748223415673" duration="744000" />
-      <workItem from="1748224955416" duration="12000" />
+      <workItem from="1748224955416" duration="987000" />
+      <workItem from="1748298142030" duration="5000" />
+      <workItem from="1748298157265" duration="309000" />
+      <workItem from="1748298973535" duration="5000" />
+      <workItem from="1748299049545" duration="7000" />
+      <workItem from="1748299133417" duration="68000" />
+      <workItem from="1748299208202" duration="113000" />
     </task>
     <task id="LOCAL-00001" summary="fix submodules">
       <created>1667586171282</created>
@@ -474,7 +590,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748211923043</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="More changes for new java">
+      <option name="closed" value="true" />
+      <created>1748225049190</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1748225049190</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,7 +630,8 @@
     <MESSAGE value="Remove all Minestom-related code" />
     <MESSAGE value="Update supported MC version to 1.20.3" />
     <MESSAGE value="remove uhc dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove uhc dependencies" />
+    <MESSAGE value="More changes for new java" />
+    <option name="LAST_COMMIT_MESSAGE" value="More changes for new java" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
