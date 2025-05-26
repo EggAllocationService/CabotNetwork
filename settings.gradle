@@ -1,9 +1,4 @@
 rootProject.name = 'CabotOrchestration'
-include 'CommonClasses'
-include 'ManagmentServer'
-include 'VelocityAgent'
-include 'SpigotAgent'
-include 'HardcorePlugin'
 include 'UhcAgent'
 include 'EggRandomizer'
-
+include 'CabotProxy'

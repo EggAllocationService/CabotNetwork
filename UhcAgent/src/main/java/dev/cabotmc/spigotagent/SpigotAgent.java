@@ -19,12 +19,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.gmail.val59000mc.customitems.Kit;
 import com.gmail.val59000mc.customitems.KitsManager;
+import redis.clients.jedis.Jedis;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class SpigotAgent extends JavaPlugin {
     public static SpigotAgent instance;
+    public static Jedis jedis;
 
     @Override
     public void onEnable() {
@@ -37,13 +39,6 @@ public final class SpigotAgent extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BeaconListener(), this);
         Bukkit.getPluginManager().registerEvents(new LimitedTotemRule(), this);
 
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
-            var first = Component.text("Cabot", TextColor.color(0x45abe6));
-            var second = Component.text("AC", TextColor.color(0xe645e0));
-            var third = Component.text(" | Strict mode (Δa=0.001)", TextColor.color(NamedTextColor.WHITE));
-            Bukkit.getServer().sendActionBar(Component.join(JoinConfiguration.noSeparators(), first, second, third));
-        }
-        , 0, 10);
         Bukkit.getWorld("world").getWorldBorder().setWarningTime(20);
         TicketBrowseMenu.initItems();
         TicketUtil.loadComputedJson();
@@ -67,7 +62,8 @@ public final class SpigotAgent extends JavaPlugin {
             e1.printStackTrace();
         }
 
-
+        jedis = new Jedis("redis");
+        jedis.connect();
     }
 
     static ItemStack createKitIcon() {

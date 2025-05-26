@@ -23,14 +23,10 @@ repositories {
 }
 
 dependencies {
+    implementation("redis.clients:jedis:6.0.0")
     compileOnly 'io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT'
     compileOnly project(":EggRandomizer")
     compileOnly files("lib/uhc.jar")
-}
-
-shadowJar {
-    configurations = [project.configurations.shadow]
-    minimize()
 }
 
 def targetJavaVersion = 21
@@ -43,11 +39,6 @@ java {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release = targetJavaVersion
-    }
-}
 
 processResources {
     def props = [version: version]

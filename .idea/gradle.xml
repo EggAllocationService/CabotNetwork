@@ -9,13 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/CommonClasses" />
+            <option value="$PROJECT_DIR$/CabotProxy" />
             <option value="$PROJECT_DIR$/EggRandomizer" />
-            <option value="$PROJECT_DIR$/HardcorePlugin" />
-            <option value="$PROJECT_DIR$/ManagmentServer" />
-            <option value="$PROJECT_DIR$/SpigotAgent" />
             <option value="$PROJECT_DIR$/UhcAgent" />
-            <option value="$PROJECT_DIR$/VelocityAgent" />
           </set>
         </option>
       </GradleProjectSettings>

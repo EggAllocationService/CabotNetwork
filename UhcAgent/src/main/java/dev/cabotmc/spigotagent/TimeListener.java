@@ -29,6 +29,8 @@ public class TimeListener implements Listener {
                     }
                 }
             });
+        } else if (e.getOldGameState() == GameState.LOADING && e.getNewGameState() == GameState.WAITING) {
+            SpigotAgent.jedis.publish("send", "uhc");
         }
     }
     @EventHandler
