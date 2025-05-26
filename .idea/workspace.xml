@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="Remove unneeded projects">
-      <change afterPath="$PROJECT_DIR$/CabotProxy/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CabotProxy/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CabotProxy/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CabotProxy/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/CabotProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/ProxySub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EggRandomizer/src/main/java/dev/cabotmc/random/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/EggRandomizer/src/main/java/dev/cabotmc/random/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +100,24 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
                 <item name="CabotProxy" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="shadow" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="EggRandomizer" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="EggRandomizer" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="EggRandomizer" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="shadow" type="c8890929:TasksNode$1" />
               </path>
@@ -239,29 +249,7 @@
       <command value="gradle clean UhcAgent:jar" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.CabotNetwork:UhcAgent [shadowJar]">
-    <configuration name="CabotNetwork [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.CabotNetwork:EggRandomizer [shadowJar]">
     <configuration name="CabotNetwork [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -310,6 +298,28 @@
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/CabotProxy" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="shadowJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="CabotNetwork:EggRandomizer [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/EggRandomizer" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -418,11 +428,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CabotNetwork:EggRandomizer [shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork:UhcAgent [shadowJar]" />
-        <item itemvalue="Gradle.CabotNetwork [shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork:CabotProxy [shadowJar]" />
-        <item itemvalue="Gradle.CabotNetwork [build]" />
         <item itemvalue="Gradle.CabotNetwork [clean]" />
+        <item itemvalue="Gradle.CabotNetwork [shadowJar]" />
       </list>
     </recent_temporary>
   </component>
@@ -465,7 +475,7 @@
       <workItem from="1748298973535" duration="5000" />
       <workItem from="1748299049545" duration="7000" />
       <workItem from="1748299133417" duration="68000" />
-      <workItem from="1748299208202" duration="1713000" />
+      <workItem from="1748299208202" duration="3124000" />
     </task>
     <task id="LOCAL-00001" summary="fix submodules">
       <created>1667586171282</created>
@@ -543,7 +553,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748299325380</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="stuff &amp; things">
+      <option name="closed" value="true" />
+      <created>1748301212814</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1748301212814</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix">
+      <option name="closed" value="true" />
+      <created>1748302184802</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1748302184802</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +603,9 @@
     <MESSAGE value="remove uhc dependencies" />
     <MESSAGE value="More changes for new java" />
     <MESSAGE value="Remove unneeded projects" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unneeded projects" />
+    <MESSAGE value="stuff &amp; things" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

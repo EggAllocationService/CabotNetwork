@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) throws Exception {
         deleteDir(new File("world/datapacks/randomizer"));
+        Files.deleteIfExists(Path.of("computed.json"));
+
         var paths = Files.walk(Path.of("data"));
         var inputs = paths.filter(Files::isRegularFile)
             .map(Path::toString)
