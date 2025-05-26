@@ -62,7 +62,7 @@ public final class SpigotAgent extends JavaPlugin {
             e1.printStackTrace();
         }
 
-        jedis = new Jedis("redis");
+        jedis = new Jedis("redis", 6379);
         jedis.connect();
     }
 
