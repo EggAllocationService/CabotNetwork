@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="Update supported MC version to 1.20.3">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommonClasses/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClasses/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/vanish/MongoWatchThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClasses/src/main/java/dev/cabotmc/vanish/MongoWatchThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/PeanutGallery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManagmentServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ManagmentServer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapEditor/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/EditCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/FlatWorldGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/InstanceTracker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/SaveCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapEditor/src/main/java/org/example/UpCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VelocityAgent/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/VelocityAgent/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/EasyDifficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/EasyDifficulty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +61,9 @@
         <task path="$PROJECT_DIR$/UhcAgent">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/HardcorePlugin">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -83,20 +74,37 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
-                <item name="UhcAgent" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
-                <item name="UhcAgent" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
-                <item name="UhcAgent" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="shadow" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="HardcorePlugin" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="HardcorePlugin" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="HardcorePlugin" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="shadow" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -114,6 +122,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="separate-uhc" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -130,35 +143,38 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2H4KuYWDqGyGWZnjiTA4fid1Oqf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/kyle/IdeaProjects/CabotNetwork&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.CabotNetwork [shadowJar].executor": "Run",
+    "Gradle.CabotNetwork:HardcorePlugin [shadowJar].executor": "Run",
+    "Gradle.CabotNetwork:VelocityAgent [generateTemplates].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/Users/kyle/IdeaProjects/CabotNetwork",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/VelocityAgent/libs" />
@@ -175,7 +191,7 @@
       <command value="gradle UhcAgent:shadowJar" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.CabotNetwork:UhcAgent [jar]">
+  <component name="RunManager" selected="Gradle.CabotNetwork:HardcorePlugin [shadowJar]">
     <configuration name="CabotNetwork [UhcAgent:shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -220,18 +236,18 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CabotNetwork [compileJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CabotNetwork [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="compileJava" />
+            <option value="shadowJar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -242,10 +258,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CabotNetwork:EggRandomizer [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CabotNetwork:HardcorePlugin [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/EggRandomizer" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/HardcorePlugin" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -253,7 +269,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="jar" />
+            <option value="shadowJar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -354,11 +370,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CabotNetwork:HardcorePlugin [shadowJar]" />
+        <item itemvalue="Gradle.CabotNetwork [shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork:UhcAgent [jar]" />
         <item itemvalue="Gradle.CabotNetwork [UhcAgent:shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork [VelocityAgent:shadowJar]" />
-        <item itemvalue="Gradle.CabotNetwork:EggRandomizer [jar]" />
-        <item itemvalue="Gradle.CabotNetwork [compileJava]" />
       </list>
     </recent_temporary>
   </component>

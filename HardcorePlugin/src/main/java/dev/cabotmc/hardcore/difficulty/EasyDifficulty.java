@@ -47,7 +47,7 @@ public class EasyDifficulty extends BaseDifficulty {
     @Override
     public ArrayList<Component> getInfo() {
         var a = new ArrayList<Component>();
-        a.add(Component.text("You are guarenteed to spawn in a village", TextColor.color(color)));
+        a.add(Component.text("You are guaranteed to spawn in a village", TextColor.color(color)));
         a.add(Component.text("You have an extra five hearts of overhealth when you spawn", TextColor.color(color)));
         return a;
         

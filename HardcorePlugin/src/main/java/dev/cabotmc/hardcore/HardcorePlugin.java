@@ -43,7 +43,7 @@ public final class HardcorePlugin extends JavaPlugin {
         
         Database.init();
         Bukkit.getPluginManager().registerEvents(new BasicListener(), this);
-        ownerName = (String) System.getenv().getOrDefault("HC_OWNER", "ThatOneGamer999");
+        ownerName = (String) System.getenv().getOrDefault("HC_OWNER", "EggAllocationSrv");
         getLogger().info("Set owner to " + ownerName);
         PointsManager.init();
         if (System.getenv().containsKey("CABOT_NAME")) {
@@ -76,7 +76,6 @@ public final class HardcorePlugin extends JavaPlugin {
         m.getPersistentDataContainer().set(new NamespacedKey("cabot", "tpitem"), PersistentDataType.BYTE, (byte) 1);
         TELEPORT_STACK.setItemMeta(m);
         //PingAPI.setPermissionSolver(p -> p.getGameMode() != GameMode.ADVENTURE);
-        Runtime.getRuntime().addShutdownHook(CommonClient.getShutdownHook());
     }
 
     @Override

@@ -36,7 +36,7 @@ public class Database {
     public static MongoCollection<CompHardcorePlayer> comphc;
     public static void init() {
         pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
-        String uri = "mongodb://minecraft:crafting@172.17.0.1:27017/?authSource=mc";
+        String uri = "mongodb://minecraft:crafting@db:27017/";
         client = MongoClients.create(uri);
         mc = client.getDatabase("mc").withCodecRegistry(pojoCodecRegistry);
         comphc = mc.getCollection("comphc", CompHardcorePlayer.class);
