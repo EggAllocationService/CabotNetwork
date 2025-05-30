@@ -20,14 +20,17 @@ public class TicketListener implements Listener {
         }
         e.setCancelled(true);
         var type = i.getItemMeta().getPersistentDataContainer().get(TicketUtil.TICKET_KEY, PersistentDataType.BYTE);
+        var sup = i.getItemMeta().getPersistentDataContainer().getOrDefault(TicketUtil.TICKET_SUPER_KEY, PersistentDataType.BYTE, (byte) 0) != 0;
+
         if (type == 1) {
             // blank ticket
             e.getPlayer().getInventory().setItemInMainHand(null);
-            new TicketBrowseMenu(e.getPlayer(), true).open();
+
+            new TicketBrowseMenu(e.getPlayer(), true, sup).open();
         } else if (type == 2) {
             var material = i.getItemMeta().getPersistentDataContainer().get(TicketUtil.ITEM_KEY, PersistentDataType.STRING);
             var bukkitMaterial = Material.matchMaterial(material);
-            new TicketViewMenu(e.getPlayer(), bukkitMaterial).open();
+            new TicketViewMenu(e.getPlayer(), bukkitMaterial, sup).open();
         }
     }
 

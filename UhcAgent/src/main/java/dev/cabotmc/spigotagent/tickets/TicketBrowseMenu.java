@@ -46,8 +46,10 @@ public class TicketBrowseMenu implements Listener {
     Inventory i;
     int pageOffset = 0;
     boolean returnBlankItem;
+    boolean enchanted;
 
-    public TicketBrowseMenu(Player target, boolean returnIfBlank) {
+    public TicketBrowseMenu(Player target, boolean returnIfBlank, boolean enchanted) {
+        this.enchanted = enchanted;
         var m = UP_ITEM.getItemMeta();
         m.displayName(Component.text("Row Up", TextColor.color(0x4cba8f)).decoration(TextDecoration.ITALIC, false));
         UP_ITEM.setItemMeta(m);
@@ -121,7 +123,7 @@ public class TicketBrowseMenu implements Listener {
             // choose item
             var clickedItem = buttons.get(e.getSlot());
             returnBlankItem = false;
-            TicketUtil.giveFilledTicketToPlayer(p, clickedItem);
+            TicketUtil.giveFilledTicketToPlayer(p, clickedItem, enchanted);
             p.closeInventory();
         } else {
             // down page
@@ -137,7 +139,7 @@ public class TicketBrowseMenu implements Listener {
         if (!e.getInventory().equals(i))
             return;
         if (returnBlankItem) {
-            TicketUtil.giveBlankTicketToPlayer(p);
+            TicketUtil.giveBlankTicketToPlayer(p, enchanted);
         }
         HandlerList.unregisterAll(this);
     }

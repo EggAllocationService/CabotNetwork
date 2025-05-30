@@ -58,6 +58,16 @@ public final class SpigotAgent extends JavaPlugin {
                 .addItem(TicketUtil.createBlankTicket())
                 .build();
             kits.add(k);
+
+            var k2 = new Kit.Builder("superticket")
+                    .setName("LETS GO GAMBLING")
+                    .setSymbol(createSuperKitIcon())
+                    .addItem(createUnbreakable(Material.WOODEN_SWORD))
+                    .addItem(TicketUtil.createBlankTicket(true))
+                    .addItem(TicketUtil.createBlankTicket(true))
+                    .build();
+            kits.add(k2);
+
         } catch (Exception e1) {
             e1.printStackTrace();
         }
@@ -73,6 +83,18 @@ public final class SpigotAgent extends JavaPlugin {
         var l = new ArrayList<Component>();
         l.add(Component.text("- Wooden tools").decoration(TextDecoration.ITALIC, false));
         l.add(Component.text("- Item Lookup Ticket").decoration(TextDecoration.ITALIC, false));
+        m.lore(l);
+        i.setItemMeta(m);
+        return i;
+    }
+
+    static ItemStack createSuperKitIcon() {
+        var i = new ItemStack(Material.PAPER);
+        var m = i.getItemMeta();
+        m.setDisplayName(ChatColor.GREEN + "LETS GO GAMBLING");
+        var l = new ArrayList<Component>();
+        l.add(Component.text("- Wooden Sword").decoration(TextDecoration.ITALIC, false));
+        l.add(Component.text("- Enchanted Lookup Ticket x 2").decoration(TextDecoration.ITALIC, false));
         m.lore(l);
         i.setItemMeta(m);
         return i;

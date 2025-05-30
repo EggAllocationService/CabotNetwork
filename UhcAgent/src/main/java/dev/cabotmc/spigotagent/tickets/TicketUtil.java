@@ -34,19 +34,29 @@ public class TicketUtil {
     public static NamespacedKey TICKET_KEY = new NamespacedKey("cabot", "ticket_type");
     public static NamespacedKey ITEM_KEY = new NamespacedKey("cabot", "ticket_item");
     public static NamespacedKey TICKED_ID = new NamespacedKey("cabot", "ticket_id");
-    public static void giveBlankTicketToPlayer(Player p) {
-        var i = createBlankTicket();
+    public static NamespacedKey TICKET_SUPER_KEY = new NamespacedKey("cabot", "ticket_super");
+
+
+    public static void giveBlankTicketToPlayer(Player p, boolean enchanted) {
+        var i = createBlankTicket(enchanted);
         if (p.getInventory().addItem(i).size() != 0) {
             p.getWorld().dropItem(p.getLocation(), i);
         }
     }
     public static ItemStack createBlankTicket() {
+        return createBlankTicket(false);
+    }
+
+    public static ItemStack createBlankTicket(boolean enchanted) {
         var i = new ItemStack(Material.PAPER);
         var m = i.getItemMeta();
         m.displayName(
-            Component.text("Discovery Voucher", TextColor.color(0xeddf1f))
+                (enchanted ?
+                    Component.text("Enchanted Discovery Voucher", TextColor.color(0xdcffa)) :
+                    Component.text("Discovery Voucher", TextColor.color(0xeddf1f)))
             .decoration(TextDecoration.ITALIC, false)
         );
+
         var lore = new ArrayList<Component>();
         lore.add(
             Component.text(
@@ -63,10 +73,19 @@ public class TicketUtil {
         m.lore(lore);
         m.getPersistentDataContainer().set(TICKET_KEY, PersistentDataType.BYTE, (byte) 1);
         m.getPersistentDataContainer().set(TICKED_ID, PersistentDataType.INTEGER, ThreadLocalRandom.current().nextInt(50000));
+        if (enchanted) {
+            m.getPersistentDataContainer().set(TICKET_SUPER_KEY, PersistentDataType.BYTE, (byte) 1);
+            m.setEnchantmentGlintOverride(true);
+        }
+
         i.setItemMeta(m);
         return i;
     }
     public static void giveFilledTicketToPlayer(Player p, Material target) {
+        giveFilledTicketToPlayer(p, target, false);
+    }
+
+    public static void giveFilledTicketToPlayer(Player p, Material target, boolean enchanted) {
         var i = new ItemStack(Material.PAPER);
         var m = i.getItemMeta();
         m.displayName(
@@ -89,6 +108,11 @@ public class TicketUtil {
         m.lore(lore);
         m.getPersistentDataContainer().set(TICKET_KEY, PersistentDataType.BYTE, (byte) 2);
         m.getPersistentDataContainer().set(ITEM_KEY, PersistentDataType.STRING, target.getKey().toString());
+        if (enchanted) {
+            m.getPersistentDataContainer().set(TICKET_SUPER_KEY, PersistentDataType.BYTE, (byte) 1);
+            m.setEnchantmentGlintOverride(true);
+        }
+
         i.setItemMeta(m);
         if (p.getInventory().addItem(i).size() != 0) {
             p.getWorld().dropItem(p.getLocation(), i);

@@ -1,5 +1,6 @@
 package dev.cabotmc.spigotagent;
 
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,7 +16,7 @@ public class DebugTicketCommand implements CommandExecutor {
             @NotNull String[] args) {
         if (!sender.hasPermission("uhc.debugticket")) return false;
         var p = (Player) sender;
-        new TicketBrowseMenu(p, false).open();
+        new TicketBrowseMenu(p, p.getGameMode() == GameMode.CREATIVE, args.length != 0).open();
         return true;
     }
     

@@ -23,7 +23,7 @@ public class TimeListener implements Listener {
                 if (l.isOnline()) {
                     try {
                         var p = l.getPlayer();
-                        TicketUtil.giveBlankTicketToPlayer(p);
+                        TicketUtil.giveBlankTicketToPlayer(p, false);
                     } catch (UhcPlayerNotOnlineException e1) {
                         e1.printStackTrace();
                     }

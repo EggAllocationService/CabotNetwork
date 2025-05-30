@@ -25,8 +25,21 @@ public class TicketViewMenu implements Listener {
     Player p;
     ArrayList<String> sources;
     Inventory i;
+    boolean enchanted;
+    Material previous;
+    Material curr;
+
     public TicketViewMenu(Player target, Material m) {
+        this(target, m, false);
+    }
+    public TicketViewMenu(Player target, Material m, Material previous) {
+        this(target, m, false);
+        this.previous = previous;
+    }
+
+    public TicketViewMenu(Player target, Material m, boolean enchanted) {
         p = target;
+        this.enchanted = enchanted;
         if (TicketUtil.relations.containsKey(m.getKey().toString())) {
             sources = TicketUtil.relations.get(m.getKey().toString());
             i = Bukkit.createInventory(null, 54, Component.text("Sources for " + m.getKey().toString()));
@@ -36,6 +49,7 @@ public class TicketViewMenu implements Listener {
         }
         Bukkit.getPluginManager().registerEvents(this, SpigotAgent.instance);
         render();
+        curr = m;
 
     }
     public void open() {
@@ -62,12 +76,22 @@ public class TicketViewMenu implements Listener {
     public void click(InventoryClickEvent e) {
         if (e.getInventory().equals(i)) {
             e.setCancelled(true);
+            var clicked = e.getInventory().getItem(e.getSlot());
+            if (enchanted && clicked != null && !clicked.isEmpty()) {
+                e.getWhoClicked().closeInventory();
+                new TicketViewMenu(p, clicked.getType(), curr).open();
+            }
         }
     }
     @EventHandler
     public void close(InventoryCloseEvent e) {
         if (e.getInventory().equals(i)) {
             HandlerList.unregisterAll(this);
+            if (previous != null) {
+                Bukkit.getScheduler().scheduleSyncDelayedTask(SpigotAgent.instance, () -> {
+                    new TicketViewMenu(p, previous, true).open();
+                });
+            }
         }
     }
     public ItemStack createItemStack(String source) {

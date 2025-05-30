@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="fix">
+    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="delete computed.json">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EggRandomizer/src/main/java/dev/cabotmc/random/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/EggRandomizer/src/main/java/dev/cabotmc/random/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/DebugTicketCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/DebugTicketCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/TimeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/TimeListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketBrowseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketBrowseMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketViewMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketViewMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,48 +196,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Gradle.Build CabotNetwork.executor": "Run",
-    "Gradle.CabotNetwork [build].executor": "Run",
-    "Gradle.CabotNetwork [clean UhcAgent:jar].executor": "Run",
-    "Gradle.CabotNetwork [clean].executor": "Run",
-    "Gradle.CabotNetwork [shadowJar].executor": "Run",
-    "Gradle.CabotNetwork:CabotProxy [shadowJar].executor": "Run",
-    "Gradle.CabotNetwork:EggRandomizer [jar].executor": "Run",
-    "Gradle.CabotNetwork:EggRandomizer [shadowJar].executor": "Run",
-    "Gradle.CabotNetwork:UhcAgent [jar].executor": "Run",
-    "Gradle.CabotNetwork:UhcAgent [shadowJar].executor": "Run",
-    "Gradle.CabotNetwork:VelocityAgent [generateTemplates].executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "separate-uhc",
-    "jdk.selected.JAVA_MODULE": "17",
-    "jdk.selected.JDK": "21",
-    "last_opened_file_path": "/home/kyle/IdeaProjects/CabotUhc2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.Build CabotNetwork.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [clean UhcAgent:jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [shadowJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork:CabotProxy [shadowJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork:EggRandomizer [jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork:EggRandomizer [shadowJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork:UhcAgent [jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork:UhcAgent [shadowJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork:VelocityAgent [generateTemplates].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;separate-uhc&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;jdk.selected.JDK&quot;: &quot;21&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kyle/IdeaProjects/CabotUhc2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "jdk.preference.JDK": [
-      "17=/usr/lib/jvm/java-17-openjdk",
-      "21=/usr/lib/jvm/java-21-openjdk"
+  &quot;keyToStringList&quot;: {
+    &quot;jdk.preference.JDK&quot;: [
+      &quot;17=/usr/lib/jvm/java-17-openjdk&quot;,
+      &quot;21=/usr/lib/jvm/java-21-openjdk&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/VelocityAgent/libs" />
@@ -249,7 +255,7 @@
       <command value="gradle clean UhcAgent:jar" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.CabotNetwork:EggRandomizer [shadowJar]">
+  <component name="RunManager" selected="Gradle.CabotNetwork:UhcAgent [shadowJar]">
     <configuration name="CabotNetwork [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -428,8 +434,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.CabotNetwork:EggRandomizer [shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork:UhcAgent [shadowJar]" />
+        <item itemvalue="Gradle.CabotNetwork:EggRandomizer [shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork:CabotProxy [shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork [clean]" />
         <item itemvalue="Gradle.CabotNetwork [shadowJar]" />
@@ -475,7 +481,10 @@
       <workItem from="1748298973535" duration="5000" />
       <workItem from="1748299049545" duration="7000" />
       <workItem from="1748299133417" duration="68000" />
-      <workItem from="1748299208202" duration="3124000" />
+      <workItem from="1748299208202" duration="3744000" />
+      <workItem from="1748308583581" duration="2608000" />
+      <workItem from="1748314795291" duration="4000" />
+      <workItem from="1748389661073" duration="1976000" />
     </task>
     <task id="LOCAL-00001" summary="fix submodules">
       <created>1667586171282</created>
@@ -569,7 +578,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748302184802</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="delete computed.json">
+      <option name="closed" value="true" />
+      <created>1748303649030</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1748303649030</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +622,8 @@
     <MESSAGE value="Remove unneeded projects" />
     <MESSAGE value="stuff &amp; things" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="delete computed.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete computed.json" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
