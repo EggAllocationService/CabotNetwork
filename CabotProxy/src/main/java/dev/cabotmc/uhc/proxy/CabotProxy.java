@@ -25,7 +25,7 @@ public class CabotProxy {
         jedis = new Jedis("redis", 6379);
         jedis.connect();
         Thread.startVirtualThread(() -> {
-            jedis.subscribe(new ProxySub(this, server), "proxy", "send");
+            jedis.subscribe(new ProxySub(this, server), "proxy", "send", "send-player");
         });
         logger.info("Redis connection initialized");
     }

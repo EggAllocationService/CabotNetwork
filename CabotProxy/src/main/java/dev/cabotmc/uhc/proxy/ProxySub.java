@@ -24,6 +24,15 @@ public class ProxySub extends JedisPubSub {
                     player.createConnectionRequest(real).fireAndForget();
                 });
             }).schedule();
+        } else if (channel.equals("send-player")) {
+            var args = message.split(",");
+            var target = server.getServer(args[0]);
+            if (target.isEmpty()) return;
+            var player = server.getPlayer(args[1]);
+            if (player.isEmpty()) return;
+            server.getScheduler().buildTask(plugin, () -> {
+                player.get().createConnectionRequest(target.get()).fireAndForget();
+            });
         }
     }
 }
