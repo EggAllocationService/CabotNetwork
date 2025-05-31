@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="Update supported MC version to 1.20.3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +83,11 @@
                 <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="shadow" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="UhcAgent" type="2d1252cf:ModuleNode" />
               </path>
             </expand>
             <select />

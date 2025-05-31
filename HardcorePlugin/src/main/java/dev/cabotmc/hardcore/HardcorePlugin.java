@@ -68,7 +68,7 @@ public final class HardcorePlugin extends JavaPlugin {
         m.getPersistentDataContainer().set(new NamespacedKey("cabot", "tpitem"), PersistentDataType.BYTE, (byte) 1);
         TELEPORT_STACK.setItemMeta(m);
 
-        jedis.publish("send-player", System.getenv().get("CABOT_NAME") + ":" + ownerName);
+        jedis.publish("send-player", System.getenv().get("CABOT_NAME") + "," + ownerName);
         //PingAPI.setPermissionSolver(p -> p.getGameMode() != GameMode.ADVENTURE);
     }
 
