@@ -23,6 +23,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.scoreboard.Team.Option;
 import org.bukkit.scoreboard.Team.OptionStatus;
+import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
 
@@ -36,31 +37,22 @@ public final class HardcorePlugin extends JavaPlugin {
     public static BaseDifficulty difficulty;
     public static boolean allowSpectators = true;
     public static ItemStack TELEPORT_STACK;
+    public static Jedis jedis;
 
     @Override
     public void onEnable() {
         instance = this;
         
         Database.init();
+
+        jedis = new Jedis("redis", 6379);
+        jedis.connect();
+
         Bukkit.getPluginManager().registerEvents(new BasicListener(), this);
         ownerName = (String) System.getenv().getOrDefault("HC_OWNER", "EggAllocationSrv");
         getLogger().info("Set owner to " + ownerName);
         PointsManager.init();
-        if (System.getenv().containsKey("CABOT_NAME")) {
-            try {
-                CommonClient.init();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            CommonClient.sayHello(Bukkit.getPort());
-            var msg = "hcready:" + ownerName + ":" + System.getenv("CABOT_NAME");
-            CommonClient.sendMessageToServer("velocity", msg);
-        }
-        CommonClient.addMessageHandler(c -> {
-            if (c.data.equals("shutdown")) {
-                Bukkit.shutdown();
-            }
-        });
+
         Bukkit.getPluginManager().registerEvents(new BasicPointsListener(), this);
         SPECTATOR_TEAM = getServer().getScoreboardManager().getMainScoreboard().registerNewTeam("spectators");
         SPECTATOR_TEAM.setAllowFriendlyFire(false);
@@ -75,6 +67,8 @@ public final class HardcorePlugin extends JavaPlugin {
         m.displayName(Component.text("Right click to Teleport to " + ownerName, TextColor.color(0xa229e3)).decoration(TextDecoration.ITALIC, false));
         m.getPersistentDataContainer().set(new NamespacedKey("cabot", "tpitem"), PersistentDataType.BYTE, (byte) 1);
         TELEPORT_STACK.setItemMeta(m);
+
+        jedis.publish("send-player", System.getenv().get("CABOT_NAME") + ":" + ownerName);
         //PingAPI.setPermissionSolver(p -> p.getGameMode() != GameMode.ADVENTURE);
     }
 
