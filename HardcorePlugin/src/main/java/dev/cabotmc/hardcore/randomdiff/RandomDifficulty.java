@@ -36,7 +36,6 @@ public class RandomDifficulty extends BaseDifficulty {
         availableModifiers.add(new RabbitMega());
         availableModifiers.add(new Popularity());
         availableModifiers.add(new DJChan());
-        availableModifiers.add(new BonkStick());
         availableModifiers.add(new RandomDrops());
         availableModifiers.add(new FreeDog());
         availableModifiers.add(new AlwaysNight());
@@ -111,6 +110,9 @@ public class RandomDifficulty extends BaseDifficulty {
             x.add(availableModifiers.get(i));
         }
         //x.add(new PeanutGallery());
+        if (!x.stream().anyMatch(a -> a instanceof RandomDrops)) {
+            x.add(new RandomDrops());
+        }
         x.add(new PrintDiffModifier());
         finalModifiers = x;
         setMultiplier((Math.floor(Math.random() * 200.0) / 100) + 0.75);

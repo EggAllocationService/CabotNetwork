@@ -46,6 +46,8 @@ import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
 
 public class BasicListener implements Listener {
+    private boolean firstJoin = true;
+
     @EventHandler
     public void rejectPrematureJoins(PlayerLoginEvent e) {
         for (Player p : Bukkit.getOnlinePlayers()) {
@@ -90,6 +92,14 @@ public class BasicListener implements Listener {
             }
         } else {
             e.joinMessage(null);
+            if (!firstJoin) {
+                for (var x : DifficultyMenu.createDesc(HardcorePlugin.difficulty)) {
+                    e.getPlayer().sendMessage(x);
+                }
+                return;
+            }
+            firstJoin = false;
+
             var w = e.getPlayer().getWorld();
             w.getWorldBorder().setCenter(e.getPlayer().getLocation());
             w.getWorldBorder().setSize(9d);
@@ -116,7 +126,9 @@ public class BasicListener implements Listener {
     @EventHandler
     public void leave(PlayerQuitEvent e) {
         if (e.getPlayer().getName().equals(HardcorePlugin.ownerName)) {
-            Bukkit.shutdown();
+            for (var p : Bukkit.getOnlinePlayers()) {
+                p.kick(Component.text("Owner left the server"));
+            }
         } else {
             e.quitMessage(Component.text(e.getPlayer().getName() + " stopped spectating", TextColor.color(255, 255, 85)));
         }
