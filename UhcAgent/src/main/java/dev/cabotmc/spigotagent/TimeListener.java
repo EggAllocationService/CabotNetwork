@@ -33,13 +33,7 @@ public class TimeListener implements Listener {
             SpigotAgent.jedis.publish("send", "uhc");
         }
     }
-    @EventHandler
-    public void leave(PlayerQuitEvent e) {
-        if (Bukkit.getOnlinePlayers().size() == 1) {
-            // last player quit
-            Bukkit.shutdown();
-        } 
-    }
+
     static boolean didPatch = false;
     @EventHandler
     public void map(PlayerAttemptPickupItemEvent e) {

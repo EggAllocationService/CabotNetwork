@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7951f9e6-b06d-401b-aa23-0d02f2dee995" name="Changes" comment="update version and fix deprecation">
+    <list default="true" id="7951f9e6-b06d-401b-aa23-0d02f2dee995" name="Changes" comment="various improvements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CabotProxy/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CabotProxy/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/CabotProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/CabotProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketViewMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketViewMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/TimeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/TimeListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +160,7 @@
       <command value="gradle clean" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.CabotNetwork [:CabotProxy:shadowJar]">
+  <component name="RunManager" selected="Gradle.CabotNetwork [:UhcAgent:shadowJar]">
     <configuration name="CabotNetwork [:CabotProxy:jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -290,9 +288,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CabotNetwork [:UhcAgent:shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork [:CabotProxy:shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork [:CabotProxy:jar]" />
-        <item itemvalue="Gradle.CabotNetwork [:UhcAgent:shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork [:EggRandomizer:shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork [clean]" />
       </list>
@@ -332,18 +330,40 @@
       <workItem from="1781908763856" duration="4782000" />
       <workItem from="1781986814826" duration="4410000" />
       <workItem from="1781992007426" duration="1520000" />
-      <workItem from="1782066998735" duration="1564000" />
+      <workItem from="1782066998735" duration="3938000" />
+      <workItem from="1782080243825" duration="222000" />
+      <workItem from="1782081165157" duration="816000" />
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="various improvements">
+      <option name="closed" value="true" />
+      <created>1782068571755</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1782068571755</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixes" />
     <MESSAGE value="fix workspace" />
     <MESSAGE value="update version and fix deprecation" />
-    <option name="LAST_COMMIT_MESSAGE" value="update version and fix deprecation" />
+    <MESSAGE value="various improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="various improvements" />
   </component>
 </project>

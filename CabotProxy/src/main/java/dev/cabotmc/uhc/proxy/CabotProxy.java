@@ -70,7 +70,7 @@ public class CabotProxy {
         toNotify.add(event.getPlayer().getUniqueId());
         event.getPlayer().sendPlayerListFooter(Component.text("\n\n\n\na\n\n\n\n").font(Key.key("cabot", "icons")));
 
-        server.sendMessage(MiniMessage.miniMessage().deserialize("<green>+<gray> " + event.getPlayer().getUsername()));
+        server.sendMessage(MiniMessage.miniMessage().deserialize("<green>+<grey> " + getPlayerNameFormatString(event.getPlayer(), "<gray>")));
     }
 
     static final UUID RESOURCES_UUID = UUID.fromString("e10f6290-048a-4e00-b287-2c02cdb072f9");
@@ -90,9 +90,13 @@ public class CabotProxy {
 
     @Subscribe
     public void configure(PlayerConfigurationEvent event) {
+        if (!event.player().getAppliedResourcePacks().isEmpty()) {
+            return;
+        }
+
         event.player().sendResourcePacks(ResourcePackRequest.resourcePackRequest()
                         .packs(
-                                ResourcePackInfo.resourcePackInfo(RESOURCES_UUID, URI.create("https://objects.cabotmc.dev/26.zip"), "9e4298a11526f6256b059c8b03c0eec095b88a00")
+                                ResourcePackInfo.resourcePackInfo(RESOURCES_UUID, URI.create("https://objects.cabotmc.dev/26_2.zip"), "311d27fef5409ea139bb7dba970adeb9623c2cce")
                         )
                         .prompt(Component.text("Required Cabot resources"))
                 .required(true)
@@ -146,7 +150,7 @@ public class CabotProxy {
         server.getScheduler().buildTask(this, () -> {
             rebuildPlayerListForServer(s);
         }).delay(10, TimeUnit.MILLISECONDS).schedule();
-        server.sendMessage(MiniMessage.miniMessage().deserialize("<red>-<gray> " + e.getPlayer().getUsername()));
+        server.sendMessage(MiniMessage.miniMessage().deserialize("<red>-<grey> " + getPlayerNameFormatString(e.getPlayer(), "<gray>")));
 
         if (resourcePackFutures.containsKey(e.getPlayer().getUniqueId())) {
             var future = resourcePackFutures.get(e.getPlayer().getUniqueId());
@@ -210,12 +214,20 @@ public class CabotProxy {
     }
 
     private Component formatPlayerName(Player player) {
+        return formatPlayerName(player, "<reset>");
+    }
+    private Component formatPlayerName(Player player, String nameFormatting) {
+
+        return MiniMessage.miniMessage().deserialize("<reset>" + getPlayerNameFormatString(player, nameFormatting));
+    }
+
+    private String getPlayerNameFormatString(Player player, String prepend) {
         var api = LuckPermsProvider.get();
         var user = api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData();
         var prefix = user.getPrefix();
-        if (prefix == null) return Component.text(player.getUsername());
+        if (prefix == null) return prepend + player.getUsername();
 
-        return MiniMessage.miniMessage().deserialize(prefix + "<reset> " + player.getUsername());
+        return prefix + "<reset> " + prepend + player.getUsername();
     }
 
     private int getPlayerSortOrder(Player player) {
