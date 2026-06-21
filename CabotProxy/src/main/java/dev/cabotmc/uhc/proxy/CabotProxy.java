@@ -1,28 +1,49 @@
 package dev.cabotmc.uhc.proxy;
 
 import com.google.inject.Inject;
+import com.velocitypowered.api.event.connection.DisconnectEvent;
+import com.velocitypowered.api.event.connection.PostLoginEvent;
+import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.event.player.PlayerChooseInitialServerEvent;
+import com.velocitypowered.api.event.player.PlayerResourcePackStatusEvent;
 import com.velocitypowered.api.event.player.ServerPostConnectEvent;
+import com.velocitypowered.api.event.player.configuration.PlayerConfigurationEvent;
+import com.velocitypowered.api.event.player.configuration.PlayerEnteredConfigurationEvent;
 import com.velocitypowered.api.event.player.configuration.PlayerFinishConfigurationEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
+import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.player.ChatSession;
+import com.velocitypowered.api.proxy.player.TabListEntry;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.resource.ResourcePackInfo;
+import net.kyori.adventure.resource.ResourcePackRequest;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 import org.slf4j.Logger;
 import redis.clients.jedis.Jedis;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import javax.sql.ConnectionEvent;
+import java.net.URI;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 @Plugin(
     id = "cabotproxy",
     name = "CabotProxy",
-    version = "1.0.0"
+    version = "1.0.0",
+        dependencies = {@Dependency(id = "luckperms", optional = false)}
 )
 public class CabotProxy {
 
@@ -39,12 +60,54 @@ public class CabotProxy {
             jedis.subscribe(new ProxySub(this, server, logger), "proxy", "send", "send-player");
         });
         logger.info("Redis connection initialized");
+
+        server.getScheduler().buildTask(this, this::updateHeaders).repeat(1, TimeUnit.SECONDS).schedule();
     }
 
     private final Set<UUID> toNotify = new HashSet<>();
     @Subscribe
     public void onPlayerJoin(PlayerChooseInitialServerEvent event) {
         toNotify.add(event.getPlayer().getUniqueId());
+        event.getPlayer().sendPlayerListFooter(Component.text("\n\n\n\na\n\n\n\n").font(Key.key("cabot", "icons")));
+
+        server.sendMessage(MiniMessage.miniMessage().deserialize("<green>+<gray> " + event.getPlayer().getUsername()));
+    }
+
+    static final UUID RESOURCES_UUID = UUID.fromString("e10f6290-048a-4e00-b287-2c02cdb072f9");
+    final Map<UUID, CompletableFuture<Boolean>> resourcePackFutures = new HashMap<>();
+    @Subscribe
+    public void pack(PlayerResourcePackStatusEvent event) {
+        if (resourcePackFutures.containsKey(event.getPlayer().getUniqueId())) {
+            var future = resourcePackFutures.get(event.getPlayer().getUniqueId());
+            var status = event.getStatus();
+            if (status.isIntermediate()) return;
+
+            future.complete(
+                    status == PlayerResourcePackStatusEvent.Status.SUCCESSFUL
+            );
+        }
+    }
+
+    @Subscribe
+    public void configure(PlayerConfigurationEvent event) {
+        event.player().sendResourcePacks(ResourcePackRequest.resourcePackRequest()
+                        .packs(
+                                ResourcePackInfo.resourcePackInfo(RESOURCES_UUID, URI.create("https://objects.cabotmc.dev/26.zip"), "9e4298a11526f6256b059c8b03c0eec095b88a00")
+                        )
+                        .prompt(Component.text("Required Cabot resources"))
+                .required(true)
+                .build());
+
+        var future = new CompletableFuture<Boolean>();
+        resourcePackFutures.put(event.player().getUniqueId(), future);
+        try {
+            future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            // pass
+            e.printStackTrace();
+        } finally {
+            resourcePackFutures.remove(event.player().getUniqueId());
+        }
     }
 
     @Subscribe
@@ -56,7 +119,7 @@ public class CabotProxy {
             var ip = event.getPlayer().getRemoteAddress().getHostString();
             if (ip.equals("127.0.0.1") || ip.startsWith("192.168.")) {
                 event.getPlayer().sendMessage(
-                    formatProxyMessage("Connected via local network. Hello Kyle :)")
+                    formatProxyMessage("<rainbow>Connected via local network. Hello Kyle :)")
                 );
             } else if (ip.equals("100.67.67.1")) {
                 // from the-server
@@ -65,14 +128,110 @@ public class CabotProxy {
                 );
             } else if (ip.startsWith("100.67.67")) {
                 event.getPlayer().sendMessage(
-                        formatProxyMessage("Your game traffic is being routed optimally via Netbird")
+                        formatProxyMessage("<#2092a6>Your game traffic is being routed optimally via Netbird")
                 );
             }
+        }
+        var curServer = event.getPlayer().getCurrentServer().get().getServer();
+        server.getScheduler().buildTask(this, () -> {
+                    rebuildPlayerListForServer(curServer);
+                })
+                .delay(1000, TimeUnit.MILLISECONDS)
+                .schedule();
+    }
+
+    @Subscribe
+    public void onLeave(DisconnectEvent e) {
+        var s = e.getPlayer().getCurrentServer().get().getServer();
+        server.getScheduler().buildTask(this, () -> {
+            rebuildPlayerListForServer(s);
+        }).delay(10, TimeUnit.MILLISECONDS).schedule();
+        server.sendMessage(MiniMessage.miniMessage().deserialize("<red>-<gray> " + e.getPlayer().getUsername()));
+
+        if (resourcePackFutures.containsKey(e.getPlayer().getUniqueId())) {
+            var future = resourcePackFutures.get(e.getPlayer().getUniqueId());
+            future.complete(false);
+            resourcePackFutures.remove(e.getPlayer().getUniqueId());
+        }
+    }
+
+    @Subscribe
+    public void chat(PlayerChatEvent e) {
+        e.setResult(PlayerChatEvent.ChatResult.denied());
+
+        var message = formatChatMessage(e.getPlayer(), e.getMessage());
+        for (var player : server.getAllPlayers()) {
+            player.sendMessage(message);
+        }
+    }
+
+    private Component formatChatMessage(Player sender, String message) {
+        return formatPlayerName(sender).append(MiniMessage.miniMessage().deserialize("<reset><#04d7de>:<reset> " + message));
+    }
+
+    private void rebuildPlayerListForServer(RegisteredServer target) {
+        logger.info("Rebuilding player list for " + target.getServerInfo().getName());
+        var players = target.getPlayersConnected();
+
+        for (var player : players) {
+            player.getTabList().getEntries().forEach(e -> {
+                var id = e.getProfile().getId();
+                if (server.getPlayer(id).isEmpty()) return;
+                var p = server.getPlayer(id).get();
+
+                e.setDisplayName(formatPlayerName(p));
+                e.setListOrder(getPlayerSortOrder(p));
+            });
+        }
+    }
+
+    private void updateHeaders() {
+        var mm = MiniMessage.miniMessage();
+        for (var player : server.getAllPlayers()) {
+            var ping = player.getPing();
+            var server = player.getCurrentServer().isPresent() ? player.getCurrentServer().get().getServer().getServerInfo().getName() : "Unknown";
+            var connectionMethod = "Unknown";
+            var ip = player.getRemoteAddress().getHostString();
+
+            if (ip.equals("127.0.0.1") || ip.startsWith("192.168.")) {
+                connectionMethod = "<green>Local";
+            } else if (ip.equals("100.67.67.1")) {
+                // from the-server
+                connectionMethod = "<red>Proxy";
+            } else if (ip.startsWith("100.67.67")) {
+                connectionMethod = "<green>Netbird";
+            }
+
+            player.sendPlayerListHeaderAndFooter(
+                    mm.deserialize("\n <#f505f1>Connected to <#05f515>" + server + " <reset>|<#04d7de> Routed via " + connectionMethod + " <#04d7de>" + ping + "ms \n"),
+                    Component.text("\n\n\n\na\n\n\n\n").font(Key.key("cabot", "icons"))
+            );
+        }
+    }
+
+    private Component formatPlayerName(Player player) {
+        var api = LuckPermsProvider.get();
+        var user = api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData();
+        var prefix = user.getPrefix();
+        if (prefix == null) return Component.text(player.getUsername());
+
+        return MiniMessage.miniMessage().deserialize(prefix + "<reset> " + player.getUsername());
+    }
+
+    private int getPlayerSortOrder(Player player) {
+        var api = LuckPermsProvider.get();
+        var user = api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData();
+        var w = user.getMetaValue("cabot.weight");
+        if (w == null) return 0;
+        try {
+            return Integer.parseInt(w);
+        } catch (NumberFormatException e) {
+            return 0;
         }
     }
 
     private Component formatProxyMessage(String message) {
-        var prefix = Component.text("(Harbourmaster) ", TextColor.color(0x404040)).append(Component.text("", NamedTextColor.GRAY));
+        var prefix = Component.text("Harbourmaster | ", TextColor.color(0x406060)).append(Component.text("", NamedTextColor.GRAY));
 
         return prefix.append(MiniMessage.miniMessage().deserialize(message));
     }

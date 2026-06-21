@@ -39,7 +39,7 @@ public final class SpigotAgent extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BeaconListener(), this);
         Bukkit.getPluginManager().registerEvents(new LimitedTotemRule(), this);
 
-        Bukkit.getWorld("world").getWorldBorder().setWarningTimeTicks(20 * 20);
+        Bukkit.getWorld("world").getWorldBorder().setWarningTime(20);
         TicketBrowseMenu.initItems();
         TicketUtil.loadComputedJson();
         getCommand("debugticket").setExecutor(new DebugTicketCommand());

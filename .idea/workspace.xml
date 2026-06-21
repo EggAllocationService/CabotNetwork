@@ -6,12 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="7951f9e6-b06d-401b-aa23-0d02f2dee995" name="Changes" comment="update version and fix deprecation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CabotProxy/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CabotProxy/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/CabotProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/CabotProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketViewMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/tickets/TicketViewMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="43" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -31,6 +38,49 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="CabotProxy" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="CabotProxy" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="CabotProxy" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="CabotProxy" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="shadow" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="UhcAgent" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="UhcAgent" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
+                <item name="UhcAgent" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="shadow" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -46,46 +96,85 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3FNHm1HXCtKlZvHFbhtaLU9cgKD" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build CabotNetwork.executor": "Run",
-    "Gradle.CabotNetwork [build].executor": "Run",
-    "Gradle.CabotNetwork [clean build].executor": "Run",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "separate-uhc",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "project.scopes",
-    "vue.rearranger.settings.migration": "true"
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build CabotNetwork.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [:CabotProxy:jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [:CabotProxy:shadowJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [:EggRandomizer:shadowJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [:UhcAgent:shadowJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [clean build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CabotNetwork [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;separate-uhc&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kyle/IdeaProjects/CabotNetwork/UhcAgent/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/UhcAgent/lib" />
+    </key>
+  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle build" />
       <command value="gradle clean build" />
+      <command value="gradle clean" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.CabotNetwork [clean build]">
-    <configuration name="CabotNetwork [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.CabotNetwork [:CabotProxy:shadowJar]">
+    <configuration name="CabotNetwork [:CabotProxy:jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
+            <option value=":CabotProxy:jar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -99,7 +188,82 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CabotNetwork [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CabotNetwork [:CabotProxy:shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":CabotProxy:shadowJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CabotNetwork [:EggRandomizer:shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":EggRandomizer:shadowJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CabotNetwork [:UhcAgent:shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":UhcAgent:shadowJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CabotNetwork [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -111,7 +275,6 @@
         <option name="taskNames">
           <list>
             <option value="clean" />
-            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -127,8 +290,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.CabotNetwork [clean build]" />
-        <item itemvalue="Gradle.CabotNetwork [build]" />
+        <item itemvalue="Gradle.CabotNetwork [:CabotProxy:shadowJar]" />
+        <item itemvalue="Gradle.CabotNetwork [:CabotProxy:jar]" />
+        <item itemvalue="Gradle.CabotNetwork [:UhcAgent:shadowJar]" />
+        <item itemvalue="Gradle.CabotNetwork [:EggRandomizer:shadowJar]" />
+        <item itemvalue="Gradle.CabotNetwork [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -157,8 +323,22 @@
       <option name="project" value="LOCAL" />
       <updated>1781891334465</updated>
     </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7951f9e6-b06d-401b-aa23-0d02f2dee995" name="Changes" comment="update version and fix deprecation" />
+      <created>1781908762777</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1781908762777</updated>
+      <workItem from="1781908763856" duration="4782000" />
+      <workItem from="1781986814826" duration="4410000" />
+      <workItem from="1781992007426" duration="1520000" />
+      <workItem from="1782066998735" duration="1564000" />
+    </task>
     <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixes" />

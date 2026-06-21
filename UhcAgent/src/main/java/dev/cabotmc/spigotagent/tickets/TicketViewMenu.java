@@ -130,11 +130,15 @@ public class TicketViewMenu implements Listener {
         return null;
     }
     static String convertNamespacedEntityToLegacy(String name, boolean addSpace) {
-        var base = "";
-        for (var x : name.split("_")) {
-            base += x.substring(0, 1).toUpperCase() + x.substring(1);
-            if (addSpace) base = base + " ";
+        try {
+            var base = "";
+            for (var x : name.split("_")) {
+                base += x.substring(0, 1).toUpperCase() + x.substring(1);
+                if (addSpace) base = base + " ";
+            }
+            return base;
+        } catch(StringIndexOutOfBoundsException e) {
+            return name;
         }
-        return base;
     }
 }
