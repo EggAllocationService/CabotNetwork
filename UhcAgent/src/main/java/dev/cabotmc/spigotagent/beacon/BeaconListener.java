@@ -90,15 +90,6 @@ public class BeaconListener implements Listener {
             .add(0, 2d, 0);
     p.getWorld()
             .spawnParticle(
-                    Particle.FLASH,
-                    p.getLocation(),
-                    20,
-                    1,
-                    1,
-                    1
-            );
-    p.getWorld()
-            .spawnParticle(
                     Particle.TOTEM_OF_UNDYING,
                     tpLoc,
                     20,
