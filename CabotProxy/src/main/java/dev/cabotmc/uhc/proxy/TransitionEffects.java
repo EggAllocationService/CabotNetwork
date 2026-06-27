@@ -70,7 +70,7 @@ public class TransitionEffects {
 
         var targetServer = server.getServer(target).orElse(null);
         if (targetServer == null) return;
-        var p = (Player) e.getSource();
+        var p = ((ServerConnection) e.getSource()).getPlayer();
         transferPlayer(p, targetServer);
     }
 }
