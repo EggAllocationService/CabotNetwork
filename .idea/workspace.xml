@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7951f9e6-b06d-401b-aa23-0d02f2dee995" name="Changes" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/TeamRewriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/TransitionEffects.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/commands/SendCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/commands/ServerCommand.java" afterDir="false" />
+    <list default="true" id="7951f9e6-b06d-401b-aa23-0d02f2dee995" name="Changes" comment="fix cast bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CabotProxy/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CabotProxy/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/CabotProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/CabotProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EggRandomizer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EggRandomizer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/beacon/BeaconListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/beacon/BeaconListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/TransitionEffects.java" beforeDir="false" afterPath="$PROJECT_DIR$/CabotProxy/src/main/java/dev/cabotmc/uhc/proxy/TransitionEffects.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="44" />
+    <option name="cachedIndexableFilesCount" value="47" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExternalProjectsData">
@@ -346,7 +338,9 @@
       <workItem from="1782432072115" duration="437000" />
       <workItem from="1782433917414" duration="47000" />
       <workItem from="1782516010463" duration="2899000" />
-      <workItem from="1782587377136" duration="5222000" />
+      <workItem from="1782587377136" duration="5375000" />
+      <workItem from="1782594417915" duration="179000" />
+      <workItem from="1782596132277" duration="647000" />
     </task>
     <task id="LOCAL-00003" summary="various improvements">
       <option name="closed" value="true" />
@@ -364,7 +358,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782083056637</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updates">
+      <option name="closed" value="true" />
+      <created>1782593928957</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1782593928958</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix cast bug">
+      <option name="closed" value="true" />
+      <created>1782594593069</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1782594593069</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,6 +396,8 @@
     <MESSAGE value="update version and fix deprecation" />
     <MESSAGE value="various improvements" />
     <MESSAGE value="fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
+    <MESSAGE value="updates" />
+    <MESSAGE value="fix cast bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix cast bug" />
   </component>
 </project>

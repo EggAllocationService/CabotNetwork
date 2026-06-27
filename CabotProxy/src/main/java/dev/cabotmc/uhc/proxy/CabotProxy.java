@@ -125,7 +125,7 @@ public class CabotProxy {
         event.player().sendResourcePacks(ResourcePackRequest.resourcePackRequest()
                         .packs(
                                 ResourcePackInfo.resourcePackInfo(RESOURCES_UUID, URI.create("https://objects.cabotmc.dev/26_3.zip"), "70188c8e424f75bf41832d6e252f7a1c643b3bd0"),
-                                ResourcePackInfo.resourcePackInfo(UHC_UUID, URI.create("https://objects.cabotmc.dev/cabotuhc_26.2_v3.zip"), "11220c84658c5118d14e17b9edd3521771c051ed")
+                                ResourcePackInfo.resourcePackInfo(UHC_UUID, URI.create("https://objects.cabotmc.dev/cabotuhc_26.2_v4.zip"), "a085d41ae7db3d90fe15ce4ae2d6ae8f39ae3904")
                         )
                         .prompt(Component.text("Required Cabot resources"))
                 .required(true)

@@ -11,6 +11,7 @@ import com.velocitypowered.api.proxy.messages.ChannelIdentifier;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.ShadowColor;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.title.Title;
@@ -50,7 +51,12 @@ public class TransitionEffects {
                             p.createConnectionRequest(target)
                                     .connect().thenAccept(result -> {
                                 p.showTitle(Title.title(OUT_ANIM, Component.empty(), 0, 0, 20));
-                            });
+                            })
+                                    .exceptionally(x -> {
+                                        p.showTitle(Title.title(OUT_ANIM, Component.empty(), 0, 0, 20));
+                                        p.sendMessage(Component.text("Failed to connect to " + target.getServerInfo().getName(), NamedTextColor.RED));
+                                        return null;
+                                    });
                         }
                 )
                 .delay(1, TimeUnit.SECONDS)
