@@ -43,7 +43,7 @@ public class BasicPointsListener implements Listener {
         if (!limitMap.containsKey(e.getEntityType())) {
             limitMap.put(e.getEntityType(), 1);
         }
-        float pts = (float) (e.getEntity().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() * (0.1) * (1.0f / limitMap.get(e.getEntityType())));
+        float pts = (float) (e.getEntity().getAttribute(Attribute.MAX_HEALTH).getValue() * (0.1) * (1.0f / limitMap.get(e.getEntityType())));
         if (!(e.getEntity() instanceof Monster)) {
             pts = pts / 2;
         }
@@ -59,7 +59,7 @@ public class BasicPointsListener implements Listener {
             PointsManager.addPoints("(" + multiplier + ".0x) Long-range kill!", pts, -0x444444);
             multiplier++;
         }
-        if (e.getEntity().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() > 20.0f &&  p.getInventory().getItemInMainHand().getType() == Material.WOODEN_SWORD) {
+        if (e.getEntity().getAttribute(Attribute.MAX_HEALTH).getValue() > 20.0f &&  p.getInventory().getItemInMainHand().getType() == Material.WOODEN_SWORD) {
             PointsManager.addPoints("(" + multiplier + ".0x) Killed a high-health target with a wooden sword", pts, -0x444444);
             multiplier++;
         }

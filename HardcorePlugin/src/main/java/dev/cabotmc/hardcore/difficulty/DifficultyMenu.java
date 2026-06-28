@@ -102,7 +102,7 @@ public class DifficultyMenu implements Listener {
         if (difficulties.containsKey(e.getSlot())) {
             // set slot
             HardcorePlugin.difficulty = difficulties.get(e.getSlot());
-            HardcorePlugin.difficulty.finalize();
+            HardcorePlugin.difficulty.finishUp();
             mayClose = true;
             HardcorePlugin.allowSpectators = allowSpectators;
             for (Player pd : Bukkit.getOnlinePlayers()) {

@@ -3,13 +3,9 @@ package dev.cabotmc.hardcore.difficulty;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Difficulty;
-import org.bukkit.GameMode;
-import org.bukkit.GameRule;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.attribute.AttributeModifier.Operation;
@@ -42,7 +38,7 @@ public class NightmareDifficulty extends BaseDifficulty {
     static ArrayList<EntityType> blacklist = new ArrayList<>();
     static {
         blacklist.add(EntityType.ENDER_DRAGON);
-        blacklist.add(EntityType.ENDER_CRYSTAL);
+        blacklist.add(EntityType.END_CRYSTAL);
         blacklist.add(EntityType.SHULKER);
         blacklist.add(EntityType.ZOMBIE);
     }
@@ -55,7 +51,7 @@ public class NightmareDifficulty extends BaseDifficulty {
     public void activate() {
         super.activate();
         Bukkit.getWorld("world").setTime(18000);
-        Bukkit.getWorld("world").setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        Bukkit.getWorld("world").setGameRule(GameRules.ADVANCE_TIME, false);
         Bukkit.getServer().getPluginManager().registerEvents(new NightmareListener(), HardcorePlugin.instance);
 
     }
@@ -82,12 +78,12 @@ public class NightmareDifficulty extends BaseDifficulty {
             if (!(e.getEntity() instanceof Mob))
                 return;
             var m = (Mob) e.getEntity();
-            var v = m.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+            var v = m.getAttribute(Attribute.ATTACK_DAMAGE);
             if (e.getEntityType() == EntityType.RABBIT) {
                 Rabbit r = (Rabbit) e.getEntity();
                 r.setRabbitType(Rabbit.Type.THE_KILLER_BUNNY);
-                r.getAttribute(Attribute.GENERIC_FOLLOW_RANGE)
-                        .addModifier(new AttributeModifier("RabbitRange", 16, Operation.ADD_NUMBER));
+                r.getAttribute(Attribute.ATTACK_DAMAGE)
+                        .addModifier(new AttributeModifier(new NamespacedKey("cabot", "RabbitRange"), 16, Operation.ADD_NUMBER));
                 return;
             }
             if (v == null || v.getValue() == 0) {
@@ -96,11 +92,11 @@ public class NightmareDifficulty extends BaseDifficulty {
             }
             if (Math.random() > 0.90) {
 
-                v.addModifier(new AttributeModifier("MiniBossDamageMul", 0.25, Operation.MULTIPLY_SCALAR_1));
-                m.getAttribute(Attribute.GENERIC_MAX_HEALTH)
-                        .addModifier(new AttributeModifier("MiniBossHealthMul", 0.25, Operation.MULTIPLY_SCALAR_1));
-                m.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)
-                        .addModifier(new AttributeModifier("MiniBossHealthMul", 0.25, Operation.MULTIPLY_SCALAR_1));
+                v.addModifier(new AttributeModifier(new NamespacedKey("cabot", "MiniBossHealthMul"), 0.25, Operation.MULTIPLY_SCALAR_1));
+                m.getAttribute(Attribute.MAX_HEALTH)
+                        .addModifier(new AttributeModifier(new NamespacedKey("cabot", "MiniBossHealthMul"), 0.25, Operation.MULTIPLY_SCALAR_1));
+                m.getAttribute(Attribute.MOVEMENT_SPEED)
+                        .addModifier(new AttributeModifier(new NamespacedKey("cabot", "MiniBossHealthMul"), 0.25, Operation.MULTIPLY_SCALAR_1));
                 HardcorePlugin.MINIBOSS_TEAM.addEntities(m);
                 m.setGlowing(true);
             } else {
@@ -110,13 +106,13 @@ public class NightmareDifficulty extends BaseDifficulty {
                     var w = e.getEntity().getWorld();
                     var spawned = (Zombie) w.spawnEntity(l, EntityType.ZOMBIE);
                     spawned.setBaby();
-                    spawned.getAttribute(Attribute.GENERIC_FOLLOW_RANGE)
-                            .addModifier(new AttributeModifier("RandomZombieRange", 16, Operation.ADD_NUMBER));
-                    spawned.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)
-                            .addModifier(new AttributeModifier("RandomZombieSpeed", 0.5, Operation.MULTIPLY_SCALAR_1));
-                    spawned.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(
-                            new AttributeModifier("RandomZombieAttack", -0.5, Operation.MULTIPLY_SCALAR_1));
-                    spawned.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(4);
+                    spawned.getAttribute(Attribute.FOLLOW_RANGE)
+                            .addModifier(new AttributeModifier(new NamespacedKey("cabot", "RandomZombieRange"), 16, Operation.ADD_NUMBER));
+                    spawned.getAttribute(Attribute.MOVEMENT_SPEED)
+                            .addModifier(new AttributeModifier(new NamespacedKey("cabot", "RandomZombieSpeed"), 0.5, Operation.MULTIPLY_SCALAR_1));
+                    spawned.getAttribute(Attribute.ATTACK_DAMAGE).addModifier(
+                            new AttributeModifier(new NamespacedKey("cabot", "RandomZombieDamage"), -0.5, Operation.MULTIPLY_SCALAR_1));
+                    spawned.getAttribute(Attribute.MAX_HEALTH).setBaseValue(4);
                     m.setMetadata("extra_points", new FixedMetadataValue(HardcorePlugin.instance, 2));
                 }
             }

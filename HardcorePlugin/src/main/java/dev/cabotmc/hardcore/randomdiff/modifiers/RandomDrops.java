@@ -32,13 +32,11 @@ public class RandomDrops extends Modifier implements Listener {
     List<LootGenerator> generators;
     public RandomDrops() {
         super("Random Drops");
-        generators = Arrays.asList(Material.values())
-        .stream()
-        .filter(m -> m.isItem() || m.isBlock())
+        generators = Arrays.stream(Material.values())
+        .filter(Material::isItem)
         .map(ItemGenerator::new)
-        .collect(Collectors.toCollection(() -> new ArrayList<>()));
-        Arrays.asList(LootTables.values())
-            .stream()
+        .collect(Collectors.toCollection(ArrayList::new));
+        Arrays.stream(LootTables.values())
             .map(l -> new LootTableGenerator(l.getLootTable()))
             .forEach(generators::add);
         Collections.shuffle(generators);

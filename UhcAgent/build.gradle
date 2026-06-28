@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'com.github.johnrengelman.shadow' version '9.5.0'
 }
 
 group = 'dev.cabotmc'
@@ -39,7 +39,7 @@ shadowJar {
     minimize()
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 25
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion

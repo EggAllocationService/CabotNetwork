@@ -38,7 +38,7 @@ public class RabbitMega extends Modifier implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void spawn(EntitySpawnEvent e) {
         if (e.getEntityType() == EntityType.RABBIT || !(e.getEntity() instanceof LivingEntity)) return;
-        var v = ((LivingEntity) e.getEntity()).getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+        var v = ((LivingEntity) e.getEntity()).getAttribute(Attribute.ATTACK_DAMAGE);
         if (v == null) return;
         if (Math.random() > 0.80) {
             e.setCancelled(true);
@@ -46,9 +46,9 @@ public class RabbitMega extends Modifier implements Listener {
             r.setRabbitType(Rabbit.Type.THE_KILLER_BUNNY);
             r.setGlowing(true);
             HardcorePlugin.MINIBOSS_TEAM.addEntities(r);
-            r.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1000000 * 20, 1, false, true));
-            r.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(64);
-            r.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(16);
+            r.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 1000000 * 20, 1, false, true));
+            r.getAttribute(Attribute.FOLLOW_RANGE).setBaseValue(64);
+            r.getAttribute(Attribute.MAX_HEALTH).setBaseValue(16);
         }
     }
     

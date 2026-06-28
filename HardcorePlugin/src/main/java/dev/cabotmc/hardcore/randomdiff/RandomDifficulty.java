@@ -101,7 +101,7 @@ public class RandomDifficulty extends BaseDifficulty {
         setMultiplier((Math.floor(Math.random() * 200.0) / 100) + 0.75);
     }
     @Override
-    public void finalize() {
+    public void finishUp() {
         name = "Randomized";
         int size = (int) Math.round(Math.random() * 3) + 3;
         var x = new ArrayList<Modifier>();

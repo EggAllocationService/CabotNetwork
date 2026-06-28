@@ -6,6 +6,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
+import org.bukkit.GameRules;
 
 public class AlwaysNight extends Modifier {
     public AlwaysNight() {
@@ -19,7 +20,7 @@ public class AlwaysNight extends Modifier {
 
     public void activate() {
         Bukkit.getWorld("world").setTime(18000L);
-        Bukkit.getWorld("world").setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        Bukkit.getWorld("world").setGameRule(GameRules.ADVANCE_TIME, false);
         HardcorePlugin.difficulty.setMultiplier(HardcorePlugin.difficulty.getMultiplier() + 2);
         Bukkit.getServer().getPluginManager().registerEvents(new BedExplodeListener(), HardcorePlugin.instance);
     }

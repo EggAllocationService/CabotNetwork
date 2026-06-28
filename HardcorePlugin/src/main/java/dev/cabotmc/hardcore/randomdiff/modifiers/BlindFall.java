@@ -35,7 +35,7 @@ public class BlindFall extends Modifier implements Listener {
         if (e.getEntity() instanceof Player && e.getCause() == DamageCause.FALL) {
             var d = (Player) e.getEntity();
             d.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 0, true, false));
-            d.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5 * 20, 1, true, false));
+            d.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 5 * 20, 1, true, false));
         }
     }
 

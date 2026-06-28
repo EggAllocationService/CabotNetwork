@@ -1,7 +1,6 @@
 package dev.cabotmc.spigotagent;
 
 import dev.cabotmc.commonnet.CommonClient;
-import dev.cabotmc.pingsystem.api.PingAPI;
 import dev.cabotmc.spigotagent.beacon.BeaconListener;
 import dev.cabotmc.spigotagent.elo.EloListener;
 import dev.cabotmc.spigotagent.elo.EloService;
@@ -89,30 +88,6 @@ public final class SpigotAgent extends JavaPlugin {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            PingAPI.setPermissionSolver(p -> p.getGameMode() == GameMode.SURVIVAL);
-            PingAPI.setVisibilitySolver(p -> {
-                for (var t : GameManager.getGameManager().getTeamManager().getUhcTeams()) {
-                    
-                    var players = t.getMembers().stream()
-                        .filter(c -> c.isOnline())
-                        .map(c -> {
-                            try {
-                                return c.getPlayer();
-                            } catch (UhcPlayerNotOnlineException e) {
-                                e.printStackTrace();
-                                return null;
-                            }
-                        })
-                        .filter(c -> c != null)
-                        .collect(Collectors.toCollection(() -> new ArrayList<>()));
-                    if (players.contains(p)) {
-                        return players;
-                    }
-                }
-                var x = new ArrayList<Player>();
-                x.add(p);
-                return x;
-            });
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -30,7 +30,7 @@ public class FreeDog extends Modifier {
         Player player = Bukkit.getPlayer(HardcorePlugin.ownerName);
         var wolf = (Wolf)world.spawnEntity(player.getLocation(), EntityType.WOLF) ;
         wolf.setOwner(player);
-        wolf.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40.0);
-        wolf.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
+        wolf.getAttribute(Attribute.MAX_HEALTH).setBaseValue(40.0);
+        wolf.getAttribute(Attribute.ATTACK_DAMAGE).setBaseValue(10);
     }
 }

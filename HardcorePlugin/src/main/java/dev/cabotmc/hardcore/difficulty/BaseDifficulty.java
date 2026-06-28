@@ -35,7 +35,7 @@ public class BaseDifficulty {
     public ArrayList<Component> getInfo() {
         return new ArrayList<>();
     }
-    public void finalize() {
+    public void finishUp() {
 
     }
     public void onRender() {

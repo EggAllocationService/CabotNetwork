@@ -107,7 +107,7 @@ public class BasicListener implements Listener {
             e.getPlayer().setInvulnerable(true);
             e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1000000, 10, true, false));
             w.getWorldBorder().setWarningDistance(0);
-            w.getWorldBorder().setWarningTime(0);
+            w.getWorldBorder().setWarningTimeTicks(0);
             w.getChunkAtAsync(e.getPlayer().getLocation().clone().subtract(64, 0, 64), true)
                     .thenAccept(c -> {
                        HardcorePlugin.world_ready = true;
@@ -118,7 +118,6 @@ public class BasicListener implements Listener {
                     .showTitle(Title.title(
                             Component.text("Pregenerating world, please wait...", TextColor.color(0xFA6655)),
                             Component.text("This may take up to a minute")));
-            Database.notifyBest();
             new DifficultyMenu().open(e.getPlayer());
         }
     }
@@ -197,8 +196,6 @@ public class BasicListener implements Listener {
                 }
             }
         }
-        Database.notifyIfBetter();
-        Database.updateScore();
     }
 
     @EventHandler

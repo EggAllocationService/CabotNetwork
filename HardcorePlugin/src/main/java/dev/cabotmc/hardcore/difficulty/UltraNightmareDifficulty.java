@@ -2,9 +2,7 @@ package dev.cabotmc.hardcore.difficulty;
 
 import java.util.ArrayList;
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameRule;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.attribute.AttributeModifier.Operation;
@@ -65,7 +63,7 @@ public class UltraNightmareDifficulty extends NightmareDifficulty {
         super.activate();
         var p = Bukkit.getPlayer(HardcorePlugin.ownerName);
         p.setMaximumNoDamageTicks(1);
-        p.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(8.0d);
+        p.getAttribute(Attribute.MAX_HEALTH).setBaseValue(8.0d);
         p.setAbsorptionAmount(4);
         var name = Component.text("Lucky Bed")
             .color(TextColor.color(0xff0f0f))
@@ -76,7 +74,7 @@ public class UltraNightmareDifficulty extends NightmareDifficulty {
         i.setItemMeta(meta);
         p.getInventory().addItem(i);
         for (var w : Bukkit.getWorlds()) {
-            w.setGameRule(GameRule.REDUCED_DEBUG_INFO, true);
+            w.setGameRule(GameRules.REDUCED_DEBUG_INFO, true);
         }
         Bukkit.getPluginManager().registerEvents(new UltraModifiers(), HardcorePlugin.instance);
     }
@@ -86,12 +84,12 @@ public class UltraNightmareDifficulty extends NightmareDifficulty {
             if (e.isCancelled()) return;
             if (!(e.getEntity() instanceof LivingEntity)) {
                 LivingEntity l = (LivingEntity) e.getEntity();
-                l.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(new AttributeModifier("Creepey", 1, Operation.MULTIPLY_SCALAR_1));
-                if (l.getAttribute(Attribute.GENERIC_ATTACK_SPEED) != null) {
-                    l.getAttribute(Attribute.GENERIC_ATTACK_SPEED).addModifier(new AttributeModifier("Creepey", 1, Operation.MULTIPLY_SCALAR_1));
+                l.getAttribute(Attribute.MOVEMENT_SPEED).addModifier(new AttributeModifier(new NamespacedKey("cabot", "c"), 1, Operation.MULTIPLY_SCALAR_1));
+                if (l.getAttribute(Attribute.ATTACK_SPEED) != null) {
+                    l.getAttribute(Attribute.ATTACK_SPEED).addModifier(new AttributeModifier(new NamespacedKey("cabot", "c"), 1, Operation.MULTIPLY_SCALAR_1));
                 }
-                if (l.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE) != null) {
-                    l.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier("Creepey", 0.5, Operation.MULTIPLY_SCALAR_1));
+                if (l.getAttribute(Attribute.ATTACK_DAMAGE) != null) {
+                    l.getAttribute(Attribute.ATTACK_DAMAGE).addModifier(new AttributeModifier(new NamespacedKey("cabot", "c"), 0.5, Operation.MULTIPLY_SCALAR_1));
                 }
             }
             

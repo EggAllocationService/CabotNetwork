@@ -1,5 +1,6 @@
 package dev.cabotmc.hardcore;
 
+import com.google.common.io.ByteStreams;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -12,22 +13,22 @@ import net.kyori.adventure.text.format.TextColor;
 
 public class ShutdownWorker {
     static BossBar shutdownBar = BossBar.bossBar(createTitle(), 1.0f, Color.RED, Overlay.NOTCHED_20);
-    static float secondsLeft = 20.0f;
+    static int ticksLeft = 20 * 20;
 
     public static void start() {
         Bukkit.getOnlinePlayers().forEach(p -> p.showBossBar(shutdownBar));
         Bukkit.getScheduler().scheduleSyncRepeatingTask(HardcorePlugin.instance, () -> {
-            secondsLeft = secondsLeft - 0.05f;
-            if (Math.floor(secondsLeft) == secondsLeft) {
-                Bukkit.getOnlinePlayers().forEach(p -> {
-                    p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, SoundCategory.MASTER, 0.8f, secondsLeft % 2 == 0 ? 1.0f : 1.5f);
-                }); 
+            ticksLeft--;
+            if (ticksLeft == 20) {
+                var pkt = ByteStreams.newDataOutput();
+                pkt.writeUTF("lobby");
+                var data = pkt.toByteArray();
+                Bukkit.getOnlinePlayers().forEach(p -> p.sendPluginMessage(HardcorePlugin.instance, "cabot:connect", data));
             }
-            
-            if (secondsLeft <= 0f) {
+            if (ticksLeft <= 0) {
                 Bukkit.shutdown();
             } else {
-                shutdownBar.progress(secondsLeft / 20.0f);
+                shutdownBar.progress(ticksLeft / (20.0f * 20.0f));
             }
         }, 0, 1);
     }

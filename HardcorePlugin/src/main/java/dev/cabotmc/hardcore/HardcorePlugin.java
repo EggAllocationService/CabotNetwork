@@ -41,9 +41,9 @@ public final class HardcorePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // remove teams
+        getServer().getScoreboardManager().getMainScoreboard().getTeams().forEach(Team::unregister);
         instance = this;
-        
-        Database.init();
 
         jedis = new Jedis("redis", 6379);
         jedis.connect();
@@ -74,7 +74,6 @@ public final class HardcorePlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Database.updateScore();
     }
 
     public void tryActivate() {
@@ -86,7 +85,7 @@ public final class HardcorePlugin extends JavaPlugin {
                 SoundCategory.MASTER, 1.0f, 1.0f);
         Bukkit.getServer().sendMessage(Component.text("Selected difficulty: ").append(difficulty.toText()));
         
-        p.getWorld().getWorldBorder().setSize(400, 10);
+        p.getWorld().getWorldBorder().changeSize(400, 10 * 20);
         difficulty.activate();
         for (Component c : DifficultyMenu.createDesc(difficulty)) {
             Bukkit.getServer().sendMessage(c);
@@ -97,5 +96,7 @@ public final class HardcorePlugin extends JavaPlugin {
         Bukkit.getScheduler().runTaskLater(HardcorePlugin.instance, () -> {
             p.getWorld().getWorldBorder().setSize(320000);
         }, 10 * 20);
+
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "cabot:connect");
     }
 }
