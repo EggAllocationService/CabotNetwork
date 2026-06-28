@@ -1,10 +1,13 @@
 package dev.cabotmc.hardcore;
 
-import dev.cabotmc.commonnet.CommonClient;
+import com.google.common.io.ByteStreams;
 import dev.cabotmc.hardcore.difficulty.BaseDifficulty;
 import dev.cabotmc.hardcore.difficulty.DifficultyMenu;
 import dev.cabotmc.hardcore.points.BasicPointsListener;
 import dev.cabotmc.hardcore.points.PointsManager;
+import io.papermc.paper.command.brigadier.BasicCommand;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
@@ -16,6 +19,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
+import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,9 +27,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.scoreboard.Team.Option;
 import org.bukkit.scoreboard.Team.OptionStatus;
+import org.jspecify.annotations.NonNull;
 import redis.clients.jedis.Jedis;
-
-import java.io.IOException;
 
 public final class HardcorePlugin extends JavaPlugin {
     public static String ownerName;
@@ -70,6 +73,27 @@ public final class HardcorePlugin extends JavaPlugin {
 
         jedis.publish("send-player", System.getenv().get("CABOT_NAME") + "," + ownerName);
         //PingAPI.setPermissionSolver(p -> p.getGameMode() != GameMode.ADVENTURE);
+
+        getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS.newHandler(x -> {
+            x.registrar().register("abandon", new BasicCommand() {
+                @Override
+                public void execute(CommandSourceStack commandSourceStack, String[] args) {
+                    var pkt = ByteStreams.newDataOutput();
+                    pkt.writeUTF("lobby");
+                    var data = pkt.toByteArray();
+                    for (var player : Bukkit.getOnlinePlayers()) {
+                        player.sendPluginMessage(HardcorePlugin.instance, "cabot:connect", data);
+                    }
+
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(HardcorePlugin.instance, Bukkit::shutdown, 40);
+                }
+
+                @Override
+                public boolean canUse(@NonNull CommandSender sender) {
+                    return sender.getName().equals(ownerName);
+                }
+            });
+        }));
     }
 
     @Override

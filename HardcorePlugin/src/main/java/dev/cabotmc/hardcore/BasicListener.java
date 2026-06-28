@@ -114,11 +114,9 @@ public class BasicListener implements Listener {
                        HardcorePlugin.instance.tryActivate();
                     });
 
-            Bukkit.getServer()
-                    .showTitle(Title.title(
-                            Component.text("Pregenerating world, please wait...", TextColor.color(0xFA6655)),
-                            Component.text("This may take up to a minute")));
-            new DifficultyMenu().open(e.getPlayer());
+            Bukkit.getScheduler().scheduleSyncDelayedTask(HardcorePlugin.instance, () -> {
+                new DifficultyMenu().open(e.getPlayer());
+            }, 20);
         }
     }
 

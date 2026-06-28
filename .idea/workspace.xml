@@ -4,36 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="Update supported MC version to 1.20.3">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="cb1a8caa-cfad-4cad-9a6a-49272af56273" name="Changes" comment="play transition fx on redis transfer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommonClasses/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClasses/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/BasicListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/BasicListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/HardcorePlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/ShutdownWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/ShutdownWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/BaseDifficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/BaseDifficulty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/DifficultyMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/DifficultyMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/NightmareDifficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/NightmareDifficulty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/UltraNightmareDifficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/difficulty/UltraNightmareDifficulty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/points/BasicPointsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/points/BasicPointsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/RandomDifficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/RandomDifficulty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/AlwaysNight.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/AlwaysNight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/BlindFall.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/BlindFall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/F3Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/F3Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/FreeDog.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/FreeDog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RabbitMega.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RabbitMega.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RandomDrops.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RandomDrops.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RandomTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/HardcorePlugin/src/main/java/dev/cabotmc/hardcore/randomdiff/modifiers/RandomTP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/UhcAgent/src/main/java/dev/cabotmc/spigotagent/SpigotAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="170" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -101,24 +84,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
-                <item name="HardcorePlugin" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
-                <item name="HardcorePlugin" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CabotOrchestration" type="f1a62948:ProjectNode" />
-                <item name="HardcorePlugin" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -197,11 +162,17 @@
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "new-solohc",
     "jdk.selected.JAVA_MODULE": "17",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/kyle/IdeaProjects/CabotNetwork",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -212,6 +183,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -231,7 +203,7 @@
       <command value="gradle UhcAgent:shadowJar" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.CabotNetwork [:HardcorePlugin:shadowJar]">
+  <component name="RunManager" selected="Gradle.CabotNetwork [shadowJar]">
     <configuration name="CabotNetwork [:HardcorePlugin:buildNeeded]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -307,10 +279,10 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CabotNetwork:HardcorePlugin [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CabotNetwork [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/HardcorePlugin" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -430,11 +402,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CabotNetwork [shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork [:HardcorePlugin:shadowJar]" />
         <item itemvalue="Gradle.CabotNetwork [:HardcorePlugin:buildNeeded]" />
         <item itemvalue="JUnit.Whole project" />
         <item itemvalue="Gradle.CabotNetwork [:HardcorePlugin:jar]" />
-        <item itemvalue="Gradle.CabotNetwork:HardcorePlugin [shadowJar]" />
       </list>
     </recent_temporary>
   </component>
@@ -468,6 +440,7 @@
       <workItem from="1703108063536" duration="9000" />
       <workItem from="1748803250479" duration="3569000" />
       <workItem from="1749396924676" duration="1179000" />
+      <workItem from="1782611286135" duration="939000" />
     </task>
     <task id="LOCAL-00001" summary="fix submodules">
       <created>1667586171282</created>
