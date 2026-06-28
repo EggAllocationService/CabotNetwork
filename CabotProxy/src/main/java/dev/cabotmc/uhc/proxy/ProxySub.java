@@ -8,11 +8,13 @@ public class ProxySub extends JedisPubSub {
     private Object plugin;
     private ProxyServer server;
     private Logger logger;
+    private TransitionEffects fx;
 
-    public ProxySub(Object plugin, ProxyServer server, Logger logger) {
+    public ProxySub(Object plugin, ProxyServer server, Logger logger, TransitionEffects fx) {
         this.server = server;
         this.plugin = plugin;
         this.logger = logger;
+        this.fx = fx;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class ProxySub extends JedisPubSub {
 
             server.getScheduler().buildTask(plugin, () -> {
                 server.getAllPlayers().forEach(player -> {
-                    player.createConnectionRequest(real).fireAndForget();
+                    fx.transferPlayer(player, real);
                 });
             }).schedule();
         } else if (channel.equals("send-player")) {
@@ -42,7 +44,7 @@ public class ProxySub extends JedisPubSub {
                 return;
             }
             server.getScheduler().buildTask(plugin, () -> {
-                player.get().createConnectionRequest(target.get()).fireAndForget();
+                fx.transferPlayer(player.get(), target.get());
             }).schedule();
         }
     }

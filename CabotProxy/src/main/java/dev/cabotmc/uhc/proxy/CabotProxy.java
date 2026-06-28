@@ -63,8 +63,9 @@ public class CabotProxy {
         instance = this;
         jedis = new Jedis("redis", 6379);
         jedis.connect();
+        var fx = new TransitionEffects(server, this);
         Thread.startVirtualThread(() -> {
-            jedis.subscribe(new ProxySub(this, server, logger), "proxy", "send", "send-player");
+            jedis.subscribe(new ProxySub(this, server, logger, fx), "proxy", "send", "send-player");
         });
         logger.info("Redis connection initialized");
 
@@ -75,7 +76,7 @@ public class CabotProxy {
         server.getChannelRegistrar().register(TransitionEffects.CONNECT_CHANNEl);
         server.getCommandManager().unregister("server");
         server.getCommandManager().unregister("send");
-        var fx = new TransitionEffects(server, this);
+
 
         server.getEventManager().register(this, fx);
         var sendMeta = server.getCommandManager().metaBuilder("send")
